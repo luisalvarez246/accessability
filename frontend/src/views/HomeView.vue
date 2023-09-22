@@ -10,7 +10,7 @@
 </script>
 
 <style scoped>
- .main {
-  background-color: #F6F3FA;
- }
+.main {
+  background-color: aliceblue;
+}
 </style>

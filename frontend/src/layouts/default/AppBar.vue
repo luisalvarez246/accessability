@@ -6,13 +6,13 @@
       </v-container>
         
     <v-spacer></v-spacer>
-    <v-btn class="accessability_btn mr-4" to="/accessability" key="1" aria-label="Accessability" tabindex="0">
-      Accessability
+    <v-btn class="accessability_btn text-none text-subtitle-1 mr-4" to="/accessability" color="14CAC9" key="1" aria-label="Accessability" tabindex="0">
+      Accessibility
     </v-btn>
-    <v-btn class="aboutus_btn mr-4" to="/about-us" key="2" aria-label="About us" tabindex="0">
+    <v-btn class="aboutus_btn text-none text-subtitle-1 mr-4" to="/about-us" key="1" aria-label="About us" tabindex="0">
       About us
     </v-btn>
-    <v-btn class="register_btn mr-4" to="/register-new-site" key="3" aria-label="Register a new site" tabindex="0">
+    <v-btn class="register_btn text-none text-subtitle-1 mr-4" to="/register-new-site" key="1" aria-label="Register a new site" tabindex="0">
       Register a new site
     </v-btn>
   </v-app-bar>

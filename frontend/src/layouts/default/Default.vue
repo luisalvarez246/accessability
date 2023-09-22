@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <v-app>
+  <v-app class="main">
     <default-bar />
 
     <default-view />
@@ -11,3 +11,9 @@
   import DefaultBar from './AppBar.vue'
   import DefaultView from './View.vue'
 </script>
+
+<style scoped>
+.main {
+  background-color: aliceblue;
+}
+</style>
