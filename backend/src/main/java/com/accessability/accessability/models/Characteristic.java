@@ -32,4 +32,6 @@ public class Characteristic {
             )
     private Set<Store> store= new HashSet<>();
 
+    public Characteristic(String s) {
+    }
 }
