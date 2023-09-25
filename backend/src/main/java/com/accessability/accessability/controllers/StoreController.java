@@ -36,8 +36,7 @@ public class StoreController {
     }
 
     @PutMapping(path = "/update/{id}")
-    public String updateStoreById (@PathVariable long id, @RequestBody Store store) {
-        store.setId(id);
-        return (storeService.updateStoreById(store));
+    public String updateStoreById (@PathVariable long id, @RequestBody StoreCreateRequest request) {
+        return (storeService.updateStoreById(id, request));
     }
 }

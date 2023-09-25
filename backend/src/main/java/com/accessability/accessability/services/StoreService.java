@@ -64,15 +64,32 @@ public class StoreService {
         }
     }
 
-    public String updateStoreById(Store updateStore) {
-        try {
-            if (iStoreRepository.existsById(updateStore.getId())) {
+    public String updateStoreById(long id, StoreCreateRequest request) {
+        Store updateStore = iStoreRepository.findById(id).orElse(null);
+        try
+        {
+            if (updateStore != null)
+            {
+                updateStore.setStoreName(request.getStoreName());
+                updateStore.setType(request.getType());
+                updateStore.setCategory(request.getCategory());
+                updateStore.setAddress(request.getAddress());
+                updateStore.setPhone(request.getPhone());
+                updateStore.setWeb(request.getWeb());
+                updateStore.setEmail(request.getEmail());
+                updateStore.setImage(request.getImage());
+                List<Characteristic> selectedCharacteristics = iCharacteristicRepository.findAllById(request.getCharacteristicIds());
+                updateStore.setCharacteristic(new HashSet<>(selectedCharacteristics));
                 iStoreRepository.save(updateStore);
                 return ("Store updated: " + updateStore.getId());
-            } else {
-                return ("Store not updated: Record with ID :" + updateStore.getId() + "does not exist");
             }
-        }catch(Exception error) {
+            else
+            {
+                return ("Store not updated: Record with ID :" + id + "does not exist");
+            }
+        }
+        catch(Exception error)
+        {
             throw new RuntimeException("Store not updated: " + error.getMessage());
         }
     }
