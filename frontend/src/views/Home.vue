@@ -1,7 +1,7 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <HelloWorld />
+<h1>Hi there!</h1>
 </template>
 
 <script setup>
-  import HelloWorld from '@/components/HelloWorld.vue'
 </script>
