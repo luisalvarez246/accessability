@@ -19,8 +19,8 @@ class StoreTest {
         store = new Store();
         store.setId(1L);
         store.setStoreName("restaurante manolito");
-        store.setType(Type.restaurant); // Asegúrate de que Type sea un valor válido
-        store.setCategory(Category.prm); // Asegúrate de que Category sea un valor válido
+        store.setType(Type.restaurant);
+        store.setCategory(Category.prm);
         store.setAddress("C/blabla");
         store.setPhone("123456789");
         store.setWeb("manolito.com");
@@ -43,12 +43,12 @@ class StoreTest {
 
     @Test
     void getType() {
-        assertEquals("restaurant", store.getType());
+        assertEquals("restaurant", store.getType().toString());
     }
 
     @Test
     void getCategory() {
-        assertEquals("prm", store.getCategory());
+        assertEquals("prm", store.getCategory().toString());
     }
 
     @Test
@@ -76,13 +76,9 @@ class StoreTest {
         assertEquals("image.png", store.getImage());
     }
 
-    /*
+
     @Test
-    void getCharacteristics() {
-
-        assertEquals("Característica 1", store.getCharacteristics());
-
-    }*/
+    void getCharacteristics() { assertFalse(store.getCharacteristics().isEmpty()); }
 
 
     @Test
@@ -96,14 +92,14 @@ class StoreTest {
     void setType() {
         store.setType(Type.hotel);
 
-        assertEquals("hotel", store.getType());
+        assertEquals("hotel", store.getType().toString());
     }
 
     @Test
     void setCategory() {
         store.setCategory(Category.hearing);
 
-        assertEquals("hearing", store.getCategory());
+        assertEquals("hearing", store.getCategory().toString());
     }
 
     @Test
@@ -141,8 +137,9 @@ class StoreTest {
         assertEquals("testingImage.png", store.getImage());
     }
 
-    /*
+
     @Test
     void setCharacteristics() {
-    }*/
+        assertFalse(store.getCharacteristics().isEmpty());
+    }
 }

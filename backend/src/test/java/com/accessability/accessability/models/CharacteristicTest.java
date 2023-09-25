@@ -4,6 +4,9 @@ import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CharacteristicTest {
@@ -16,7 +19,12 @@ class CharacteristicTest {
         characteristic.setId(1L);
         characteristic.setTitle("test characteristic");
         characteristic.setIcon("image.png");
+        /*
+        Set<Store> store = new HashSet<>();
+        store.add(new Store(1L, "hotel pepita", Type.hotel, Category.visual, "C/calle", "123123123", "hotel.com", "hotel@pepita.com", "image.png", ""));
+        */
     }
+
 
     @Test
     void getId() {
@@ -33,12 +41,6 @@ class CharacteristicTest {
         assertEquals("test characteristic", characteristic.getTitle());
     }
 
-    /*
-    @Test
-    void getStore() {
-
-    }
-    */
 
     @Test
     void setIcon() {
@@ -53,6 +55,7 @@ class CharacteristicTest {
 
         assertEquals("testing setter", characteristic.getTitle());
     }
+
 
     /*
     @Test
