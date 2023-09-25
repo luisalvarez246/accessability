@@ -1,11 +1,17 @@
 package com.accessability.accessability.services;
 
+import com.accessability.accessability.dto.StoreCreateRequest;
+import com.accessability.accessability.models.Characteristic;
 import com.accessability.accessability.models.Store;
+import com.accessability.accessability.repositories.ICharacteristicRepository;
 import com.accessability.accessability.repositories.IStoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 
 @Service
 public class StoreService {
@@ -13,12 +19,31 @@ public class StoreService {
     @Autowired
     IStoreRepository iStoreRepository;
 
-    public String saveStore(Store store) {
-        try{
+    @Autowired
+    ICharacteristicRepository iCharacteristicRepository;
+
+    public String saveStore(StoreCreateRequest request)
+    {
+        Store store = new Store();
+
+        try
+        {
+            store.setStoreName(request.getStoreName());
+            store.setType(request.getType());
+            store.setCategory(request.getCategory());
+            store.setAddress(request.getAddress());
+            store.setPhone(request.getPhone());
+            store.setWeb(request.getWeb());
+            store.setEmail(request.getEmail());
+            store.setImage(request.getImage());
+            List<Characteristic> selectedCharacteristics = iCharacteristicRepository.findAllById(request.getCharacteristicIds());
+            store.setCharacteristic(new HashSet<>(selectedCharacteristics));
             iStoreRepository.save(store);
             return "Added new Store";
-        }catch(Exception error) {
-            return error.getMessage();
+        }
+        catch(Exception error)
+        {
+            return (error.getMessage() + request.toString());
         }
     }
 

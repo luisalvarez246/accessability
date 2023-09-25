@@ -1,5 +1,6 @@
 package com.accessability.accessability.controllers;
 
+import com.accessability.accessability.dto.StoreCreateRequest;
 import com.accessability.accessability.models.Store;
 import com.accessability.accessability.services.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,8 @@ public class StoreController {
     }
 
     @PostMapping
-    public String saveStore(@RequestBody Store store) {
-        return (storeService.saveStore(store));
+    public String saveStore(@RequestBody StoreCreateRequest request) {
+        return (storeService.saveStore(request));
     }
 
     @PutMapping(path = "/update/{id}")

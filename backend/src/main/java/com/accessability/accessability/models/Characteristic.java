@@ -24,12 +24,17 @@ public class Characteristic {
 
     private String title;
 
-    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-    @JoinTable(
-            name = "store_characteristic",
-            joinColumns = @JoinColumn(name = "store_id"),
-                    inverseJoinColumns = @JoinColumn(name = "characteristic_id")
-            )
+    @ManyToMany(mappedBy = "characteristic", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private Set<Store> store= new HashSet<>();
+
+    @Override
+    public String toString()
+    {
+        return ("Request " +
+                "[id=" + id + ", " +
+                "icon=" + icon + ", " +
+                "title=" + title +"]"
+        );
+    }
 
 }

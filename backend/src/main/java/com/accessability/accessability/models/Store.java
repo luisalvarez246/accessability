@@ -38,7 +38,12 @@ public class Store {
 
     private String image;
 
-    @ManyToMany(mappedBy = "store", cascade=CascadeType.ALL)
-    private Set<Characteristic> characteristics = new HashSet<>();
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JoinTable(
+            name = "store_characteristic",
+            joinColumns = @JoinColumn(name = "store_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "characteristic_id", referencedColumnName = "id")
+    )
+    private Set<Characteristic> characteristic = new HashSet<>();
 
 }
