@@ -29,4 +29,7 @@ onMounted(() => {
     <div>
         Hola
     </div>
+
+    <button><router-link to="/register">cambiar vista</router-link></button>
+    
 </template>
