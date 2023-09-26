@@ -10,7 +10,7 @@ const { handleSubmit, handleReset } = useForm({
 
       return "Name needs to be at least 2 characters.";
     },
-    type(value) {
+    city(value) {
       if (value?.length >= 2) return true;
 
       return "Must introduce a valid city.";
@@ -30,11 +30,21 @@ const { handleSubmit, handleReset } = useForm({
 
       return "Select an item.";
     },
-    checkbox(value) {
-      if (value === "1") return true;
+    phone(value) {
+      if (value?.length >= 9) return true;
 
-      return "Must be checked.";
+      return "Must enter a valid phone number.";
     },
+    type(value) {
+      if (value?.length >= 2) return true;
+
+      return "Must enter a valid type of bussiness.";
+    },
+    // checkbox(value) {
+    //   if (value === "1") return true;
+
+    //   return "Must be checked.";
+    // },
   },
 });
 const name = useField("name");
@@ -86,8 +96,9 @@ onBeforeMount(() => {
       :counter="10"
       :error-messages="name.errorMessage.value"
       label="Name"
-      aria-label="Field for name of bussiness"
     ></v-text-field>
+    
+
 
     <v-text-field
       v-model="city.value.value"
@@ -95,7 +106,6 @@ onBeforeMount(() => {
       :error-messages="city.errorMessage.value"
       label="City"
       placeholder="Gijón, Oviedo, Avilés..."
-      aria-label="Field for city of bussiness"
     ></v-text-field>
 
     <v-text-field
@@ -104,7 +114,6 @@ onBeforeMount(() => {
       :error-messages="phone.errorMessage.value"
       label="Phone"
       placeholder="667123456..."
-      aria-label="Field for phone of bussiness"
     ></v-text-field>
 
     <v-text-field
@@ -112,7 +121,6 @@ onBeforeMount(() => {
       :error-messages="address.errorMessage.value"
       label="Address"
       placeholder="Calle Principal..."
-      aria-label="Field for address of bussiness"
     ></v-text-field>
 
     <v-text-field
@@ -120,7 +128,6 @@ onBeforeMount(() => {
       :error-messages="type.errorMessage.value"
       label="Type"
       placeholder="Restaurant, Hotel..."
-      aria-label="Field for type of bussiness"
     ></v-text-field>
 
     <v-text-field
@@ -128,7 +135,6 @@ onBeforeMount(() => {
       :error-messages="email.errorMessage.value"
       label="Email"
       placeholder="name@domain.com"
-      aria-label="Field for email of bussiness"
     ></v-text-field>
 
     <!-- <v-checkbox
@@ -149,18 +155,18 @@ onBeforeMount(() => {
       :error-messages="checkbox.errorMessage.value"
       :value="characteristic.id"
       :label="characteristic.title"
+      :img="characteristic.image"
       type="checkbox"
-      aria-label="Checkbox of Characteristics of the bussiness"
     ></v-checkbox>
 
     <v-textarea
-    v-model="description.value"
      label="Description"
-     aria-label="Area for a detailed description of the characteristics of the bussiness"
+     placeholder="Enter a detailed description of the characteristics..."
      ></v-textarea>
 
-    <v-btn class="me-4" type="submit"> submit </v-btn>
+    <v-btn rounded-sm class="me-4 bg-green-lighten-1" type="submit"> submit </v-btn>
+    <!-- <v-btn rounded="me-4 green-lighten-1" type="submit">Rounded xs</v-btn> -->
 
-    <v-btn @click="handleReset"> clear </v-btn>
+    <v-btn rounded-sm class="bg-red-accent-4" @click="handleReset"> clear </v-btn>
   </form>
 </template>
