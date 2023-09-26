@@ -1,17 +1,24 @@
 package com.accessability.accessability.services;
 
 import com.accessability.accessability.models.Characteristic;
+import com.accessability.accessability.models.Store;
 import com.accessability.accessability.repositories.ICharacteristicRepository;
+import com.accessability.accessability.repositories.IStoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CharacteristicService {
 
     @Autowired
-    ICharacteristicRepository iCharacteristicRepository;
+    ICharacteristicRepository   iCharacteristicRepository;
+
+    @Autowired
+    StoreService                storeService;
 
     public String saveCharacteristic(Characteristic characteristic) {
         try{
@@ -39,15 +46,36 @@ public class CharacteristicService {
         }
     }
 
-    public String updateCharacteristicById(Characteristic updateCharacteristic) {
-        try {
-            if (iCharacteristicRepository.existsById(updateCharacteristic.getId())) {
+    public String updateCharacteristicById(Characteristic updateCharacteristic)
+    {
+        ArrayList<Store>        storeList;
+        List<Long>              characteristicId;
+        List<Characteristic>    characteristicList;
+
+        try
+        {
+            if (iCharacteristicRepository.existsById(updateCharacteristic.getId()))
+            {
                 iCharacteristicRepository.save(updateCharacteristic);
+                storeList = storeService.findByCharacteristicId(updateCharacteristic.getId());
+                for(Store store : storeList)
+                {
+                    characteristicId = store.getCharacteristic().stream()
+                                        .map(characteristic -> characteristic.getId())
+                                        .collect(Collectors.toList());
+                    characteristicList = iCharacteristicRepository.findAllById(characteristicId);
+                    store.setCategories(storeService.categoryLoad(characteristicList));
+                    storeService.crossUpdate(store);
+                }
                 return ("Characteristic updated: " + updateCharacteristic.getId());
-            } else {
+            }
+            else
+            {
                 return ("Characteristic not updated: Record with ID :" + updateCharacteristic.getId() + "does not exist");
             }
-        }catch(Exception error) {
+        }
+        catch(Exception error)
+        {
             throw new RuntimeException("Characteristic not updated: " + error.getMessage());
         }
     }

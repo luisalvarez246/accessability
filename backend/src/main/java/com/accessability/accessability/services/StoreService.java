@@ -78,10 +78,15 @@ public class StoreService {
         }
     }
 
+    public String crossUpdate(Store store)
+    {
+        iStoreRepository.save(store);
+        return ("Store Category updated");
+    }
+
     public void mapRequest(Store store, StoreCreateRequest request)
     {
         List<Characteristic>    selectedCharacteristics;
-        String                  categories;
 
         store.setStoreName(request.getStoreName());
         store.setType(request.getType());
@@ -92,10 +97,22 @@ public class StoreService {
         store.setImage(request.getImage());
         selectedCharacteristics = iCharacteristicRepository.findAllById(request.getCharacteristicIds());
         store.setCharacteristic(new HashSet<>(selectedCharacteristics));
+        store.setCategories(categoryLoad(selectedCharacteristics));
+    }
+
+    public String categoryLoad(List<Characteristic> selectedCharacteristics)
+    {
+        String  categories;
+
         categories = selectedCharacteristics.stream()
                         .map(characteristic -> characteristic.getCategory().name())
                         .distinct()
                         .collect(Collectors.joining(","));
-        store.setCategories(categories);
+        return (categories);
+    }
+
+    public ArrayList<Store> findByCharacteristicId(Long characteristicId)
+    {
+        return (iStoreRepository.findByCharacteristicId(characteristicId));
     }
 }

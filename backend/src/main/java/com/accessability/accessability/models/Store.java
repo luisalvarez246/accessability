@@ -1,5 +1,6 @@
 package com.accessability.accessability.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -44,6 +45,7 @@ public class Store {
             joinColumns = @JoinColumn(name = "store_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "characteristic_id", referencedColumnName = "id")
     )
+    @JsonIgnore
     private Set<Characteristic> characteristic = new HashSet<>();
 
     @Override

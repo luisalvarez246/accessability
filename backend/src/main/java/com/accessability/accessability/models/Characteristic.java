@@ -1,5 +1,6 @@
 package com.accessability.accessability.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,6 +29,7 @@ public class Characteristic {
     private Category category;
 
     @ManyToMany(mappedBy = "characteristic", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JsonIgnore
     private Set<Store> store= new HashSet<>();
 
     @Override
