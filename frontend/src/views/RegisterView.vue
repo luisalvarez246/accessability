@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onBeforeMount } from 'vue'
+import { ref, onBeforeMount } from "vue";
 import ApiConnection from "@/services/ApiConnection";
 import { useField, useForm } from "vee-validate";
 
@@ -20,11 +20,11 @@ const { handleSubmit, handleReset } = useForm({
 
       return "Must be a valid address.";
     },
-    // email(value) {
-    //   if (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value)) return true;
+    email(value) {
+      if (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value)) return true;
 
-    //   return "Must be a valid e-mail.";
-    // },
+      return "Must be a valid e-mail.";
+    },
     select(value) {
       if (value) return true;
 
@@ -39,38 +39,46 @@ const { handleSubmit, handleReset } = useForm({
 });
 const name = useField("name");
 const type = useField("type");
-const city = useField("city")
+const city = useField("city");
+const phone = useField("phone")
+const description = useField("description")
 const address = useField("address");
 const checkbox = useField("checkbox");
-const characteristics = ref([])
-const characteristic = ref({
-    id: '',
-    icon: "",
-    title: ""
-})
+const email = useField("email")
+const characteristics = ref([]);
+// const characteristic = ref({
+//     id: '',
+//     icon: "",
+//     title: ""
+// })
+
+const checkboxValues = ref({});
+
+const updateCheckbox = (id, value) => {
+  checkboxValues.value[id] = value;
+};
 
 const submit = handleSubmit((values) => {
   alert(JSON.stringify(values, null, 2));
+  
 });
 
 const getAllCharacteristics = async () => {
-    let response = await ApiConnection.getAllCharacteristics()
-    characteristics.value = response.data
-    console.log(characteristics.value);
-    return characteristics.value
-}
+  let response = await ApiConnection.getAllCharacteristics();
+  characteristics.value = response.data;
+  console.log(characteristics.value);
+  return characteristics.value;
+};
 
 onBeforeMount(() => {
-    getAllCharacteristics()
-})
+  getAllCharacteristics();
+});
 </script>
 
 <template>
-
-    <div>
-        <button><router-link to="/">cambiar vista</router-link></button>
-    </div>
-
+  <div>
+    <button><router-link to="/">cambiar vista</router-link></button>
+  </div>
 
   <form @submit.prevent="submit">
     <v-text-field
@@ -78,6 +86,7 @@ onBeforeMount(() => {
       :counter="10"
       :error-messages="name.errorMessage.value"
       label="Name"
+      aria-label="Field for name of bussiness"
     ></v-text-field>
 
     <v-text-field
@@ -86,6 +95,16 @@ onBeforeMount(() => {
       :error-messages="city.errorMessage.value"
       label="City"
       placeholder="Gijón, Oviedo, Avilés..."
+      aria-label="Field for city of bussiness"
+    ></v-text-field>
+
+    <v-text-field
+      v-model="phone.value.value"
+      :counter="7"
+      :error-messages="phone.errorMessage.value"
+      label="Phone"
+      placeholder="667123456..."
+      aria-label="Field for phone of bussiness"
     ></v-text-field>
 
     <v-text-field
@@ -93,33 +112,52 @@ onBeforeMount(() => {
       :error-messages="address.errorMessage.value"
       label="Address"
       placeholder="Calle Principal..."
+      aria-label="Field for address of bussiness"
     ></v-text-field>
 
     <v-text-field
       v-model="type.value.value"
       :error-messages="type.errorMessage.value"
       label="Type"
-      placeholder="email@dominio.com"
+      placeholder="Restaurant, Hotel..."
+      aria-label="Field for type of bussiness"
     ></v-text-field>
 
-    <v-checkbox
+    <v-text-field
+      v-model="email.value.value"
+      :error-messages="email.errorMessage.value"
+      label="Email"
+      placeholder="name@domain.com"
+      aria-label="Field for email of bussiness"
+    ></v-text-field>
+
+    <!-- <v-checkbox
+    class="d-flex "
       v-for="characteristic in characteristics" :key="characteristic.id"
       v-model="characteristic.title.value"
       :error-messages="checkbox.errorMessage.value"
       value="1"
-      label="option"
-      type="checkbox"
-    ></v-checkbox>
-
-    <!-- <v-checkbox
-      v-model="checkbox.value.value"
-      :error-messages="checkbox.errorMessage.value"
-      value="1"
-      label="Option"
+      :label="characteristic.title"
       type="checkbox"
     ></v-checkbox> -->
 
-    
+    <v-checkbox
+      v-for="characteristic in characteristics"
+      :key="characteristic.id"
+      :model-value="checkboxValues[characteristic.id]"
+      @update:model-value="updateCheckbox(characteristic.id, $event)"
+      :error-messages="checkbox.errorMessage.value"
+      :value="characteristic.id"
+      :label="characteristic.title"
+      type="checkbox"
+      aria-label="Checkbox of Characteristics of the bussiness"
+    ></v-checkbox>
+
+    <v-textarea
+    v-model="description.value"
+     label="Description"
+     aria-label="Area for a detailed description of the characteristics of the bussiness"
+     ></v-textarea>
 
     <v-btn class="me-4" type="submit"> submit </v-btn>
 
