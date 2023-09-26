@@ -24,6 +24,9 @@ public class Characteristic {
 
     private String title;
 
+    @Enumerated(EnumType.STRING)
+    private Category category;
+
     @ManyToMany(mappedBy = "characteristic", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private Set<Store> store= new HashSet<>();
 

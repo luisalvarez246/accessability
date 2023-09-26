@@ -1,6 +1,7 @@
 package com.accessability.accessability.services;
 
 import com.accessability.accessability.dto.StoreCreateRequest;
+import com.accessability.accessability.models.Category;
 import com.accessability.accessability.models.Characteristic;
 import com.accessability.accessability.models.Store;
 import com.accessability.accessability.repositories.ICharacteristicRepository;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class StoreService {
@@ -28,16 +30,7 @@ public class StoreService {
 
         try
         {
-            store.setStoreName(request.getStoreName());
-            store.setType(request.getType());
-            store.setCategory(request.getCategory());
-            store.setAddress(request.getAddress());
-            store.setPhone(request.getPhone());
-            store.setWeb(request.getWeb());
-            store.setEmail(request.getEmail());
-            store.setImage(request.getImage());
-            List<Characteristic> selectedCharacteristics = iCharacteristicRepository.findAllById(request.getCharacteristicIds());
-            store.setCharacteristic(new HashSet<>(selectedCharacteristics));
+            mapRequest(store, request);
             iStoreRepository.save(store);
             return "Added new Store";
         }
@@ -70,16 +63,7 @@ public class StoreService {
         {
             if (updateStore != null)
             {
-                updateStore.setStoreName(request.getStoreName());
-                updateStore.setType(request.getType());
-                updateStore.setCategory(request.getCategory());
-                updateStore.setAddress(request.getAddress());
-                updateStore.setPhone(request.getPhone());
-                updateStore.setWeb(request.getWeb());
-                updateStore.setEmail(request.getEmail());
-                updateStore.setImage(request.getImage());
-                List<Characteristic> selectedCharacteristics = iCharacteristicRepository.findAllById(request.getCharacteristicIds());
-                updateStore.setCharacteristic(new HashSet<>(selectedCharacteristics));
+                mapRequest(updateStore, request);
                 iStoreRepository.save(updateStore);
                 return ("Store updated: " + updateStore.getId());
             }
@@ -94,4 +78,24 @@ public class StoreService {
         }
     }
 
+    public void mapRequest(Store store, StoreCreateRequest request)
+    {
+        List<Characteristic>    selectedCharacteristics;
+        String                  categories;
+
+        store.setStoreName(request.getStoreName());
+        store.setType(request.getType());
+        store.setAddress(request.getAddress());
+        store.setPhone(request.getPhone());
+        store.setWeb(request.getWeb());
+        store.setEmail(request.getEmail());
+        store.setImage(request.getImage());
+        selectedCharacteristics = iCharacteristicRepository.findAllById(request.getCharacteristicIds());
+        store.setCharacteristic(new HashSet<>(selectedCharacteristics));
+        categories = selectedCharacteristics.stream()
+                        .map(characteristic -> characteristic.getCategory().name())
+                        .distinct()
+                        .collect(Collectors.joining(","));
+        store.setCategories(categories);
+    }
 }

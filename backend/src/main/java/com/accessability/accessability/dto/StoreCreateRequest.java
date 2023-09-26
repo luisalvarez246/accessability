@@ -4,6 +4,7 @@ import com.accessability.accessability.models.Type;
 import com.accessability.accessability.models.Category;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
@@ -11,12 +12,11 @@ import java.util.Set;
 
 @Getter
 @Setter
-@AllArgsConstructor
+@NoArgsConstructor
 public class StoreCreateRequest
 {
     private String      storeName;
     private Type        type;
-    private Category    category;
     private String      address;
     private String      phone;
     private String      web;
@@ -30,7 +30,6 @@ public class StoreCreateRequest
         return ("Request " +
                 "[storeName=" + storeName + ", " +
                 "type=" + type + ", " +
-                "category=" + category + ", " +
                 "address=" + address + ", " +
                 "phone=" + phone + ", " +
                 "web=" + web + ", " +

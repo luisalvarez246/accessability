@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,8 +26,7 @@ public class Store {
     @Enumerated(EnumType.STRING)
     private Type type;
 
-    @Enumerated(EnumType.STRING)
-    private Category category;
+    private String categories;
 
     private String address;
 
@@ -45,5 +45,21 @@ public class Store {
             inverseJoinColumns = @JoinColumn(name = "characteristic_id", referencedColumnName = "id")
     )
     private Set<Characteristic> characteristic = new HashSet<>();
+
+    @Override
+    public String toString()
+    {
+        return ("Store " +
+                "[storeName=" + storeName + ", " +
+                "type=" + type + ", " +
+                "categories=" + categories + ", " +
+                "address=" + address + ", " +
+                "phone=" + phone + ", " +
+                "web=" + web + ", " +
+                "email=" + email + ", " +
+                "image=" + image + ", " +
+                "]"
+        );
+    }
 
 }
