@@ -3,15 +3,14 @@
   <v-container
     width="90%">
     <v-card
-      color="#59029F"
+      color="searchcard"
       class="mx-auto rounded-lg py-10 mt-10"
-      min-width="auto"
     >
       <v-card-title class="text-center">
-        Discover the best accessible places
+        Discover the best accessible places in Asturias
       </v-card-title>
-      <v-card class="mx-auto rounded-lg pa-10" color="background" width="90%" >
-        <v-card-text>
+      <v-card class="mx-auto rounded-lg" color="background" width="90%" >
+        <v-card-text class="ma-4">
           <v-row>
             <v-col cols="9">
               <v-row align="center">
