@@ -9,12 +9,12 @@ const routes = [
       {
         path: '',
         name: 'Home',
-        component: () => import(/* webpackChunkName: "home" */ '../views/LandingView.vue'),
+        component: () => import('../views/LandingView.vue'),
       },
       {
         path: '/register',
         name: 'Register',
-        component: () => import(/* webpackChunkName: "home" */ '../views/RegisterView.vue'),
+        component: () => import('../views/RegisterView.vue'),
       },
     ],
   },
