@@ -51,7 +51,10 @@ public class CharacteristicService {
         ArrayList<Store>        storeList;
         List<Long>              characteristicId;
         List<Characteristic>    characteristicList;
+        StringBuilder           changedStores;
 
+        changedStores = new StringBuilder();
+        changedStores.append("updated Stores:");
         try
         {
             if (iCharacteristicRepository.existsById(updateCharacteristic.getId()))
@@ -65,9 +68,9 @@ public class CharacteristicService {
                                         .collect(Collectors.toList());
                     characteristicList = iCharacteristicRepository.findAllById(characteristicId);
                     store.setCategories(storeService.categoryLoad(characteristicList));
-                    storeService.crossUpdate(store);
+                    changedStores.append(storeService.crossUpdate(store));
                 }
-                return ("Characteristic updated: " + updateCharacteristic.getId());
+                return ("Characteristic updated: id_" + updateCharacteristic.getId() + " " + changedStores);
             }
             else
             {
@@ -79,5 +82,4 @@ public class CharacteristicService {
             throw new RuntimeException("Characteristic not updated: " + error.getMessage());
         }
     }
-
 }

@@ -81,7 +81,7 @@ public class StoreService {
     public String crossUpdate(Store store)
     {
         iStoreRepository.save(store);
-        return ("Store Category updated");
+        return (" id_" + store.getId());
     }
 
     public void mapRequest(Store store, StoreCreateRequest request)
