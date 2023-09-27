@@ -2,9 +2,9 @@
 import { ref } from 'vue';
 
 const links = ref([
-  'Terms of Use',
-  'Privacy Policy',
-  'Cookies',
+  { text: 'Terms of Use', route: 'terms-of-use' },
+  { text: 'Privacy Policy', route: 'privacy-policy' },
+  { text: 'Cookies', route: 'cookies' },
 ]);
 
 const icons = ref([
@@ -19,14 +19,16 @@ const icons = ref([
     <v-row justify="center" no-gutters>
       <v-btn
         v-for="link in links"
-        :key="link"
+        :key="link.text"
         color="white"
         variant="text"
         class="mx-3"
         rounded="xl"
       >
       <template v-slot:default>
-        <span class="link-content"> {{ link }}</span>
+        <router-link :to="{ name : link.route}">
+        <span class="link-content"> {{ link.text }}</span>
+      </router-link>
       </template>
       </v-btn>
     </v-row>
@@ -63,11 +65,12 @@ const icons = ref([
 .yellow-text {
   color: #FED636;
   font-weight: normal;
-  font-size:16px;
+  font-size:1rem;
 }
 
 .link-content {
-  font-size: 16px;
+  color: white;
+  font-size: 1rem;
 }
 .link-content:hover {
   color: #14CAC9;

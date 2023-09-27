@@ -1,5 +1,8 @@
 // Composables
 import { createRouter, createWebHistory } from 'vue-router'
+import TermsOfUse from '../views/TermsOfUse.vue'
+import PrivacyPolicy from '../views/PrivacyPolicy.vue'
+import Cookies from '../views/Cookies.vue'
 
 const routes = [
   {
@@ -14,6 +17,22 @@ const routes = [
         // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "home" */ '@/views/Home.vue'),
       },
+      { 
+        path: '/terms-of-use', 
+        name: 'terms-of-use', 
+        component: TermsOfUse, 
+      },
+      { 
+        path: '/privacy-policy', 
+        name: 'privacy-policy', 
+        component: PrivacyPolicy,
+      },
+      { 
+        path: '/cookies', 
+        name: 'cookies', 
+        component: Cookies,
+      },
+
     ],
   },
 ]
