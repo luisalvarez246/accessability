@@ -19,6 +19,9 @@ export default createVuetify({
         colors: {
           primary: '#1867C0',
           secondary: '#5CBBF6',
+          background: '#f5f5f5',
+          navbar: '#340458',
+          navbarbtns: '#14CAC9',
         },
       },
     },

@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <v-app class="main">
+  <v-app>
     <default-bar />
 
     <default-view />
@@ -13,7 +13,4 @@
 </script>
 
 <style scoped>
-.main {
-  background-color: aliceblue;
-}
 </style>
