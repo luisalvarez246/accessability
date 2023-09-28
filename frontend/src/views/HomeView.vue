@@ -113,7 +113,12 @@
 </template>
 
 <script setup>
+//
 </script>
 
+<<<<<<< HEAD:frontend/src/views/Home.vue
 <style>
+=======
+<style scoped>
+>>>>>>> 43ff6388d93790a6b1e0b3022a8305f65ead3334:frontend/src/views/HomeView.vue
 </style>
