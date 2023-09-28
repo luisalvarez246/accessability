@@ -14,7 +14,7 @@
       <v-btn class="text-none text-subtitle-1 mr-4" to="/about-us" variant="flat" rounded="lg" color="navbarbtns" key="1" aria-label="About us" tabindex="0">
         About us
       </v-btn>
-      <v-btn class="text-none text-subtitle-1 mr-8" to="/register-new-site" variant="flat" rounded="lg" color="navbarbtns" key="1" aria-label="Register a new site" tabindex="0">
+      <v-btn class="text-none text-subtitle-1 mr-8" to="/register" variant="flat" rounded="lg" color="navbarbtns" key="1" aria-label="Register a new site" tabindex="0">
         Register a new site
       </v-btn>
     </v-btn-group>
