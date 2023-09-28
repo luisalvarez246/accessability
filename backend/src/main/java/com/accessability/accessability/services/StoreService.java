@@ -48,13 +48,15 @@ public class StoreService {
         return (ArrayList<Store>) iStoreRepository.findAll();
     }
 
-    public String deleteStoreById(long id) {
-        try{
+    public String deleteStoreById(long id)
+    {
+        if (iStoreRepository.existsById(id))
+        {
             iStoreRepository.deleteById(id);
-            return "Deleted " + id;
-        }catch(Exception error) {
-            return error.getMessage();
+            return ("Deleted store with ID: " + id);
         }
+        else
+            return ("Not deleted, store with ID: " + id + "does not exist");
     }
 
     public String updateStoreById(long id, StoreCreateRequest request) {
