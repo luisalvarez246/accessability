@@ -38,8 +38,7 @@ public class CharacteristicController {
 
     @PutMapping(path = "/update/{id}")
     public String updateCharacteristicById (@PathVariable long id, @RequestBody Characteristic characteristic) {
-        characteristic.setId(id);
-        return (characteristicService.updateCharacteristicById(characteristic));
+        return (characteristicService.updateCharacteristicById(id, characteristic));
     }
 
 

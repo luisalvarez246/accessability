@@ -46,13 +46,14 @@ public class CharacteristicService {
         }
     }
 
-    public String updateCharacteristicById(Characteristic updateCharacteristic)
+    public String updateCharacteristicById(long id, Characteristic updateCharacteristic)
     {
         ArrayList<Store>        storeList;
         List<Long>              characteristicId;
         List<Characteristic>    characteristicList;
         StringBuilder           changedStores;
 
+        updateCharacteristic.setId(id);
         changedStores = new StringBuilder();
         changedStores.append("updated Stores:");
         try
