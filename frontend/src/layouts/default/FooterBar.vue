@@ -12,57 +12,60 @@ const icons = ref([
   "mdi-linkedin",
   "mdi-instagram",
 ]);
+
+const getAriaLabel = (icon) => {
+  const socialLabels = {
+    "mdi-facebook": "Follow us on Facebook",
+    "mdi-linkedin": "Connect with us on LinkedIn",
+    "mdi-instagram": "Discover our photos on Instagram",
+  };
+  return socialLabels[icon] || "Social media icons";
+};
+
 </script>
 
 <template>
-  <v-footer class="custom-footer">
+  <v-footer class="custom-footer" style="background-color: #340458">
     <v-row justify="center" no-gutters>
       <v-btn
         v-for="link in links"
         :key="link.text"
         color="white"
         variant="text"
-        class="mx-3"
+        class="mx-3 text-capitalize"
         rounded="xl"
       >
-      <template v-slot:default>
         <router-link :to="{ name : link.route}">
         <span class="link-content"> {{ link.text }}</span>
       </router-link>
-      </template>
+
       </v-btn>
     </v-row>
 
     <v-row justify="center" no-gutters>
-      <v-btn
+      <v-icon
         v-for="icon in icons"
         :key="icon"
-        class="mx-2 social-icon"
+        class="mx-5 social-icon"
         :icon="icon"
         variant="plain"
-        size="50"
-        color="#FED636" 
-      ></v-btn>
+        size="30"
+        color="yellow darken-1"
+        :aria-label="getAriaLabel(icon)"
+        
+      ></v-icon>
     </v-row>
     
     <v-row justify="center" no-gutters>
       <v-col class="text-center mt-4" cols="12">
-        <span class="yellow-text"> © Copyright {{ new Date().getFullYear() }} - Accessability</span>
+        <span class="copyright"> © Copyright {{ new Date().getFullYear() }} - Accessability</span>
       </v-col>
     </v-row>
   </v-footer>
 </template>
 
 <style scoped>
-.custom-footer {
-  background-color: #340458;
-}
-
-.custom-footer .v-btn {
-  text-transform: capitalize; 
-}
-
-.yellow-text {
+.copyright {
   color: #FED636;
   font-weight: normal;
   font-size:1rem;
@@ -76,10 +79,10 @@ const icons = ref([
   color: #14CAC9;
 }
 
-.social-icon {
+/* .social-icon {
   color: #FED636;
   opacity: 1;
-}
+} */
 
 /* .social-icon:hover {
   color: #14CAC9;
