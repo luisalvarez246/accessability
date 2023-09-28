@@ -1,7 +1,7 @@
 <template>
-  <v-app-bar flat color="navbar">
+  <v-app-bar color="deep-purple-darken-4">
     <v-app-bar-title>
-      <v-icon icon="mdi-circle-slice-6" />
+      <v-icon icon="mdi-circle-slice-6"/>
 
       Accessability
     </v-app-bar-title>

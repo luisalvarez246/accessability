@@ -3,13 +3,13 @@
   <v-container
     width="90%">
     <v-card
-      color="searchcard"
+      color="deep-purple-accent-4"
       class="mx-auto rounded-lg py-10 mt-10"
     >
       <v-card-title class="text-center">
         Discover the best accessible places in Asturias
       </v-card-title>
-      <v-card class="mx-auto rounded-lg" color="background" width="90%" >
+      <v-card class="mx-auto rounded-lg" color="deep-purple-lighten-5" width="90%" >
         <v-card-text class="ma-4">
           <v-row>
             <v-col cols="9">
@@ -21,7 +21,7 @@
                   <v-icon size="xx-large" aria-hidden="true" aria-label="Search Location">mdi-map-marker</v-icon>
                 </v-col>
                 <v-col cols="8">
-                  <v-text-field bg-color="#FED63673" color="text" variant="outlined" dense rounded="lg" label="Search location" role="textbox"/>
+                  <v-text-field bg-color="amber-lighten-4" color="text" variant="outlined" dense rounded="lg" label="Search location" role="textbox"/>
                 </v-col>
               </v-row>
               <v-row align="center">
@@ -33,7 +33,7 @@
                   size="xx-large" aria-hidden="true" aria-label="Search accessibility">mdi-magnify</v-icon>
                 </v-col>
                 <v-col cols="8">
-                  <v-text-field bg-color="#FED63673" variant="outlined" dense rounded="lg" label="Search type of site" role="textbox"/>
+                  <v-text-field bg-color="amber-lighten-4" variant="outlined" dense rounded="lg" label="Search type of site" role="textbox"/>
                 </v-col>
               </v-row>
             </v-col>
@@ -41,7 +41,7 @@
               <v-btn 
                 text
                 class="text-none px-12 mt-0"
-                color="#FED636"
+                color="amber-lighten-1"
                 rounded="lg"
                 size="x-large"
               >
@@ -51,55 +51,60 @@
           </v-row>
         </v-card-text>
         <v-card-text>
-          <v-row class="mx-auto">
-            <div class="d-flex pa-4">
+          <v-row>
+            <v-col cols="4" class="d-flex justify-center pa-0">
               <v-icon 
               size="xx-large"
               class="mt-2"
               >
               mdi-heart
               </v-icon>
-              <v-checkbox
-                label="PRM (People with reduced mobility"
-                color="green"
-                value="green"
-                hide-details
-                class="pe-2"
-                aria-checked="false"
-              ></v-checkbox>
-            </div>
-            <div class="d-flex pa-4">
+            </v-col>
+            <v-col cols="4" class="d-flex justify-center pa-0">
               <v-icon 
               size="xx-large"
               class="mt-2"
               >
               mdi-heart
               </v-icon>
-              <v-checkbox
-                label="Visually impaired"
-                color="green"
-                value="green"
-                hide-details
-                class="pe-2"
-                aria-checked="false"
-              ></v-checkbox>
-            </div>
-            <div class="d-flex pa-4">
+            </v-col>
+            <v-col cols="4" class="d-flex justify-center pa-0">
               <v-icon 
               size="xx-large"
               class="mt-2"
               >
               mdi-heart
               </v-icon>
-              <v-checkbox
-                label="Impaired hearing"
-                color="green"
-                value="green"
-                hide-details
-                class="pe-2"
-                aria-checked="false"
-              ></v-checkbox>
-            </div>
+            </v-col>
+          </v-row>
+          <v-row>
+              <v-col cols="4" class="pa-0">
+                <v-checkbox
+                    label="PRM (People with reduced mobility)"
+                    color="green"
+                    value="green"
+                    hide-details
+                    aria-checked="false"
+                  ></v-checkbox>
+              </v-col>
+              <v-col cols="4" class="pa-0">
+                <v-checkbox
+                  label="Visually impaired"
+                  color="green"
+                  value="green"
+                  hide-details
+                  aria-checked="false"
+                ></v-checkbox>
+              </v-col>
+              <v-col cols="4" class="pa-0">
+                <v-checkbox
+                  label="Impaired hearing"
+                  color="green"
+                  value="green"
+                  hide-details
+                  aria-checked="false"
+                ></v-checkbox>
+              </v-col>
           </v-row>
         </v-card-text>
       </v-card>
