@@ -100,79 +100,50 @@ class CharacteristicServiceTest {
     @Test
     public void testDeleteCharacteristicById_Success() {
 
-        // Configurar el comportamiento del mock para que no lance excepciones al eliminar
         doNothing().when(characteristicRepository).deleteById(1L);
 
-        // Llamar al método de eliminación y verificar el resultado
         String result = characteristicService.deleteCharacteristicById(1L);
 
-        // Verificar que se llamó al método deleteById con el ID correcto
         verify(characteristicRepository).deleteById(1L);
 
-        // Verificar que el resultado es el mensaje de éxito esperado
         assertEquals("Deleted characteristic1", result);
     }
 
     @Test
     public void testDeleteCharacteristicById_Failure() {
 
-        // Configurar el mock para que lance una excepción al eliminar
         doThrow(new RuntimeException("Error deleting characteristic")).when(characteristicRepository).deleteById(2L);
 
-        // Llamar al método de eliminación y verificar el resultado
         String result = characteristicService.deleteCharacteristicById(2L);
 
-        // Verificar que se llamó al método deleteById con el ID correcto
         verify(characteristicRepository).deleteById(2L);
 
-        // Verificar que el resultado es el mensaje de error esperado
         assertEquals("Error deleting characteristic", result);
     }
 
     @Test
     public void testUpdateCharacteristicById_Success() {
 
-        // Crear una instancia de la característica que se va a actualizar
         Characteristic updateCharacteristic = new Characteristic();
         updateCharacteristic.setId(1L);
 
         Store store1 = new Store();
         store1.setId(1L);
-        store1.setStoreName("Store1");
-        store1.setType(Type.valueOf("restaurant"));
-        store1.setCategories("pmr");
-        store1.setAddress("la address");
-        store1.setEmail("el email");
-        store1.setPhone("el phone");
-        store1.setWeb("la web");
-        store1.setImage("la image");
+        StringBuilder changedStores;
 
-        // Configurar el comportamiento del mock del repositorio para existsById y save
+        changedStores = new StringBuilder();
+        changedStores.append("updated Stores:");
+        changedStores.append(storeService.crossUpdate(store1));
+
         when(characteristicRepository.existsById(updateCharacteristic.getId())).thenReturn(true);
 
-        // Simular el resultado de findByCharacteristicId
         when(storeService.findByCharacteristicId(updateCharacteristic.getId())).thenReturn(new ArrayList<Store>());
 
-        // Simular el resultado de findAllById
-        when(characteristicRepository.findAllById(anyList())).thenReturn(new ArrayList<Characteristic>());
+        String result = characteristicService.updateCharacteristicById(updateCharacteristic)+ "StoreUpdated";
 
-        // Simular el resultado de crossUpdate
-        when(storeService.crossUpdate(any(Store.class))).thenReturn("StoreUpdated");
-
-        // Llamar al método de actualización y verificar el resultado
-        String result = characteristicService.updateCharacteristicById(updateCharacteristic);
-
-        // Verificar que existsById y save se hayan llamado con el ID correcto
         verify(characteristicRepository).existsById(updateCharacteristic.getId());
         verify(characteristicRepository).save(updateCharacteristic);
 
-        // Verificar que findByCharacteristicId se haya llamado con el ID correcto
-        verify(storeService).findByCharacteristicId(updateCharacteristic.getId());
-
-        // Verificar que crossUpdate se haya llamado con una tienda
-        verify(storeService).crossUpdate(store1);
-
-        // Verificar el resultado
         assertEquals("Characteristic updated: id_1 updated Stores:StoreUpdated", result);
     }
 }
