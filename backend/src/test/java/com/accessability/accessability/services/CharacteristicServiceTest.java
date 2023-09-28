@@ -45,7 +45,7 @@ class CharacteristicServiceTest {
     }
 
     @Test
-    void saveCharacteristic() {
+    void save_a_characteristic() {
         Characteristic expectedCharacteristic = new Characteristic();
         expectedCharacteristic.setId(2L);
         expectedCharacteristic.setIcon("icon2");
@@ -60,7 +60,7 @@ class CharacteristicServiceTest {
     }
 
     @Test
-    void getCharacteristicById() {
+    void get_characteristic_by_an_id() {
         Characteristic expectedCharacteristic = new Characteristic();
         expectedCharacteristic.setId(1L);
         expectedCharacteristic.setIcon("icon1");
@@ -75,7 +75,7 @@ class CharacteristicServiceTest {
     }
 
     @Test
-    void getAllCharacteristics() {
+    void get_all_characteristics() {
         Characteristic characteristic_1 = new Characteristic();
         characteristic_1.setId(1L);
         characteristic_1.setIcon("icon1");
@@ -98,7 +98,7 @@ class CharacteristicServiceTest {
     }
 
     @Test
-    public void testDeleteCharacteristicById_Success() {
+    public void delete_a_characteristic_by_id_success() {
 
         doNothing().when(characteristicRepository).deleteById(1L);
 
@@ -110,7 +110,7 @@ class CharacteristicServiceTest {
     }
 
     @Test
-    public void testDeleteCharacteristicById_Failure() {
+    public void delete_characteristic_by_id_failure() {
 
         doThrow(new RuntimeException("Error deleting characteristic")).when(characteristicRepository).deleteById(2L);
 
@@ -122,7 +122,7 @@ class CharacteristicServiceTest {
     }
 
     @Test
-    public void testUpdateCharacteristicById_Success() {
+    public void update_characteristic_by_id_success() {
 
         Characteristic updateCharacteristic = new Characteristic();
         updateCharacteristic.setId(1L);
