@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <v-main color="indigo-lighten-5">
+  <v-main>
     <router-view />
   </v-main>
 </template>
