@@ -27,7 +27,7 @@ class CharacteristicControllerTest
     private CharacteristicService        characteristicService;
 
     private ArrayList<Characteristic>    characteristicList;
-    private Characteristic              emptyCharacteristic;
+    private Characteristic               emptyCharacteristic;
 
 
     @BeforeEach
