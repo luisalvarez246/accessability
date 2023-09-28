@@ -1,9 +1,9 @@
 <template>
   <v-app-bar app class="d-flex no-wrap" color="navbar">
-    <div class="d-flex align-center mx-6">
-      <v-img src="../../assets/images/Logo.png" class="mr-2" width="56" alt="Logotipo de Accessability."></v-img>
-      <p>Accessability</p>
-    </div>
+      <router-link to="/" class="d-flex align-center mx-6 text-white text-decoration-none">
+          <v-img src="../../assets/images/Logo.png" class="mr-2" width="56" alt="Logotipo de Accessability."></v-img>
+          <p>Accessability</p>
+      </router-link>
        
     <v-spacer></v-spacer>
     

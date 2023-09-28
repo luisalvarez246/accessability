@@ -3,13 +3,13 @@
   <v-container
     width="90%">
     <v-card
-      color="deep-purple-accent-4"
+      color="cardbackground"
       class="mx-auto rounded-lg py-10 mt-10"
     >
       <v-card-title class="text-center">
         Discover the best accessible places in Asturias
       </v-card-title>
-      <v-card class="mx-auto rounded-lg" color="deep-purple-lighten-5" width="90%" >
+      <v-card class="mx-auto rounded-lg" color="mainbackground" width="90%" >
         <v-card-text class="ma-4">
           <v-row>
             <v-col cols="9">
@@ -21,7 +21,7 @@
                   <v-icon size="xx-large" aria-hidden="true" aria-label="Search Location">mdi-map-marker</v-icon>
                 </v-col>
                 <v-col cols="8">
-                  <v-text-field bg-color="amber-lighten-4" color="text" variant="outlined" dense rounded="lg" label="Search location" role="textbox"/>
+                  <v-text-field bg-color="input" color="text" variant="outlined" dense rounded="lg" label="Search location" role="textbox"/>
                 </v-col>
               </v-row>
               <v-row align="center">
@@ -33,7 +33,7 @@
                   size="xx-large" aria-hidden="true" aria-label="Search accessibility">mdi-magnify</v-icon>
                 </v-col>
                 <v-col cols="8">
-                  <v-text-field bg-color="amber-lighten-4" variant="outlined" dense rounded="lg" label="Search type of site" role="textbox"/>
+                  <v-text-field bg-color="input" variant="outlined" dense rounded="lg" label="Search type of site" role="textbox"/>
                 </v-col>
               </v-row>
             </v-col>
@@ -41,7 +41,7 @@
               <v-btn 
                 text
                 class="text-none px-12 mt-0"
-                color="amber-lighten-1"
+                color="searchbtn"
                 rounded="lg"
                 size="x-large"
               >
@@ -116,9 +116,5 @@
 //
 </script>
 
-<<<<<<< HEAD:frontend/src/views/Home.vue
-<style>
-=======
 <style scoped>
->>>>>>> 43ff6388d93790a6b1e0b3022a8305f65ead3334:frontend/src/views/HomeView.vue
 </style>
