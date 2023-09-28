@@ -177,9 +177,9 @@ onBeforeMount(() => {
       <v-container
         class="bg-white w-75 mt-10 rounded mb-10 pt-10 pb-10 pl-10 pr-10"
       >
-        <v-row class="col-12">
+        <v-row >
           <v-col
-            class="col-lg-3 col-md-6 col-sm-12"
+            class="col-lg-4 col-md-6 col-sm-12"
             v-for="characteristic in characteristics"
             :key="characteristic.id"
           >
