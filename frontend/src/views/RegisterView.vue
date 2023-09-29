@@ -111,7 +111,7 @@ onBeforeMount(() => {
   </div>
 
   <div
-    class="mainContainer bg-purple-darken-4 w-100 h-auto d-flex justify-center"
+    class="mainContainer bg-deep-purple-lighten-5 w-100 h-auto d-flex justify-center"
   >
     <form @submit.prevent="">
       <div
@@ -121,7 +121,6 @@ onBeforeMount(() => {
           class="w-75"
           color="bg-purple-darken-4"
           v-model="store.storeName"
-          :counter="10"
           :error-messages="name.errorMessage.value"
           label="Name"
         ></v-text-field>
@@ -129,7 +128,6 @@ onBeforeMount(() => {
         <v-text-field
           class="w-75"
           v-model="store.city"
-          :counter="7"
           :error-messages="city.errorMessage.value"
           label="City"
           placeholder="Gijón, Oviedo, Avilés..."
@@ -138,7 +136,6 @@ onBeforeMount(() => {
         <v-text-field
           class="w-75"
           v-model="store.phone"
-          :counter="7"
           :error-messages="phone.errorMessage.value"
           label="Phone"
           placeholder="667123456..."
