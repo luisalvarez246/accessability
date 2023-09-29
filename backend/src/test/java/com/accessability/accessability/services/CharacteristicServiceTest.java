@@ -2,7 +2,6 @@ package com.accessability.accessability.services;
 
 import com.accessability.accessability.models.Characteristic;
 import com.accessability.accessability.models.Store;
-import com.accessability.accessability.models.Type;
 import com.accessability.accessability.repositories.ICharacteristicRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +10,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.net.Proxy;
 import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -28,9 +26,6 @@ class CharacteristicServiceTest {
     @Mock
     ICharacteristicRepository characteristicRepository;
 
-    private List<Characteristic> characteristics;
-
-    Store store = new Store();
     @BeforeEach
     void setUp() {
         Characteristic characteristic1 = new Characteristic();
@@ -137,9 +132,9 @@ class CharacteristicServiceTest {
 
         when(characteristicRepository.existsById(updateCharacteristic.getId())).thenReturn(true);
 
-        when(storeService.findByCharacteristicId(updateCharacteristic.getId())).thenReturn(new ArrayList<Store>());
+        when(storeService.findByCharacteristicId(updateCharacteristic.getId())).thenReturn(new ArrayList<>());
 
-        String result = characteristicService.updateCharacteristicById(updateCharacteristic)+ "StoreUpdated";
+        String result = characteristicService.updateCharacteristicById(updateCharacteristic.getId(), updateCharacteristic)+ "StoreUpdated";
 
         verify(characteristicRepository).existsById(updateCharacteristic.getId());
         verify(characteristicRepository).save(updateCharacteristic);
