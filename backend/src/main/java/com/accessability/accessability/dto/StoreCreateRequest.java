@@ -15,6 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class StoreCreateRequest
 {
+    private Long        id;
     private String      storeName;
     private Type        type;
     private String      address;
@@ -38,5 +39,6 @@ public class StoreCreateRequest
                 "characteristicIds=" + characteristicIds +"]"
         );
     }
+
 }
 
