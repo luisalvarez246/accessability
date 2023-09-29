@@ -81,6 +81,8 @@ const addStore = async () => {
   const newStore = {
     ...store.value,
     characteristicIds: checkboxValues.value,
+    image: store.value.image[0].name
+    
   };
   try {
     let response = await ApiConnection.saveStore(newStore);
@@ -173,11 +175,19 @@ onBeforeMount(() => {
           label="Web"
           placeholder="domain.com"
         ></v-text-field>
+
+        <v-file-input
+          class="w-50"
+          v-model="store.image"
+          label="Upload your image"
+          variant="filled"
+          prepend-icon="mdi-camera"
+        ></v-file-input>
       </div>
       <v-container
         class="bg-white w-75 mt-10 rounded mb-10 pt-10 pb-10 pl-10 pr-10"
       >
-        <v-row >
+        <v-row>
           <v-col
             class="col-lg-4 col-md-6 col-sm-12"
             v-for="characteristic in characteristics"
@@ -186,6 +196,7 @@ onBeforeMount(() => {
             <v-img
               class="characteristicsIcon"
               :src="characteristic.icon"
+              :aria-label="characteristics.icon"
             ></v-img>
 
             <v-checkbox
