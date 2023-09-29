@@ -4,23 +4,13 @@
     <default-bar />
 
     <default-view />
-  
-    <v-footer app color="#340458">
-      <FooterBar />
-    </v-footer>
+
+    <default-footer />
   </v-app>
 </template>
 
 <script setup>
-  import DefaultBar from './AppBar.vue'
-  import DefaultView from './View.vue'
-  import FooterBar from './FooterBar.vue'
+import DefaultBar from "./AppBar.vue";
+import DefaultView from "./View.vue";
+import DefaultFooter from "./FooterBar.vue";
 </script>
-
-
-
-
-
-
-
-

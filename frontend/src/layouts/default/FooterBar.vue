@@ -1,17 +1,13 @@
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 
 const links = ref([
-  { text: 'Terms of Use', route: 'terms-of-use' },
-  { text: 'Privacy Policy', route: 'privacy-policy' },
-  { text: 'Cookies', route: 'cookies' },
+  { text: "Terms of Use", route: "terms-of-use" },
+  { text: "Privacy Policy", route: "privacy-policy" },
+  { text: "Cookies", route: "cookies" },
 ]);
 
-const icons = ref([
-  "mdi-facebook",
-  "mdi-linkedin",
-  "mdi-instagram",
-]);
+const icons = ref(["mdi-facebook", "mdi-linkedin", "mdi-instagram"]);
 
 const getAriaLabel = (icon) => {
   const socialLabels = {
@@ -21,24 +17,22 @@ const getAriaLabel = (icon) => {
   };
   return socialLabels[icon] || "Social media icons";
 };
-
 </script>
 
 <template>
-  <v-footer class="custom-footer" style="background-color: #340458">
+  <v-footer app class="d-flex no-wrap" color="footer">
     <v-row justify="center" no-gutters>
       <v-btn
         v-for="link in links"
-        :key="link.text"
+        :key="link"
         color="white"
         variant="text"
         class="mx-3 text-capitalize"
         rounded="xl"
       >
-        <router-link :to="{ name : link.route}">
-        <span class="link-content"> {{ link.text }}</span>
-      </router-link>
-
+        <router-link :to="{ name: link.route }">
+          <span class="link-content"> {{ link.text }}</span>
+        </router-link>
       </v-btn>
     </v-row>
 
@@ -50,42 +44,29 @@ const getAriaLabel = (icon) => {
         :icon="icon"
         variant="plain"
         size="30"
-        color="yellow darken-1"
+        color="yellow-accent-2"
         :aria-label="getAriaLabel(icon)"
-        
       ></v-icon>
     </v-row>
-    
+
     <v-row justify="center" no-gutters>
       <v-col class="text-center mt-4" cols="12">
-        <span class="copyright"> © Copyright {{ new Date().getFullYear() }} - Accessability</span>
+        <span class="copyright text-yellow-accent-2 .subheading">
+          © Copyright {{ new Date().getFullYear() }} - Accessability</span
+        >
       </v-col>
     </v-row>
   </v-footer>
 </template>
 
 <style scoped>
-.copyright {
-  color: #FED636;
-  font-weight: normal;
-  font-size:1rem;
-}
-
 .link-content {
   color: white;
   font-size: 1rem;
 }
+
 .link-content:hover {
-  color: #14CAC9;
+  color: #26c6da;
 }
 
-/* .social-icon {
-  color: #FED636;
-  opacity: 1;
-} */
-
-/* .social-icon:hover {
-  color: #14CAC9;
-  opacity: 1; 
-} */
 </style>

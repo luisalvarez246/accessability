@@ -1,8 +1,5 @@
 // Composables
 import { createRouter, createWebHistory } from 'vue-router'
-import TermsOfUse from '../views/TermsOfUse.vue'
-import PrivacyPolicy from '../views/PrivacyPolicy.vue'
-import Cookies from '../views/Cookies.vue'
 
 const routes = [
   {
@@ -12,25 +9,22 @@ const routes = [
       {
         path: '',
         name: 'Home',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "home" */ '@/views/Home.vue'),
+        component: () => import('@/views/Home.vue'),
       },
       { 
         path: '/terms-of-use', 
         name: 'terms-of-use', 
-        component: TermsOfUse, 
+        component: () => import('@/views/TermsOfUseView.vue'),
       },
       { 
         path: '/privacy-policy', 
         name: 'privacy-policy', 
-        component: PrivacyPolicy,
+        component: () => import('@/views/PrivacyPolicyView.vue'),
       },
       { 
         path: '/cookies', 
         name: 'cookies', 
-        component: Cookies,
+        component: () => import('@/views/CookiesView.vue'),
       },
 
     ],
