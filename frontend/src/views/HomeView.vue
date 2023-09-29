@@ -1,7 +1,12 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-<h1>Hi there!</h1>
+  <v-app>
+  </v-app>
 </template>
 
 <script setup>
+//
 </script>
+
+<style scoped>
+</style>
