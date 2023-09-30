@@ -26,8 +26,4 @@
 </script>
 
 <style scoped>
-.container {
-  max-width: 180px;
-  margin: 0;
-}
 </style>
