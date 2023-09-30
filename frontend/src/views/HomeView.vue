@@ -23,7 +23,7 @@
                 </v-col>
                 <v-col cols="8">
                   <v-text-field
-                  bg-color="input"
+                  bg-color="white"
                   color='text'
                   variant="outlined"
                   dense
@@ -42,7 +42,10 @@
                 </v-col>
                 <v-col cols="8">
                   <v-text-field 
-                    bg-color="input"
+                    class="custom-label-color"
+                    bg-color="white"
+                    color="red"
+                    base-color="red"
                     variant="outlined"
                     dense
                     rounded="lg"
@@ -134,4 +137,11 @@
 </script>
 
 <style scoped>
+.custom-label-color .v-field-label {
+  color: red;
+  opacity: 1;
+}
+.custom-label-color input{
+  color: red!important;
+}
 </style>
