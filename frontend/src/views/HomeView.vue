@@ -1,35 +1,36 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <v-container
-    width="90%">
+  <v-container>
     <v-card
       color="cardbackground"
-      class="mx-auto rounded-lg pt-5 pb-10 mt-10"
+      class="rounded-lg pt-5 pb-10 mt-10"
     >
-      <v-card-title class="text-center pb-5">
+      <v-card-title class="text-center text-wrap pb-5">
         Discover the best accessible places in Asturias
       </v-card-title>
       <v-card class="mx-auto rounded-lg" color="mainbackground" width="90%" >
         <v-card-text class="ma-4">
           <v-row>
-            <v-col cols="9">
+            <v-col cols="12" sm="12" md="12" lg="10">
               <v-row align="center">
                 <v-col cols="auto">
                   <span class="font-weight-bold">Location</span>
                 </v-col>
                 <v-col cols="auto">
                   <v-icon 
-                    class="mb-2" size="44" aria-hidden="true" aria-label="Search Location">mdi-map-marker</v-icon>
+                    class="mb-1" size="36" aria-hidden="true" aria-label="Search Location">mdi-map-marker</v-icon>
                 </v-col>
-                <v-col cols="8">
+                <v-col cols="12" xs="12" sm="12" md="12" lg="9">
                   <v-text-field
                   bg-color="white"
-                  color='text'
+                  color="#4A148C"
+                  base-color="#4A148C"
                   variant="outlined"
                   dense
                   rounded="lg"
                   label="Search location"
-                  role="textbox"/>
+                  role="textbox"
+                  />
                 </v-col>
               </v-row>
               <v-row align="center">
@@ -38,14 +39,14 @@
                 </v-col>
                 <v-col class="pl-1" cols="auto">
                   <v-icon
-                    class="mb-" size="44" aria-hidden="true" aria-label="Search accessibility">mdi-magnify</v-icon>
+                    class="mb-" size="36" aria-hidden="true" aria-label="Search accessibility">mdi-magnify</v-icon>
                 </v-col>
-                <v-col cols="8">
+                <v-col cols="12" xs="12" sm="12" md="12" lg="9">
                   <v-text-field 
                     class="custom-label-color"
                     bg-color="white"
-                    color="red"
-                    base-color="red"
+                    color="#4A148C"
+                    base-color="#4A148C"
                     variant="outlined"
                     dense
                     rounded="lg"
@@ -54,10 +55,12 @@
                 </v-col>
               </v-row>
             </v-col>
-            <v-col class="d-flex align-center justify-center" cols="3">
+            <v-col
+              class="d-flex align-center justify-sm-center justify-md-center justify-lg-start" sm="0" md="0" lg="2"
+            >
               <v-btn 
                 text
-                class="text-none px-12"
+                class="text-none"
                 color="searchbtn"
                 rounded="lg"
                 size="x-large"
@@ -67,62 +70,29 @@
             </v-col>
           </v-row>
         </v-card-text>
-        <v-card-item>
+        <v-card-item class="justify-center">
           <v-row>
-            <v-col cols="4" class="d-flex justify-center pa-0">
-              <v-icon 
-                size="48"
-                class="mt-2"
-              >
-                mdi-heart
+            <v-col
+              v-for="(item, index) in [
+                { icon: 'mdi-wheelchair', label: 'PRM (People with reduced mobility)' },
+                { icon: 'mdi-eye-off-outline', label: 'Visually impaired' },
+                { icon: 'mdi-ear-hearing-off', label: 'Impaired hearing' }
+              ]"
+              :key="index"
+              cols="12"
+              md="4"
+              xs="12"
+              class="d-flex justify-center align-center"
+            >
+              <v-icon size="56">
+                {{ item.icon }}
               </v-icon>
-            </v-col>
-            <v-col cols="4" class="d-flex justify-center pa-0">
-              <v-icon 
-                size="48"
-                class="mt-2"
-              >
-                mdi-heart
-              </v-icon>
-            </v-col>
-            <v-col cols="4" class="d-flex justify-center pa-0">
-              <v-icon 
-                size="48"
-                class="mt-2"
-              >
-                mdi-heart
-              </v-icon>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="4" class="pt-0">
               <v-checkbox
-                label="PRM (People with reduced mobility)"
-                color="green"
-                value="green"
-                hide-details
+                :label="item.label"
+                color="#4A148C"
+                value="#4A148C"
                 aria-checked="false"
-                class="d-flex justify-center align-center"
-              ></v-checkbox>
-            </v-col>
-            <v-col cols="4" class="pt-0">
-              <v-checkbox
-                label="Visually impaired"
-                color="green"
-                value="green"
-                hide-details
-                aria-checked="false"
-                class="d-flex justify-center"
-              ></v-checkbox>
-            </v-col>
-            <v-col cols="4" class="pt-0">
-              <v-checkbox
-                label="Impaired hearing"
-                color="green"
-                value="green"
-                hide-details
-                aria-checked="false"
-                class="d-flex justify-center align-center"
+                class="d-flex align-center"
               ></v-checkbox>
             </v-col>
           </v-row>
@@ -133,15 +103,14 @@
 </template>
 
 <script setup>
-//
 </script>
 
 <style scoped>
-.custom-label-color .v-field-label {
+/*.custom-label-color .v-field-label {
   color: red;
   opacity: 1;
 }
 .custom-label-color input{
   color: red!important;
-}
+}*/
 </style>
