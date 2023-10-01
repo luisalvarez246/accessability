@@ -81,6 +81,7 @@
               :key="index"
               cols="12"
               md="4"
+              sm="6"
               xs="12"
               class="d-flex justify-center align-center"
             >
