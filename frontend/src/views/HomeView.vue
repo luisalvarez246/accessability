@@ -1,9 +1,10 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
+  <h1 class="text-center mt-10">Welcome to Accessability</h1>
   <v-container>
     <v-card
       color="cardbackground"
-      class="rounded-lg pt-5 pb-10 mt-10"
+      class="rounded-lg pt-5 pb-10"
     >
       <v-card-title class="text-center text-wrap pb-5">
         Discover the best accessible places in Asturias
@@ -21,16 +22,20 @@
                     class="mb-1" size="36" aria-hidden="true" aria-label="Search Location">mdi-map-marker</v-icon>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="12" lg="9">
-                  <v-text-field
-                  bg-color="white"
-                  color="#4A148C"
-                  base-color="#4A148C"
-                  variant="outlined"
-                  dense
-                  rounded="lg"
-                  label="Search location"
-                  role="textbox"
-                  />
+                  <v-form>
+                    <v-text-field
+                      id="search-location"
+                      bg-color="white"
+                      color="#4A148C"
+                      base-color="#4A148C"
+                      variant="outlined"
+                      dense
+                      rounded="lg"
+                      label="Search location"
+                      role="textbox"
+                      input-props="{ tabindex: 0 }"
+                    />
+                  </v-form>
                 </v-col>
               </v-row>
               <v-row align="center">
@@ -42,8 +47,8 @@
                     class="mb-" size="36" aria-hidden="true" aria-label="Search accessibility">mdi-magnify</v-icon>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="12" lg="9">
-                  <v-text-field 
-                    class="custom-label-color"
+                  <v-text-field
+                    id="search-type-of-site" 
                     bg-color="white"
                     color="#4A148C"
                     base-color="#4A148C"
@@ -51,7 +56,9 @@
                     dense
                     rounded="lg"
                     label="Search type of site"
-                    role="textbox"/>
+                    role="textbox"
+                    input-props="{ tabindex: 0 }"
+                  />
                 </v-col>
               </v-row>
             </v-col>
