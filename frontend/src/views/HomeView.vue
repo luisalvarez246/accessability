@@ -1,7 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <v-app>
-  </v-app>
+  <h1>Home View</h1>
 </template>
 
 <script setup>
