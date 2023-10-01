@@ -5,7 +5,15 @@
       color="navbar">
       <router-link
         to="/"
-        class="d-flex align-center text-white text-decoration-none mx-4">
+        :class="{
+          'd-flex': true,
+          'align-center': true,
+          'text-white': true,
+          'text-decoration-none': true,
+          'mx-4': true,
+          'active-home': isHomeActive
+        }"
+        >
         <v-img src="../../assets/images/Logo.png"
           class="mr-1"
           width="56"
@@ -17,8 +25,8 @@
       <v-spacer></v-spacer>
 
       <v-btn-group
-        density="compact"
         class="d-none d-sm-flex"
+        density="compact"
         color="navbarbtns"
         variant="flat"
         >
@@ -32,7 +40,7 @@
             'active-button': isActiveButton(item.to),
             'text-none': true,
             'mr-6': true,
-            'px-2': true
+            'px-2': true,
           }"
           rounded="lg"
         >
@@ -53,7 +61,12 @@
       temporary
       class="h-auto">
       <v-list>
-        <v-list-item v-for="(item, index) in navItems" :key="index" @click="goToPage(item.to)">
+        <v-list-item
+          v-for="(item, index) in navItems"
+          :key="index"
+          @click="goToPage(item.to)"
+          class="custom-list-item"
+          >
           <router-link :to="item.to"
             class="text-decoration-none">
             <v-list-item-title>{{ item.label }}</v-list-item-title>
@@ -65,21 +78,16 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 
 const drawer = ref(false);
-const group = ref(null);
 
 const navItems = [
   { label: 'Accessibility', to: '/accessability' },
   { label: 'About us', to: '/about-us' },
-  { label: 'Register a new site', to: '/register-new-site' },
+  { label: 'Register your site', to: '/register-new-site' },
 ];
-
-watch(group, () => {
-    drawer.value = false
-  })
 
 const router = useRouter();
 
@@ -90,6 +98,7 @@ const goToPage = (route) => {
   }
 };
 
+const isHomeActive = computed(() => isActiveButton('/'));
 const isActiveButton = (route) => router.currentRoute.value.path === route;
 </script>
 
@@ -97,11 +106,33 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
 .appbar {
   height: 3.2rem;
 }
+.active-home {
+  text-decoration: underline !important;
+  font-weight: 700 !important;
+}
 .active-button {
   background: #4A148C !important;
-  border-width: 0.125rem !important;
-  border-bottom-color: #26C6DA !important;
-  border-radius: 0rem !important;
+  border-bottom: 0.125rem #26C6DA solid !important;
   color: #26C6DA !important;
 }
+.custom-button:focus {
+  background-color: #4A148C !important;
+  color: #26C6DA !important;
+  border: 2px solid #26C6DA !important;
+}
+.v-list-item:hover {
+  background-color: #26C6DA33 !important;
+}
+.v-list-item:active {
+  background-color: #26C6DA !important;
+  color: white !important;
+}
+.v-list-item-title {
+  color: #4A148C !important;
+}
+.v-list-item-title:hover, .v-list-item-title:active {
+  font-weight: 600 !important;  
+  font-size: 1.1rem !important;
+}
+
 </style>
