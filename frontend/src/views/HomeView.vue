@@ -22,20 +22,19 @@
                     class="mb-1" size="36" aria-hidden="true" aria-label="Search Location">mdi-map-marker</v-icon>
                 </v-col>
                 <v-col cols="12" xs="12" sm="12" md="12" lg="9">
-                  <v-form>
-                    <v-text-field
-                      id="search-location"
-                      bg-color="white"
-                      color="#4A148C"
-                      base-color="#4A148C"
-                      variant="outlined"
-                      dense
-                      rounded="lg"
-                      label="Search location"
-                      role="textbox"
-                      input-props="{ tabindex: 0 }"
+                  <v-text-field
+                    id="search-location"
+                    bg-color="white"
+                    color="#4A148C"
+                    base-color="#4A148C"
+                    variant="outlined"
+                    dense
+                    rounded="lg"
+                    label="Search location"
+                    placeholder="Avilés, Gijón, Oviedo..."
+                    role="textbox"
+                    input-props="{ tabindex: 0 }"
                     />
-                  </v-form>
                 </v-col>
               </v-row>
               <v-row align="center">
@@ -56,6 +55,7 @@
                     dense
                     rounded="lg"
                     label="Search type of site"
+                    placeholder="Hotel, Restaurant, Bar..."
                     role="textbox"
                     input-props="{ tabindex: 0 }"
                   />
@@ -100,7 +100,7 @@
                 color="#4A148C"
                 value="#4A148C"
                 aria-checked="false"
-                class="d-flex align-center"
+                class="d-flex align-center font-weight-medium"
               ></v-checkbox>
             </v-col>
           </v-row>
