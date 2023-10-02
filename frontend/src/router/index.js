@@ -11,6 +11,21 @@ const routes = [
         name: 'Home',
         component: () => import('@/views/Home.vue'),
       },
+      {
+        path: '/accessability',
+        name: 'Accessability',
+        component: () => import('@/views/AccessabilityView.vue'),
+      },
+      {
+        path: '/about-us',
+        name: 'AboutUs',
+        component: () => import('@/views/AboutUsView.vue'),
+      },
+      {
+        path: '/register-new-site',
+        name: 'RegisterNewSite',
+        component: () => import('@/views/RegisterNewSiteView.vue'),
+      },
       { 
         path: '/terms-of-use', 
         name: 'terms-of-use', 
@@ -24,9 +39,8 @@ const routes = [
       { 
         path: '/cookies', 
         name: 'cookies', 
-        component: () => import('@/views/CookiesView.vue'),
+        component: () => import('@/views/CookiesViewView.vue'),
       },
-
     ],
   },
 ]

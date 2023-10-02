@@ -14,3 +14,6 @@ import DefaultBar from "./AppBar.vue";
 import DefaultView from "./View.vue";
 import DefaultFooter from "./FooterBar.vue";
 </script>
+
+<style scoped>
+</style>
