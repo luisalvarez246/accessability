@@ -118,4 +118,17 @@ public class StoreService {
     {
         return (iStoreRepository.findByCharacteristicId(characteristicId));
     }
+
+    public ArrayList<String> getAllCities()
+    {
+        ArrayList<Store>    stores;
+        ArrayList<String>   cities;
+
+        stores = (ArrayList<Store>) iStoreRepository.findAll();
+        cities = (ArrayList<String>) stores.stream()
+                    .map(Store::getCity)
+                    .distinct()
+                    .collect(Collectors.toList());
+        return (cities);
+    }
 }
