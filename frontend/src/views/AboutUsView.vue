@@ -22,7 +22,7 @@
                       class="text-center"  
                       color="#59029F"
                     >
-                      <v-img :src="author.photo" />
+                      <v-img :src="author.photo" :alt="author.name + ' ' + 'photo'"/>
                       <v-card-title class="text-wrap">{{ author.name }}</v-card-title>
                     </v-card-item>
                   </v-col>
@@ -32,24 +32,51 @@
           </v-row>
         </v-container>  
     </v-container>
-    <v-container fluid>
+    <v-container class="d-flex flex-column">
         <v-card
             color="#59029F"
             elevation="8"
+            class="mb-10"
         >
-        <v-card-title>
+          <v-card-title
+          >
             Form
-        </v-card-title>
-            <v-form>
-                <v-text-field
-                    label="Name"
-                    placeholder="Enter your name"
-                    hide-details
-                    color="success"
-                >
-                </v-text-field>
+          </v-card-title>
+          <v-divider></v-divider>
+          <v-card-item>
+            <v-form
+              max-width="200"
+            >
+              <v-text-field
+                label="Name"
+                placeholder="Enter your name"
+                hide-details
+                variant="outlined"
+                class="my-6"
+              >
+              </v-text-field>
+              <v-text-field
+                label="Email"
+                placeholder="Enter your email"
+                hide-details
+                variant="outlined"
+                class="mb-6"
+              >
+              </v-text-field>
             </v-form>
+            <v-textarea
+            label="Send us your thoughts"
+            variant="outlined"
+          >
+          </v-textarea>
+          </v-card-item> 
         </v-card>
+        <v-btn
+          class="mx-auto text-none"
+          color="#FED636"
+        >
+          Submit
+        </v-btn>
     </v-container>
   </template>
   
