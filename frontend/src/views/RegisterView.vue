@@ -99,6 +99,7 @@ const addStore = async () => {
     console.log(response);
     console.log(newStore);
     alert("Store successfully created");
+    location.reload()
   } catch (error) {
     alert("Cannot add the store: " + error);
   }
