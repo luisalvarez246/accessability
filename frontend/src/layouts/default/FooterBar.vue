@@ -31,8 +31,9 @@ const getAriaLabel = (icon) => {
         rounded="xl"
         role="link"
       >
-        <router-link :to="{ name: link.route }">
-          <span class="link-content"> {{ link.text }}</span>
+        <router-link :to="{ name: link.route }"
+        class="link-content">
+          <v-list-item-title> {{ link.text }} </v-list-item-title>
         </router-link>
       </v-btn>
     </v-row>
@@ -52,7 +53,8 @@ const getAriaLabel = (icon) => {
 
     <v-row justify="center" no-gutters>
       <v-col class="text-center mt-4" cols="12">
-        <span class="copyright text-yellow-accent-2 text-h7">
+        <span class="copyright text-yellow-accent-2
+        ">
           © Copyright {{ new Date().getFullYear() }} - Accessability</span
         >
       </v-col>
@@ -64,9 +66,7 @@ const getAriaLabel = (icon) => {
 .link-content {
   color: white;
   }
-
 .link-content:hover {
   color: #26c6da;
 }
-
 </style>

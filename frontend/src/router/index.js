@@ -39,7 +39,7 @@ const routes = [
       { 
         path: '/cookies', 
         name: 'cookies', 
-        component: () => import('@/views/CookiesViewView.vue'),
+        component: () => import('@/views/CookiesView.vue'),
       },
     ],
   },
