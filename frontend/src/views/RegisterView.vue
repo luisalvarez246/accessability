@@ -4,7 +4,7 @@ import { ref, onBeforeMount } from "vue";
 import ApiConnection from "@/services/ApiConnection";
 import { useField, useForm } from "vee-validate";
 
-const { handleReset } = useForm({
+const { handleSubmit ,handleReset } = useForm({
   validationSchema: {
     name(value) {
       if (value?.length >= 2) return true;
@@ -70,6 +70,16 @@ const store = ref({
   characteristicIds: [],
 });
 
+const items = ref([
+"restaurant",
+    "museum",
+    "hotel",
+    "shops",
+    "clinic",
+    "cinema",
+    "hairdresser"
+])
+
 const checkboxValues = ref([]);
 
 const updateCheckbox = (id, value) => {
@@ -81,8 +91,8 @@ const addStore = async () => {
   const newStore = {
     ...store.value,
     characteristicIds: checkboxValues.value,
-    image: store.value.image[0].name
-    
+    image: store.value.image[0].name,
+    type: items.value.id
   };
   try {
     let response = await ApiConnection.saveStore(newStore);
@@ -103,6 +113,7 @@ const getAllCharacteristics = async () => {
 onBeforeMount(() => {
   getAllCharacteristics();
 });
+
 </script>
 
 <template>
@@ -118,93 +129,114 @@ onBeforeMount(() => {
         class="d-flex flex-column align-center bg-white rounded w-75 mt-10 ml-auto mr-auto pt-10"
       >
         <v-text-field
-          class="w-75"
-          color="bg-purple-darken-4"
+          class="w-75 v-label"
           v-model="store.storeName"
           :error-messages="name.errorMessage.value"
           label="Name"
         ></v-text-field>
 
         <v-text-field
-          class="w-75"
+          class="w-75 v-label"
           v-model="store.city"
           :error-messages="city.errorMessage.value"
           label="City"
-          placeholder="Gijón, Oviedo, Avilés..."
         ></v-text-field>
 
         <v-text-field
-          class="w-75"
+          class="w-75 v-label"
           v-model="store.phone"
           :error-messages="phone.errorMessage.value"
           label="Phone"
-          placeholder="667123456..."
         ></v-text-field>
 
         <v-text-field
-          class="w-75"
+          class="w-75 v-label"
           v-model="store.address"
           :error-messages="address.errorMessage.value"
           label="Address"
-          placeholder="Calle Principal..."
         ></v-text-field>
 
-        <v-text-field
-          class="w-75"
+        <!-- <v-text-field
+          class="w-75 v-label"
           v-model="store.type"
           :error-messages="type.errorMessage.value"
-          label="Type"
-          placeholder="Restaurant, Hotel..."
-        ></v-text-field>
+          label="Type of bussiness"
+        ></v-text-field> -->
+        
 
         <v-text-field
-          class="w-75"
+          class="w-75 v-label"
           v-model="store.email"
           :error-messages="email.errorMessage.value"
           label="Email"
-          placeholder="name@domain.com"
         ></v-text-field>
 
         <v-text-field
-          class="w-75"
+          class="w-75 v-label"
           v-model="store.web"
           :error-messages="web.errorMessage.value"
           label="Web"
-          placeholder="domain.com"
         ></v-text-field>
 
+        <v-select
+        
+          class="w-75 v-label"
+          label="Type of businnes"
+          v-model="items.id"
+          :items="items"
+          item-value="id"
+        >
+        </v-select>
+
         <v-file-input
-          class="w-50"
+          class="w-50 v-label"
           v-model="store.image"
           label="Upload your image"
           variant="filled"
           prepend-icon="mdi-camera"
         ></v-file-input>
       </div>
+
       <v-container
         class="bg-white w-75 mt-10 rounded mb-10 pt-10 pb-10 pl-10 pr-10"
       >
         <v-row>
           <v-col
-            class="col-lg-4 col-md-6 col-sm-12"
-            v-for="characteristic in characteristics"
+            class=""
+            v-for="(characteristic, index) in characteristics"
             :key="characteristic.id"
           >
-            <v-img
-              class="characteristicsIcon"
-              :src="characteristic.icon"
-              :aria-label="characteristics.icon"
-            ></v-img>
+            <v-row v-if="index % 4 === 0">
+              
+              <v-col
+                class="col-lg-4 col-md-6 col-sm-12"
+                v-for="i in 4"
+                :key="index + i"
+              >
+              
+                <template v-if="index + i - 1 < characteristics.length">
+                    <v-img
+                    class="characteristicsIcon"
+                    :src="characteristics[index + i - 1].icon"
+                    :aria-label="characteristics[index + i - 1].icon"
+                  ></v-img>
 
-            <v-checkbox
-              v-model="store.characteristics"
-              :model-value="checkboxValues[characteristic.id]"
-              @update:model-value="updateCheckbox(characteristic.id, $event)"
-              :error-messages="checkbox.errorMessage.value"
-              :value="characteristic.id"
-              :label="characteristic.title"
-              type="checkbox"
-            ></v-checkbox>
+                  <v-checkbox
+                    v-model="store.characteristics"
+                    :model-value="
+                      checkboxValues[characteristics[index + i - 1].id]
+                    "
+                    @update:model-value="
+                      updateCheckbox(characteristics[index + i - 1].id, $event)
+                    "
+                    :error-messages="checkbox.errorMessage.value"
+                    :value="characteristics[index + i - 1].id"
+                    :label="characteristics[index + i - 1].title"
+                    type="checkbox"
+                  ></v-checkbox>
+                </template>
+              </v-col>
+            </v-row>
           </v-col>
         </v-row>
       </v-container>
@@ -212,13 +244,12 @@ onBeforeMount(() => {
         <v-textarea
           label="Description"
           v-model="store.description"
-          class="w-75 ml-auto mr-auto pt-10"
-          placeholder="Enter a detailed description of the characteristics..."
+          class="w-75 ml-auto mr-auto pt-10 v-label"
         ></v-textarea>
         <div class="btnsContainer d-flex justify-center pb-10">
           <v-btn
             rounded-sm
-            class="me-4 bg-green-lighten-1"
+            class="me-4 bg-green-darken-3"
             type="submit"
             @click="addStore()"
             >submit
@@ -237,4 +268,15 @@ onBeforeMount(() => {
   width: 50px;
   height: 50px;
 }
+
+.cityInput {
+  font-weight: 500;
+}
+
+.v-label {
+  opacity: 1;
+  font-weight: 900;
+  
+}
+
 </style>
