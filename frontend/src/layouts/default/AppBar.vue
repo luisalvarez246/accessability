@@ -102,6 +102,7 @@ const isHomeActive = computed(() => isActiveButton('/'));
 const isActiveButton = (route) => router.currentRoute.value.path === route;
 </script>
 
+
 <style scoped>
 .appbar {
   height: 3.2rem;
