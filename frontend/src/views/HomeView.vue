@@ -15,7 +15,7 @@
             <v-col cols="12" sm="12" md="12" lg="10">
               <v-row align="center">
                 <v-col cols="auto">
-                  <span class="font-weight-bold">Location</span>
+                  <span class="font-weight-medium text-subtitle-1">Location</span>
                 </v-col>
                 <v-col cols="auto">
                   <v-icon 
@@ -24,22 +24,21 @@
                 <v-col cols="12" xs="12" sm="12" md="12" lg="9">
                   <v-text-field
                     id="search-location"
+                    type="text"
                     bg-color="white"
                     color="#4A148C"
                     base-color="#4A148C"
                     variant="outlined"
                     dense
                     rounded="lg"
+                    :role="'textbox'"
                     label="Search location"
-                    placeholder="Avilés, Gijón, Oviedo..."
-                    role="textbox"
-                    input-props="{ tabindex: 0 }"
                     />
                 </v-col>
               </v-row>
               <v-row align="center">
                 <v-col class="pr-0" cols="auto" >
-                  <span class="font-weight-bold">Type of site</span>
+                  <span class="font-weight-medium text-subtitle-1">Type of site</span>
                 </v-col>
                 <v-col class="pl-1" cols="auto">
                   <v-icon
@@ -55,9 +54,7 @@
                     dense
                     rounded="lg"
                     label="Search type of site"
-                    placeholder="Hotel, Restaurant, Bar..."
-                    role="textbox"
-                    input-props="{ tabindex: 0 }"
+                    :role="'textbox'"
                   />
                 </v-col>
               </v-row>
@@ -114,11 +111,7 @@
 </script>
 
 <style scoped>
-/*.custom-label-color .v-field-label {
-  color: red;
-  opacity: 1;
+:deep(.v-label.v-field-label.v-field-label--floating){
+  --v-field-label-scale: 1em;
 }
-.custom-label-color input{
-  color: red!important;
-}*/
 </style>

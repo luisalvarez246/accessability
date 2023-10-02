@@ -19,7 +19,7 @@
           width="56"
           alt="Accessability Logo">
         </v-img>
-        <p>Accessability</p>
+        <h4>Accessability</h4>
       </router-link>
 
       <v-spacer></v-spacer>
@@ -64,8 +64,9 @@
         <v-list-item
           v-for="(item, index) in navItems"
           :key="index"
+          tabindex="0"
+          role="menuitem"
           @click="goToPage(item.to)"
-          class="custom-list-item"
           >
           <router-link :to="item.to"
             class="text-decoration-none">
@@ -77,7 +78,7 @@
   </v-app>
 </template>
 
-<script setup>
+<script setup>  
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 
@@ -107,28 +108,34 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
 .appbar {
   height: 3.2rem;
 }
+
 .active-home {
   text-decoration: underline !important;
   font-weight: 700 !important;
+  font-size: large !important;
+}
+.active-home:hover, .active-home:focus, .active-home:active {
+  color: #26C6DA !important;
 }
 .active-button {
   background: #4A148C !important;
   border-bottom: 0.125rem #26C6DA solid !important;
   color: #26C6DA !important;
+  font-weight: 700 !important;
 }
-.custom-button:focus {
+.custom-button:focus, .custom-button:hover {
   background-color: #4A148C !important;
   color: #26C6DA !important;
   border: 2px solid #26C6DA !important;
 }
-.v-list-item:hover {
+.v-list-item:hover, .v-list-item:focus {
   background-color: #26C6DA33 !important;
 }
 .v-list-item:active {
   background-color: #26C6DA !important;
   color: white !important;
 }
-.v-list-item-title {
+.v-list-item-title {  
   color: #4A148C !important;
 }
 .v-list-item-title:hover, .v-list-item-title:active {
