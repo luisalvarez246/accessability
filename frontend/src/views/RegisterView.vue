@@ -198,9 +198,9 @@ onBeforeMount(() => {
       </div>
 
       <v-container
-        class="bg-white w-75 mt-10 rounded mb-10 pt-10 pb-10 pl-10 pr-10"
+        class="bg-white w-75 mt-10 rounded mb-10 pt-10 pb-10 pl-10 pr-10 "
       >
-        <v-row>
+        
           <v-col
             class=""
             v-for="(characteristic, index) in characteristics"
@@ -209,7 +209,7 @@ onBeforeMount(() => {
             <v-row v-if="index % 4 === 0">
               
               <v-col
-                class="col-lg-4 col-md-6 col-sm-12"
+                class="col-lg-4 col-md-6 col-sm-12 pr-10"
                 v-for="i in 4"
                 :key="index + i"
               >
@@ -238,11 +238,11 @@ onBeforeMount(() => {
               </v-col>
             </v-row>
           </v-col>
-        </v-row>
+        
       </v-container>
       <div class="areaBtns bg-white w-75 rounded ml-auto mr-auto mb-10">
         <v-textarea
-          label="Description"
+          label="Description of your accesible characteristics"
           v-model="store.description"
           class="w-75 ml-auto mr-auto pt-10 v-label"
         ></v-textarea>
