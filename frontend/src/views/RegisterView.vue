@@ -116,10 +116,6 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div>
-    <button><router-link to="/">cambiar vista</router-link></button>
-  </div>
-
   <div
     class="mainContainer bg-deep-purple-lighten-5 w-100 h-auto d-flex justify-center"
   >
