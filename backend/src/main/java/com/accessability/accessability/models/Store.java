@@ -29,6 +29,8 @@ public class Store {
 
     private String categories;
 
+    private String city;
+
     private String address;
 
     private String phone;

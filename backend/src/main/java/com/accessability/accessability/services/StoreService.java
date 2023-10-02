@@ -92,6 +92,7 @@ public class StoreService {
 
         store.setStoreName(request.getStoreName());
         store.setType(request.getType());
+        store.setCity(request.getCity());
         store.setAddress(request.getAddress());
         store.setPhone(request.getPhone());
         store.setWeb(request.getWeb());
