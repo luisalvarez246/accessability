@@ -10,19 +10,20 @@
         </v-card>
         <v-container>   
           <v-row justify="center">
-            <v-col cols="12" xs="12" sm="6" md="6" lg="6">
+            <v-col cols="12" xs="12" sm="12" md="12" lg="9" xl="9">
               <v-card
                 color="#59029F"
                 elevation="8"
                 rounded="lg"
+                class="py-5"
               >
                 <v-row>
-                  <v-col v-for="author in authors" :key="author.id" cols="12" xs="12" sm="6" md="6" lg="4">
+                  <v-col v-for="author in authors" :key="author.id" cols="6" xs="4" sm="4" md="4" lg="4" xl="4">
                     <v-card-item
-                      class="text-center"  
+                      class="text-center justify-center align-center"
                       color="#59029F"
                     >
-                      <v-img :src="author.photo" :alt="author.name + ' ' + 'photo'"/>
+                      <v-img :src="author.photo" :alt="author.name + ' ' + 'photo'" :width="100"/>
                       <v-card-title class="text-wrap">{{ author.name }}</v-card-title>
                     </v-card-item>
                   </v-col>
@@ -40,7 +41,7 @@
         >
           <v-card-title
           >
-            Form
+            Contact
           </v-card-title>
           <v-divider></v-divider>
           <v-card-item>
@@ -73,6 +74,7 @@
         </v-card>
         <v-btn
           class="mx-auto text-none"
+          size="x-large"
           color="#FED636"
         >
           Submit
@@ -87,32 +89,32 @@
     {
       id: 1,
       name: "Carmen",
-      photo: "https://example.com/johndoe.jpg",
+      photo: "/aboutus/images/Carmen.jpg",
     },
     {
       id: 2,
       name: "César",
-      photo: "https://example.com/janedoe.jpg",
+      photo: "/aboutus/images/César.jpg",
     },
     {
       id: 3,
       name: "Leolo",
-      photo: "https://example.com/petersmith.jpg",
+      photo: "/aboutus/images/Leolo.jpg",
     },
     {
       id: 4,
       name: "Luis",
-      photo: "https://example.com/maryjohnson.jpg",
+      photo: "/aboutus/images/Luis.jpg",
     },
     {
       id: 5,
       name: "Miguel",
-      photo: "https://example.com/davidwilliams.jpg",
+      photo: "/aboutus/images/Miguel.jpg",
     },
     {
       id: 6,
       name: "Sonia",
-      photo: "https://example.com/susanbrown.jpg",
+      photo: "/aboutus/images/Sonia.jpg",
     },
   ]);
   </script>
