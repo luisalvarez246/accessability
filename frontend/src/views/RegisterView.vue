@@ -1,6 +1,6 @@
 <!-- eslint-disable no-unused-vars -->
 <script setup>
-import { ref, onBeforeMount } from "vue";
+import { ref, onBeforeMount, onUpdated } from "vue";
 import ApiConnection from "@/services/ApiConnection";
 import { useField, useForm } from "vee-validate";
 
@@ -99,7 +99,7 @@ const addStore = async () => {
     console.log(response);
     console.log(newStore);
     alert("Store successfully created");
-    location.reload()
+    location.reload();
   } catch (error) {
     alert("Cannot add the store: " + error);
   }
@@ -113,6 +113,10 @@ const getAllCharacteristics = async () => {
 
 onBeforeMount(() => {
   getAllCharacteristics();
+});
+
+onUpdated(() => {
+  console.log(checkboxValues.value);
 });
 </script>
 
@@ -152,13 +156,6 @@ onBeforeMount(() => {
           label="Address"
         ></v-text-field>
 
-        <!-- <v-text-field
-          class="w-75 v-label"
-          v-model="store.type"
-          :error-messages="type.errorMessage.value"
-          label="Type of bussiness"
-        ></v-text-field> -->
-
         <v-text-field
           class="w-75 v-label"
           v-model="store.email"
@@ -190,41 +187,42 @@ onBeforeMount(() => {
           prepend-icon="mdi-camera"
         ></v-file-input>
       </div>
-
-      
       <v-container class="bg-white w-75 mt-10 rounded mb-10 py-10 pl-15">
-        <v-col
-          class=""
-          v-for="(characteristic, index) in characteristics"
-          :key="characteristic.id"
-        >
-          <v-row v-if="index % 5 === 0">
-            <v-col class="pr-10" v-for="i in 5" :key="index + i">
-              <template v-if="index + i - 1 < characteristics.length">
-                <v-checkbox
-                  class="checkboxes"
-                  v-model="store.characteristics"
-                  :model-value="
-                    checkboxValues[characteristics[index + i - 1].id]
-                  "
-                  @update:model-value="
-                    updateCheckbox(characteristics[index + i - 1].id, $event)
-                  "
-                  :error-messages="checkbox.errorMessage.value"
-                  :value="characteristics[index + i - 1].id"
-                  :label="characteristics[index + i - 1].title"
-                  type="checkbox"
-                  ><v-img
-                    class="characteristicsIcon"
-                    :src="characteristics[index + i - 1].icon"
-                    :aria-label="characteristics[index + i - 1].icon"
-                  ></v-img
-                ></v-checkbox>
-              </template>
-            </v-col>
-          </v-row>
-        </v-col>
+        <v-row>
+          <v-col
+            v-for="characteristic in characteristics"
+            :key="characteristic.id"
+            cols="12"
+            sm="6"
+            md="4"
+            lg="3"
+          >
+            <v-checkbox
+              class="checkboxes"
+              v-model="store.characteristicIds"
+              @update:model-value="
+                updateCheckbox(
+                  characteristics[characteristic.id - 1].id,
+                  $event
+                )
+              "
+              :model-value="
+                checkboxValues[characteristics[characteristic.id - 1].id]
+              "
+              :value="characteristic.id"
+              :label="characteristic.title"
+              type="checkbox"
+            >
+              <v-img
+                class="characteristicsIcon"
+                :src="characteristic.icon"
+                :aria-label="characteristic.icon"
+              ></v-img>
+            </v-checkbox>
+          </v-col>
+        </v-row>
       </v-container>
+
       <div class="areaBtns bg-white w-75 rounded ml-auto mr-auto mb-10">
         <v-textarea
           label="Characteristics description"
