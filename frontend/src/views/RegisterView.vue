@@ -80,6 +80,18 @@ const items = ref([
   "hairdresser",
 ]);
 
+const initialStore = {
+  storeName: "",
+  city: "",
+  phone: "",
+  address: "",
+  type: "",
+  email: "",
+  description: "",
+  web: "",
+  characteristicIds: [],
+};
+
 const checkboxValues = ref([]);
 
 const updateCheckbox = (id, value) => {
@@ -111,8 +123,13 @@ const getAllCharacteristics = async () => {
   return characteristics.value;
 };
 
+const handleClear = () => {
+  Object.assign(store.value, initialStore);
+};
+
 onBeforeMount(() => {
   getAllCharacteristics();
+  Object.assign(store.value, initialStore);
 });
 
 onUpdated(() => {
@@ -238,7 +255,7 @@ onUpdated(() => {
             >submit
           </v-btn>
 
-          <v-btn rounded-sm class="bg-red-accent-4" @click="handleReset">
+          <v-btn rounded-sm class="bg-red-accent-4" @click="handleClear">
             clear
           </v-btn>
         </div>
