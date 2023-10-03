@@ -46,26 +46,36 @@
           <v-divider></v-divider>
           <v-card-item>
             <v-form
-              max-width="200"
+              role="form"
             >
               <v-text-field
                 label="Name"
-                hide-details
-                class="my-6"
+                id="input-9"
               >
               </v-text-field>
               <v-text-field
                 label="Email"
-                hide-details
+                id="input-11"
+                class="mt-2"
               >
               </v-text-field>
             </v-form>
-              <v-card-item>
+              <v-card-item
+                class="mt-4"
+              >
+                <v-label
+                  for="send-us-your-thoughts"
+                  class="mb-2"
+                >
+                  Send us your thoughts
+                </v-label>
                 <v-textarea
-                label="Send us your thoughts"
+                id="send-us-your-thoughts"
+                name="send-us-your-thoughts"
+                type="text"
                 variant="outlined"
+                auto-grow
                 bg-color="#EDE7F6"
-                class="mt-10"
                 >
                 </v-textarea>
             </v-card-item>
