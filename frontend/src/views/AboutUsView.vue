@@ -50,26 +50,25 @@
             >
               <v-text-field
                 label="Name"
-                placeholder="Enter your name"
                 hide-details
-                variant="outlined"
                 class="my-6"
               >
               </v-text-field>
               <v-text-field
                 label="Email"
-                placeholder="Enter your email"
                 hide-details
-                variant="outlined"
-                class="mb-6"
               >
               </v-text-field>
             </v-form>
-            <v-textarea
-            label="Send us your thoughts"
-            variant="outlined"
-          >
-          </v-textarea>
+              <v-card-item>
+                <v-textarea
+                label="Send us your thoughts"
+                variant="outlined"
+                bg-color="#EDE7F6"
+                class="mt-10"
+                >
+                </v-textarea>
+            </v-card-item>
           </v-card-item> 
         </v-card>
         <v-btn
@@ -122,5 +121,8 @@
   .v-card-title {
     font-size: 1rem !important;
     font-weight: 500 !important;
+  }
+  :deep(.v-label.v-field-label.v-field-label--floating){
+    --v-field-label-scale: 1em;
   }
   </style>
