@@ -284,8 +284,10 @@ onBeforeMount(() => {
             <template v-slot:default="{ isActive }" v-if="validated">
               <v-card title="Dialog">
                 <v-card-text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  <v-icon src="https://icons8.com/icon/bE5mRAhk65Br/verified-account">
+
+                  </v-icon>
+                  Store Added!!
                 </v-card-text>
 
                 <v-card-actions>
