@@ -58,6 +58,7 @@ const address = useField("address");
 const checkbox = useField("checkbox");
 const email = useField("email");
 const characteristics = ref([]);
+const cities = ref([])
 const store = ref({
   storeName: "",
   city: "",
@@ -79,6 +80,7 @@ const items = ref([
   "cinema",
   "hairdresser",
 ]);
+
 
 const initialStore = {
   storeName: "",
@@ -105,6 +107,7 @@ const addStore = async () => {
     characteristicIds: checkboxValues.value,
     image: store.value.image[0].name,
     type: items.value.id,
+    city: cities.value.id
   };
   try {
     let response = await ApiConnection.saveStore(newStore);
@@ -123,13 +126,20 @@ const getAllCharacteristics = async () => {
   return characteristics.value;
 };
 
+const getCities = async () =>  {
+  let response = await ApiConnection.getAllCities()
+  cities.value = response.data
+  return cities.value
+}
+
 const handleClear = () => {
   Object.assign(store.value, initialStore);
 };
 
 onBeforeMount(() => {
   getAllCharacteristics();
-  Object.assign(store.value, initialStore);
+  getCities()
+
 });
 
 onUpdated(() => {
@@ -152,12 +162,7 @@ onUpdated(() => {
           label="Name"
         ></v-text-field>
 
-        <v-text-field
-          class="w-75 v-label"
-          v-model="store.city"
-          :error-messages="city.errorMessage.value"
-          label="City"
-        ></v-text-field>
+        
 
         <v-text-field
           class="w-75 v-label"
@@ -186,6 +191,19 @@ onUpdated(() => {
           :error-messages="web.errorMessage.value"
           label="Web"
         ></v-text-field>
+
+
+
+        <v-select
+          class="w-75 v-label"
+          v-model="cities.id"
+          label="City"
+          :items="cities"
+          item-value="id"
+        >
+        </v-select>
+        
+
 
         <v-select
           class="w-75 v-label"
