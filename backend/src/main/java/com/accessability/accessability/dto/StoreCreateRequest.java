@@ -18,6 +18,7 @@ public class StoreCreateRequest
     private Long        id;
     private String      storeName;
     private Type        type;
+    private String      city;
     private String      address;
     private String      phone;
     private String      web;
@@ -31,6 +32,7 @@ public class StoreCreateRequest
         return ("Request " +
                 "[storeName=" + storeName + ", " +
                 "type=" + type + ", " +
+                "city=" + city + ", " +
                 "address=" + address + ", " +
                 "phone=" + phone + ", " +
                 "web=" + web + ", " +
