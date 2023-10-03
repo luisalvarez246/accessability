@@ -87,7 +87,7 @@ const drawer = ref(false);
 const navItems = [
   { label: 'Accessibility', to: '/accessability' },
   { label: 'About us', to: '/about-us' },
-  { label: 'Register your site', to: '/register-new-site' },
+  { label: 'Register your site', to: '/register' },
 ];
 
 const router = useRouter();
