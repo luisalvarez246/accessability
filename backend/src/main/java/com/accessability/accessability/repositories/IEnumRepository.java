@@ -7,4 +7,5 @@ import java.util.ArrayList;
 public interface IEnumRepository
 {
     ArrayList<Type> getAllTypes();
+    ArrayList<String> getAllCities();
 }

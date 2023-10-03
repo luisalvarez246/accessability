@@ -23,4 +23,10 @@ public class EnumsController
     {
         return (ResponseEntity.ok(iEnumRepository.getAllTypes()));
     }
+
+    @GetMapping(path = "/cities")
+    public ResponseEntity<ArrayList<String>> getAllCities()
+    {
+        return (ResponseEntity.ok(iEnumRepository.getAllCities()));
+    }
 }
