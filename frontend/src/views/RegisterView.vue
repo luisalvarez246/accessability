@@ -59,6 +59,7 @@ const checkbox = useField("checkbox");
 const email = useField("email");
 const characteristics = ref([]);
 const cities = ref([])
+const types = ref([])
 const store = ref({
   storeName: "",
   city: "",
@@ -106,7 +107,7 @@ const addStore = async () => {
     ...store.value,
     characteristicIds: checkboxValues.value,
     image: store.value.image[0].name,
-    type: items.value.id,
+    type: types.value.id,
     city: cities.value.id
   };
   try {
@@ -132,6 +133,12 @@ const getCities = async () =>  {
   return cities.value
 }
 
+const getTypes = async () => {
+  let response = await ApiConnection.getAllTypes()
+  types.value = response.data
+  return types.value
+}
+
 const handleClear = () => {
   Object.assign(store.value, initialStore);
 };
@@ -139,12 +146,12 @@ const handleClear = () => {
 onBeforeMount(() => {
   getAllCharacteristics();
   getCities()
-
+  getTypes()
 });
 
-onUpdated(() => {
-  console.log(checkboxValues.value);
-});
+// onUpdated(() => {
+//   console.log(store.value);
+// });
 </script>
 
 <template>
@@ -203,16 +210,16 @@ onUpdated(() => {
         >
         </v-select>
         
-
-
         <v-select
           class="w-75 v-label"
           label="Type of businnes"
-          v-model="items.id"
-          :items="items"
+          v-model="types.id"
+          :items="types"
           item-value="id"
         >
         </v-select>
+
+
 
         <v-file-input
           class="w-50 v-label"
