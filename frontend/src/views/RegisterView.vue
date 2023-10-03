@@ -72,16 +72,6 @@ const store = ref({
   characteristicIds: [],
 });
 
-const items = ref([
-  "restaurant",
-  "museum",
-  "hotel",
-  "shops",
-  "clinic",
-  "cinema",
-  "hairdresser",
-]);
-
 
 const initialStore = {
   storeName: "",
@@ -149,9 +139,6 @@ onBeforeMount(() => {
   getTypes()
 });
 
-// onUpdated(() => {
-//   console.log(store.value);
-// });
 </script>
 
 <template>
@@ -168,8 +155,6 @@ onBeforeMount(() => {
           :error-messages="name.errorMessage.value"
           label="Name"
         ></v-text-field>
-
-        
 
         <v-text-field
           class="w-75 v-label"
@@ -199,8 +184,6 @@ onBeforeMount(() => {
           label="Web"
         ></v-text-field>
 
-
-
         <v-select
           class="w-75 v-label"
           v-model="cities.id"
@@ -218,8 +201,6 @@ onBeforeMount(() => {
           item-value="id"
         >
         </v-select>
-
-
 
         <v-file-input
           class="w-50 v-label"
