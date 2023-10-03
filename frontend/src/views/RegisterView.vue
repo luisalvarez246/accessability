@@ -4,6 +4,10 @@ import { ref, onBeforeMount, onUpdated } from "vue";
 import ApiConnection from "@/services/ApiConnection";
 import { useField, useForm } from "vee-validate";
 
+const props = defineProps({
+  show: Boolean,
+});
+
 const { handleSubmit, handleReset } = useForm({
   validationSchema: {
     name(value) {
@@ -57,9 +61,10 @@ const description = useField("description");
 const address = useField("address");
 const checkbox = useField("checkbox");
 const email = useField("email");
+const validated = ref(false);
 const characteristics = ref([]);
-const cities = ref([])
-const types = ref([])
+const cities = ref([]);
+const types = ref([]);
 const store = ref({
   storeName: "",
   city: "",
@@ -71,7 +76,6 @@ const store = ref({
   web: "",
   characteristicIds: [],
 });
-
 
 const initialStore = {
   storeName: "",
@@ -98,14 +102,14 @@ const addStore = async () => {
     characteristicIds: checkboxValues.value,
     image: store.value.image[0].name,
     type: types.value.id,
-    city: cities.value.id
+    city: cities.value.id,
   };
   try {
     let response = await ApiConnection.saveStore(newStore);
     console.log(response);
     console.log(newStore);
-    alert("Store successfully created");
-    location.reload();
+    // alert("Store successfully created");
+    if (response.status === 200) validated.value = true;
   } catch (error) {
     alert("Cannot add the store: " + error);
   }
@@ -117,35 +121,42 @@ const getAllCharacteristics = async () => {
   return characteristics.value;
 };
 
-const getCities = async () =>  {
-  let response = await ApiConnection.getAllCities()
-  cities.value = response.data
-  return cities.value
-}
+const getCities = async () => {
+  let response = await ApiConnection.getAllCities();
+  cities.value = response.data;
+  return cities.value;
+};
 
 const getTypes = async () => {
-  let response = await ApiConnection.getAllTypes()
-  types.value = response.data
-  return types.value
-}
+  let response = await ApiConnection.getAllTypes();
+  types.value = response.data;
+  return types.value;
+};
 
 const handleClear = () => {
   Object.assign(store.value, initialStore);
 };
 
+const reloadPage = () => {
+  location.reload()
+}
+
+const ftClose = () => {
+  props.show = false;
+};
+
 onBeforeMount(() => {
   getAllCharacteristics();
-  getCities()
-  getTypes()
+  getCities();
+  getTypes();
 });
-
 </script>
 
 <template>
   <div
     class="mainContainer bg-deep-purple-lighten-5 w-100 h-auto d-flex justify-center"
   >
-    <form @submit.prevent="">
+    <form @submit.prevent="" @reset.prevent="handleReset">
       <div
         class="d-flex flex-column align-center bg-white rounded w-75 mt-10 ml-auto mr-auto pt-10"
       >
@@ -192,7 +203,7 @@ onBeforeMount(() => {
           item-value="id"
         >
         </v-select>
-        
+
         <v-select
           class="w-75 v-label"
           label="Type of businnes"
@@ -252,22 +263,78 @@ onBeforeMount(() => {
           v-model="store.description"
           class="w-75 ml-auto mr-auto pt-10 v-label"
         ></v-textarea>
-        <div class="btnsContainer d-flex justify-center pb-10">
-          <v-btn
-            rounded-sm
-            class="me-4 bg-green-darken-3"
-            type="submit"
-            @click="addStore()"
-            >submit
-          </v-btn>
 
-          <v-btn rounded-sm class="bg-red-accent-4" @click="handleClear">
-            clear
-          </v-btn>
+        <div class="btnsContainer d-flex justify-center pb-10">
+          <v-dialog width="500">
+            <template v-slot:activator="{ props }">
+              <!-- <v-btn v-bind="props" text="Open Dialog"> </v-btn> -->
+              <v-btn
+                rounded-sm
+                v-bind="props"
+                class="me-4 bg-green-darken-3"
+                type="submit"
+                @click="addStore()"
+                >submit
+              </v-btn>
+              <v-btn rounded-sm class="bg-red-accent-4" @click="handleClear">
+                clear
+              </v-btn>
+            </template>
+
+            <template v-slot:default="{ isActive }" v-if="validated">
+              <v-card title="Dialog">
+                <v-card-text>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </v-card-text>
+
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+
+                  <v-btn
+                    text="Close Dialog"
+                    @click="(isActive.value = false), reloadPage()"
+                  ></v-btn>
+                </v-card-actions>
+              </v-card>
+            </template>
+          </v-dialog>
         </div>
       </div>
     </form>
   </div>
+
+  <!-- <v-dialog width="500">
+  <template v-slot:activator="{ props }">
+    <v-btn v-bind="props" text="Open Dialog"> </v-btn>
+  </template>
+
+  <template v-slot:default="{ isActive }">
+    <v-card title="Dialog">
+      <v-card-text>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </v-card-text>
+
+      <v-card-actions>
+        <v-spacer></v-spacer>
+
+        <v-btn
+          text="Close Dialog"
+          @click="isActive.value = false"
+        ></v-btn>
+      </v-card-actions>
+    </v-card>
+  </template>
+</v-dialog> -->
+  <!-- <Transition name="modal">
+    <div v-if="show" class="modal-mask" @click="ftClose()">
+      <div class="modal-container">
+        <div class="modal-header">
+          <slot name="header">default header</slot>
+        </div>
+      </div>
+    </div>
+  </Transition> -->
 </template>
 <style scoped>
 .characteristicsIcon {
