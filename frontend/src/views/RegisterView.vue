@@ -271,8 +271,8 @@ onBeforeMount(() => {
 </template>
 <style scoped>
 .characteristicsIcon {
-  width: 50px;
-  height: 50px;
+  width: 3.125rem;
+  height: 3.125rem;
 }
 
 .cityInput {
