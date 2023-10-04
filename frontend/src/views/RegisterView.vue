@@ -75,6 +75,7 @@ const store = ref({
   description: "",
   web: "",
   characteristicIds: [],
+  image: [],
 });
 
 const initialStore = {
@@ -92,11 +93,27 @@ const initialStore = {
 const checkboxValues = ref([]);
 
 const updateCheckbox = (id, value) => {
+	store.value.characteristicIds.push(value);
   checkboxValues.value[id] = value;
   console.log(checkboxValues.value);
 };
 
+const imageUpload = (event) =>
+{
+	console.log(event.target.files[0]);
+}
+
 const addStore = async () => {
+	const formData = new FormData();
+	store.value.type = items.value.id;
+	for (const key in store.value)
+	{
+		console.log(key);
+		if (key === "image")
+			formData.append(key, store.value.image[0]);
+		else
+			formData.append(key, store.value[key]);
+	}
   const newStore = {
     ...store.value,
     characteristicIds: checkboxValues.value,
@@ -105,9 +122,7 @@ const addStore = async () => {
     city: cities.value.id,
   };
   try {
-    let response = await ApiConnection.saveStore(newStore);
-    console.log(response);
-    console.log(newStore);
+    let response = await ApiConnection.saveStore(formData);
     // alert("Store successfully created");
     if (response.status === 200) validated.value = true;
   } catch (error) {
@@ -151,6 +166,11 @@ onBeforeMount(() => {
   getCities();
   getTypes();
 });
+
+onUpdated(() =>
+{
+	console.log(store.value.image[0]);
+})
 </script>
 
 <template>
@@ -217,6 +237,7 @@ onBeforeMount(() => {
         <v-file-input
           class="w-50 v-labelText"
           v-model="store.image"
+          @change="imageUpload($event)"
           label="Image"
           variant="filled"
           prepend-icon="mdi-camera"

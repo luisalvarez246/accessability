@@ -8,7 +8,12 @@ import com.accessability.accessability.repositories.ICharacteristicRepository;
 import com.accessability.accessability.repositories.IStoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -23,14 +28,15 @@ public class StoreService {
 
     @Autowired
     ICharacteristicRepository iCharacteristicRepository;
+    private final String storePath = System.getProperty("user.dir") + "/src/main/webapp/images";
 
-    public String saveStore(StoreCreateRequest request)
+    public String saveStore(StoreCreateRequest request, MultipartFile image)
     {
         Store store = new Store();
 
         try
         {
-            mapRequest(store, request);
+            mapRequest(store, request, image);
             iStoreRepository.save(store);
             return "Added new Store";
         }
@@ -65,7 +71,7 @@ public class StoreService {
         {
             if (updateStore != null)
             {
-                mapRequest(updateStore, request);
+                mapRequest(updateStore, request, null);
                 iStoreRepository.save(updateStore);
                 return ("Store updated: " + updateStore.getId());
             }
@@ -86,7 +92,7 @@ public class StoreService {
         return (" id_" + store.getId());
     }
 
-    public void mapRequest(Store store, StoreCreateRequest request)
+    public void mapRequest(Store store, StoreCreateRequest request, MultipartFile image)
     {
         List<Characteristic>    selectedCharacteristics;
 
@@ -97,7 +103,7 @@ public class StoreService {
         store.setPhone(request.getPhone());
         store.setWeb(request.getWeb());
         store.setEmail(request.getEmail());
-        store.setImage(request.getImage());
+        store.setImage(imageProcessing(image));
         selectedCharacteristics = iCharacteristicRepository.findAllById(request.getCharacteristicIds());
         store.setCharacteristic(new HashSet<>(selectedCharacteristics));
         store.setCategories(categoryLoad(selectedCharacteristics));
@@ -130,5 +136,34 @@ public class StoreService {
                     .distinct()
                     .collect(Collectors.toList());
         return (cities);
+    }
+
+    public String imageProcessing(MultipartFile image)
+    {
+        String  originalFileName;
+        String  extension;
+        String  fileNameWithoutExtension;
+        String  timestamp;
+        String  fileName;
+
+        if ((image != null) && (!image.isEmpty()))
+        {
+            try
+            {
+                originalFileName = image.getOriginalFilename();
+                extension = originalFileName.substring(originalFileName.lastIndexOf('.'));
+                fileNameWithoutExtension = originalFileName.substring(0, originalFileName.lastIndexOf('.'));
+                timestamp = Instant.now().toString().substring(0, Instant.now().toString().lastIndexOf('.'));
+                fileName = fileNameWithoutExtension + timestamp + extension;
+                Files.copy(image.getInputStream(), Path.of(storePath, fileName), StandardCopyOption.REPLACE_EXISTING);
+            }
+            catch (Exception error)
+            {
+                throw new RuntimeException("Error image could not be saved: " + error.getMessage());
+            }
+        }
+        else
+            fileName = "";
+        return (fileName);
     }
 }

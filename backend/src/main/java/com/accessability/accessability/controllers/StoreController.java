@@ -6,6 +6,7 @@ import com.accessability.accessability.services.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 
@@ -32,8 +33,8 @@ public class StoreController {
     }
 
     @PostMapping
-    public String saveStore(@RequestBody StoreCreateRequest request) {
-        return (storeService.saveStore(request));
+    public String saveStore(@ModelAttribute StoreCreateRequest request, @RequestParam("image") MultipartFile image) {
+        return (storeService.saveStore(request, image));
     }
 
     @PutMapping(path = "/update/{id}")
