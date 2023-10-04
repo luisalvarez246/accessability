@@ -13,13 +13,14 @@
           'mx-4': true,
           'active-home': isHomeActive
         }"
+        class="logo"
         >
         <v-img src="../../assets/images/Logo.png"
           class="mr-1"
           width="56"
           alt="Accessability Logo">
         </v-img>
-        <p>Accessability</p>
+        <p class="textlogo">Accessability</p>
       </router-link>
 
       <v-spacer></v-spacer>
@@ -106,33 +107,25 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
 .appbar {
   height: 3.2rem;
 }
-.active-home {
-  text-decoration: underline !important;
-  font-weight: 700 !important;
+
+.v-btn{
+  color:#340458!important;
 }
-.active-button {
-  background: #4A148C !important;
-  border-bottom: 0.125rem #26C6DA solid !important;
-  color: #26C6DA !important;
+
+.v-btn:hover,:focus{
+  background-color:#FED636 !important;
+  border-color: #340458 !important;
+  opacity: 1 !important;
 }
-.custom-button:focus {
-  background-color: #4A148C !important;
-  color: #26C6DA !important;
-  border: 2px solid #26C6DA !important;
+
+.logo:focus, :hover{
+ background-color: #4A148C !important;
+ border-color:#340458 !important;
 }
-.v-list-item:hover {
-  background-color: #26C6DA33 !important;
-}
-.v-list-item:active {
-  background-color: #26C6DA !important;
-  color: white !important;
-}
-.v-list-item-title {
-  color: #4A148C !important;
-}
-.v-list-item-title:hover, .v-list-item-title:active {
-  font-weight: 600 !important;  
-  font-size: 1.1rem !important;
+
+.textlogo:hover {
+ color:#FED636;
+ font-size:1.1rem;
 }
 
 </style>

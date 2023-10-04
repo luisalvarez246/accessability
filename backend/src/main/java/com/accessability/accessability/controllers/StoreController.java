@@ -4,6 +4,7 @@ import com.accessability.accessability.dto.StoreCreateRequest;
 import com.accessability.accessability.models.Store;
 import com.accessability.accessability.services.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -38,5 +39,11 @@ public class StoreController {
     @PutMapping(path = "/update/{id}")
     public String updateStoreById (@PathVariable long id, @RequestBody StoreCreateRequest request) {
         return (storeService.updateStoreById(id, request));
+    }
+
+    @GetMapping(path = "/cities")
+    public ResponseEntity<ArrayList<String>> getAllCities()
+    {
+       return (ResponseEntity.ok(storeService.getAllCities()));
     }
 }

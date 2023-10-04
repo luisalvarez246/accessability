@@ -25,20 +25,6 @@ class CharacteristicServiceTest {
 
     @Mock
     ICharacteristicRepository characteristicRepository;
-
-    @BeforeEach
-    void setUp() {
-        Characteristic characteristic1 = new Characteristic();
-        characteristic1.setId(1L);
-        characteristic1.setIcon("icon1");
-        characteristic1.setTitle("Adapted services");
-
-        Characteristic characteristic2 = new Characteristic();
-        characteristic2.setId(2L);
-        characteristic2.setIcon("icon2");
-        characteristic2.setTitle("Accesss with ramp");
-    }
-
     @Test
     void save_a_characteristic() {
         Characteristic expectedCharacteristic = new Characteristic();

@@ -9,7 +9,7 @@ public class AccessabilityApplication {
 	public static void main(String[] args) {
 
 		SpringApplication.run(AccessabilityApplication.class, args);
-		System.out.println("Wellcome to Accessibility App");
+		System.out.println("Wellcome to AccessAbility App");
 	}
 
 }
