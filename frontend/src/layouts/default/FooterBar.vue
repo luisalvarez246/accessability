@@ -4,7 +4,6 @@
       <v-btn
         v-for="link in links"
         :key="link.text"
-        color="white"
         variant="text"
         class="mx-3 text-h6 custom-button"
         rounded="xl"
@@ -51,11 +50,11 @@ const links = ref([
   { text: "Cookies", route: "cookies" },
 ]);
 
-const icons = ref(["mdi-facebook", "mdi-linkedin", "mdi-instagram"]);
+const icons = ref(["mdi-twitter", "mdi-linkedin", "mdi-instagram"]);
 
 const getAriaLabel = (icon) => {
   const socialLabels = {
-    "mdi-facebook": "Follow us on Facebook",
+    "mdi-twitter": "Follow us on Twitter",
     "mdi-linkedin": "Connect with us on LinkedIn",
     "mdi-instagram": "Discover our photos on Instagram",
   };
@@ -74,29 +73,28 @@ const isLinkActive = (route) => router.name === route;
   text-decoration: none;
 }
 
-.link-title {
-  transition: color 0.3s, border 0.3s;
-}
-
-.link-content:hover .link-title {
-  color: #26c6da;
-}
-
-.link-content:active .link-title {
-  color: #26c6da;
-  border: 2px solid #26c6da;
+.link-content:hover {
+  color: #340458 !important;
 }
 
 .custom-button {
-  transition: color 0.3s;
+  background-color: transparent;
+  color: #340458 !important;
 }
 
-.custom-button:hover {
-  color: #26c6da;
+.custom-button:hover, :focus, :active {
+  background-color: #FED636 !important;
+  color: #340458 !important;
+  opacity: 1 !important;
+}
+
+.link-content :focus {
+  background-color: #FED636 !important;
+  color: #340458 !important;
 }
 
 .active-button {
-  color: #26c6da !important;
-  border: 2px solid #26c6da !important;
+  background-color: #FED636 !important;
+  color: #340458 !important;
 }
 </style>
