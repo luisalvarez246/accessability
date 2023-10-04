@@ -23,8 +23,8 @@
                       class="text-center justify-center align-center"
                       color="#59029F"
                     >
-                      <v-img :src="author.photo" :alt="author.name + ' ' + 'photo'" :width="100"/>
-                      <v-card-title class="text-wrap">{{ author.name }}</v-card-title>
+                      <v-img :src="author.photo" :alt="author.name + ' ' + 'photo'" :width="120"/>
+                      <v-card-title class="text-wrap pt-2">{{ author.name }}</v-card-title>
                     </v-card-item>
                   </v-col>
                 </v-row>
@@ -129,7 +129,7 @@
   </script>
   <style scoped>
   .v-card-title {
-    font-size: 1rem !important;
+    font-size: 1.1rem !important;
     font-weight: 500 !important;
   }
   :deep(.v-label.v-field-label.v-field-label--floating){
