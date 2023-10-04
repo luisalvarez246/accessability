@@ -142,6 +142,7 @@ const reloadPage = () => {
 }
 
 const ftClose = () => {
+  // eslint-disable-next-line vue/no-mutating-props
   props.show = false;
 };
 
@@ -161,42 +162,42 @@ onBeforeMount(() => {
         class="d-flex flex-column align-center bg-white rounded w-75 mt-10 ml-auto mr-auto pt-10"
       >
         <v-text-field
-          class="w-75 v-label"
+          class="w-75 v-labelText"
           v-model="store.storeName"
           :error-messages="name.errorMessage.value"
           label="Name"
         ></v-text-field>
 
         <v-text-field
-          class="w-75 v-label"
+          class="w-75 v-labelText"
           v-model="store.phone"
           :error-messages="phone.errorMessage.value"
           label="Phone"
         ></v-text-field>
 
         <v-text-field
-          class="w-75 v-label"
+          class="w-75 v-labelText"
           v-model="store.address"
           :error-messages="address.errorMessage.value"
           label="Address"
         ></v-text-field>
 
         <v-text-field
-          class="w-75 v-label"
+          class="w-75 v-labelText"
           v-model="store.email"
           :error-messages="email.errorMessage.value"
           label="Email"
         ></v-text-field>
 
         <v-text-field
-          class="w-75 v-label"
+          class="w-75 v-labelText"
           v-model="store.web"
           :error-messages="web.errorMessage.value"
           label="Web"
         ></v-text-field>
 
         <v-select
-          class="w-75 v-label"
+          class="w-75 v-labelText"
           v-model="cities.id"
           label="City"
           :items="cities"
@@ -205,7 +206,7 @@ onBeforeMount(() => {
         </v-select>
 
         <v-select
-          class="w-75 v-label"
+          class="w-75 v-labelText"
           label="Type of businnes"
           v-model="types.id"
           :items="types"
@@ -214,7 +215,7 @@ onBeforeMount(() => {
         </v-select>
 
         <v-file-input
-          class="w-50 v-label"
+          class="w-50 v-labelText"
           v-model="store.image"
           label="Image"
           variant="filled"
@@ -261,7 +262,7 @@ onBeforeMount(() => {
         <v-textarea
           label="Characteristics description"
           v-model="store.description"
-          class="w-75 ml-auto mr-auto pt-10 v-label"
+          class="w-75 ml-auto mr-auto pt-10 v-labelText"
         ></v-textarea>
 
         <div class="btnsContainer d-flex justify-center pb-10">
@@ -305,38 +306,6 @@ onBeforeMount(() => {
       </div>
     </form>
   </div>
-
-  <!-- <v-dialog width="500">
-  <template v-slot:activator="{ props }">
-    <v-btn v-bind="props" text="Open Dialog"> </v-btn>
-  </template>
-
-  <template v-slot:default="{ isActive }">
-    <v-card title="Dialog">
-      <v-card-text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-      </v-card-text>
-
-      <v-card-actions>
-        <v-spacer></v-spacer>
-
-        <v-btn
-          text="Close Dialog"
-          @click="isActive.value = false"
-        ></v-btn>
-      </v-card-actions>
-    </v-card>
-  </template>
-</v-dialog> -->
-  <!-- <Transition name="modal">
-    <div v-if="show" class="modal-mask" @click="ftClose()">
-      <div class="modal-container">
-        <div class="modal-header">
-          <slot name="header">default header</slot>
-        </div>
-      </div>
-    </div>
-  </Transition> -->
 </template>
 <style scoped>
 .characteristicsIcon {
@@ -348,7 +317,7 @@ onBeforeMount(() => {
   font-weight: 500;
 }
 
-.v-label {
+.v-labelText {
   opacity: 1;
   font-weight: 900;
 }
