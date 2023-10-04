@@ -65,13 +65,13 @@ public class StoreService {
             return ("Not deleted, store with ID: " + id + "does not exist");
     }
 
-    public String updateStoreById(long id, StoreCreateRequest request) {
+    public String updateStoreById(long id, StoreCreateRequest request, MultipartFile image) {
         Store updateStore = iStoreRepository.findById(id).orElse(null);
         try
         {
             if (updateStore != null)
             {
-                mapRequest(updateStore, request, null);
+                mapRequest(updateStore, request, image);
                 iStoreRepository.save(updateStore);
                 return ("Store updated: " + updateStore.getId());
             }

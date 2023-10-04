@@ -38,8 +38,9 @@ public class StoreController {
     }
 
     @PutMapping(path = "/update/{id}")
-    public String updateStoreById (@PathVariable long id, @RequestBody StoreCreateRequest request) {
-        return (storeService.updateStoreById(id, request));
+    public String updateStoreById (@PathVariable long id, @ModelAttribute StoreCreateRequest request, @RequestParam("image") MultipartFile image)
+    {
+        return (storeService.updateStoreById(id, request, image));
     }
 
     @GetMapping(path = "/cities")
