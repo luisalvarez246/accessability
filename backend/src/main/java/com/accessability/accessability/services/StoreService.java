@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -72,6 +74,7 @@ public class StoreService {
             if (updateStore != null)
             {
                 mapRequest(updateStore, request, image);
+                deleteUnusedImages();
                 iStoreRepository.save(updateStore);
                 return ("Store updated: " + updateStore.getId());
             }
@@ -165,5 +168,26 @@ public class StoreService {
         else
             fileName = "";
         return (fileName);
+    }
+
+    public void deleteUnusedImages() throws IOException
+    {
+        ArrayList<Store>    storeList;
+        ArrayList<String>   imageList;
+        File                directory;
+        File[]              files;
+
+        storeList = (ArrayList<Store>) iStoreRepository.findAll();
+        imageList = (ArrayList<String>) storeList.stream()
+                .map(Store::getImage)
+                .distinct()
+                .collect(Collectors.toList());
+        directory = new File(storePath);
+        files = directory.listFiles();
+        for (File file : files)
+        {
+            if ((!imageList.contains(file.getName())) && (!file.getName().equals("default.png")))
+                Files.delete(Path.of(storePath, file.getName()));
+        }
     }
 }

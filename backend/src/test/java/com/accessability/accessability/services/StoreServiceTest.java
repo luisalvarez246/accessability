@@ -10,28 +10,35 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
-/*
+
+@SpringBootTest
 public class StoreServiceTest {
 
-    @InjectMocks
-    private StoreService storeService;
+    //@InjectMocks
+    //private StoreService storeService;
 
-    @Mock
-    private IStoreRepository storeRepository;
+    @Autowired
+    IStoreRepository iStoreRepository;
 
     @Mock
     private ICharacteristicRepository characteristicRepository;
-
+/*
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
@@ -132,22 +139,33 @@ public class StoreServiceTest {
         String result = storeService.updateStoreById(1L, request);
 
         assertEquals("Store updated: 1" , result);
-    }
+    }*/
 
     @Test
-    void dumbTest()
-    {
-        String  originalFileName;
-        String  extension;
-        String  fileNameWithoutExtension;
-        String  fileName;
+    void dumbTest() throws IOException {
+        String storePath = System.getProperty("user.dir") + "/src/main/webapp/images";
+        File    directory;
+        File[]  files;
+        ArrayList<String> fileNames;
+        ArrayList<Store>    storeList;
+        ArrayList<String>   imageList;
 
-        originalFileName = "image.png";
-        extension = originalFileName.substring(originalFileName.lastIndexOf('.'));
-        fileNameWithoutExtension = originalFileName.substring(0, originalFileName.lastIndexOf('.'));
-        fileName = fileNameWithoutExtension + "_" + Instant.now().toString().substring(0, Instant.now().toString().lastIndexOf('.')) + extension;
-        Instant.now();
-        System.out.println(fileName);
-        System.out.println(Path.of("Pablo", "Cesar" + Instant.now().toString()));
+        storeList = (ArrayList<Store>) iStoreRepository.findAll();
+        imageList = (ArrayList<String>) storeList.stream()
+                .map(Store::getImage)
+                .distinct()
+                .collect(Collectors.toList());
+        directory = new File(storePath);
+        files = new File(storePath).listFiles();
+        fileNames = new ArrayList<>();
+        for (File file : files)
+        {
+            fileNames.add(file.getName());
+            if (!imageList.contains(file.getName()) && !file.getName().equals("default.png"))
+                Files.delete(Path.of(storePath, file.getName()));
+        }
+        //Files.delete(Path.of(storePath, fileNames.get(1)));
+
+        System.out.println(fileNames);
     }
-}*/
+}
