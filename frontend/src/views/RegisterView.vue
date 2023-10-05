@@ -251,7 +251,7 @@ onBeforeMount(() => {
               <v-img
                 class="characteristicsIcon"
                 :src="characteristic.icon"
-                :aria-label="characteristic.icon"
+                :alt="`Icon of ${characteristic.icon}`"
               ></v-img>
             </v-checkbox>
           </v-col>
