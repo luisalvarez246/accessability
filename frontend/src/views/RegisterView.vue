@@ -288,7 +288,7 @@ onBeforeMount(() => {
                   <v-icon src="https://icons8.com/icon/bE5mRAhk65Br/verified-account">
 
                   </v-icon>
-                  Store Added!!
+                  Store Added Successfully!!
                 </v-card-text>
 
                 <v-card-actions>
