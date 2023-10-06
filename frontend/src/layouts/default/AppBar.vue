@@ -15,7 +15,7 @@
         }"
         >
         <v-img src="../../assets/images/Logo.png"
-          class="mr-1"
+          class="mr-1 logo"
           width="56"
           alt="Accessability Logo">
         </v-img>
