@@ -13,7 +13,7 @@
           'mx-4': true,
           'active-home': isHomeActive
         }"
-        class="logo"
+        class="logo "
         >
         <v-img src="../../assets/images/Logo.png"
           class="mr-1"
@@ -37,7 +37,6 @@
           :to="item.to"
           @click="goToPage(item.to)"
           :class="{
-            'custom-button': true,
             'active-button': isActiveButton(item.to),
             'text-none': true,
             'mr-6': true,
@@ -108,24 +107,37 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
   height: 3.2rem;
 }
 
-.v-btn{
-  color:#340458!important;
-}
-
-.v-btn:hover,:focus{
-  background-color:#FED636 !important;
-  border-color: #340458 !important;
-  opacity: 1 !important;
-}
-
-.logo:focus, :hover{
- background-color: #4A148C !important;
- border-color:#340458 !important;
-}
-
 .textlogo:hover {
- color:#FED636;
- font-size:1.1rem;
+  color: #FED636 !important;
+  font-weight: 600 !important;
+}
+.active-home {
+  color: #FED636 !important;
+  font-weight: 600;
+}
+.active-button {
+  background-color: #FED636 !important;
+  font-weight: 900 !important;
+}
+.v-btn:hover, .v-btn:focus{
+  background-color:#FED636 !important;
+  opacity: 0.85 !important;
+  border-color: #340458 !important;
+  color: #4A148C;
+}
+.v-list-item:hover {
+  background-color: #FED63688 !important;
+}
+.v-list-item:focus, .v-list-item:active {
+  background-color: #FED636 !important;
+  color: white !important;
+}
+.v-list-item-title {
+  color: #4A148C !important;
+}
+.v-list-item-title:hover, .v-list-item-title:active {
+  font-weight: 600 !important;  
+  font-size: 1.1rem !important;
 }
 
 </style>
