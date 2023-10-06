@@ -16,7 +16,7 @@
             <v-col cols="12" lg="9">
               <v-row align="center">
                 <v-col cols="auto">
-                  <span class="font-weight-bold">Location</span>
+                  <p class="font-weight-bold pl-0">Location</p>
                 </v-col>
                 <v-col cols="auto">
                   <v-icon 
@@ -40,7 +40,7 @@
               </v-row>
               <v-row align="center">
                 <v-col class="pr-0" cols="auto" >
-                  <span class="font-weight-bold">Type of site</span>
+                  <v-card-text class="font-weight-bold pl-0">Type of site</v-card-text>
                 </v-col>
                 <v-col class="pl-1" cols="auto">
                   <v-icon
@@ -99,7 +99,6 @@
               <v-checkbox
                 :label="item.label"
                 color="#4A148C"
-                value="#4A148C"
                 aria-checked="false"
                 class="d-flex align-center font-weight-medium"
               ></v-checkbox>
@@ -116,6 +115,6 @@
 
 <style scoped>
 :deep(.v-label.v-field-label.v-field-label--floating){
-  --v-field-label-scale: 1em;
+  --v-field-label-scale: 1rem;
 }
 </style>
