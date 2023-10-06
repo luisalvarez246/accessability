@@ -92,6 +92,7 @@ public class StoreService {
 
         store.setStoreName(request.getStoreName());
         store.setType(request.getType());
+        store.setCity(request.getCity());
         store.setAddress(request.getAddress());
         store.setPhone(request.getPhone());
         store.setWeb(request.getWeb());
@@ -116,5 +117,18 @@ public class StoreService {
     public ArrayList<Store> findByCharacteristicId(Long characteristicId)
     {
         return (iStoreRepository.findByCharacteristicId(characteristicId));
+    }
+
+    public ArrayList<String> getAllCities()
+    {
+        ArrayList<Store>    stores;
+        ArrayList<String>   cities;
+
+        stores = (ArrayList<Store>) iStoreRepository.findAll();
+        cities = (ArrayList<String>) stores.stream()
+                    .map(Store::getCity)
+                    .distinct()
+                    .collect(Collectors.toList());
+        return (cities);
     }
 }

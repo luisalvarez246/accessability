@@ -20,15 +20,13 @@ class StoreTest {
         store.setId(1L);
         store.setStoreName("restaurante manolito");
         store.setType(Type.restaurant);
-        store.setCategory(Category.prm);
+        store.setCategories("prm");
         store.setAddress("C/blabla");
         store.setPhone("123456789");
         store.setWeb("manolito.com");
         store.setEmail("manolito@manolito.com");
         store.setImage("image.png");
-        Set<Characteristic> characteristics = new HashSet<>();
-        characteristics.add(new Characteristic("Característica 1"));
-        store.setCharacteristics(characteristics);
+
     }
 
     @Test
@@ -48,7 +46,7 @@ class StoreTest {
 
     @Test
     void getCategory() {
-        assertEquals("prm", store.getCategory().toString());
+        assertEquals("prm", store.getCategories());
     }
 
     @Test
@@ -76,11 +74,6 @@ class StoreTest {
         assertEquals("image.png", store.getImage());
     }
 
-
-    @Test
-    void getCharacteristics() { assertFalse(store.getCharacteristics().isEmpty()); }
-
-
     @Test
     void setStoreName() {
         store.setStoreName("hotel manolita");
@@ -97,9 +90,9 @@ class StoreTest {
 
     @Test
     void setCategory() {
-        store.setCategory(Category.hearing);
+        store.setCategories("hearing");
 
-        assertEquals("hearing", store.getCategory().toString());
+        assertEquals("hearing", store.getCategories());
     }
 
     @Test
@@ -137,9 +130,4 @@ class StoreTest {
         assertEquals("testingImage.png", store.getImage());
     }
 
-
-    @Test
-    void setCharacteristics() {
-        assertFalse(store.getCharacteristics().isEmpty());
-    }
 }

@@ -13,7 +13,6 @@
           'mx-4': true,
           'active-home': isHomeActive
         }"
-        class="logo"
         >
         <v-img src="../../assets/images/Logo.png"
           class="mr-1"

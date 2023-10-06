@@ -38,20 +38,16 @@ public class StoreServiceTest {
     @Test
     public void test_save_store() {
         StoreCreateRequest request = new StoreCreateRequest();
-        StoreCreateRequest payload;
-        Store store;
-
-        store = new Store();
-        payload = new StoreCreateRequest();
-        payload.setStoreName("Mi Tienda");
-        payload.setType(Type.restaurant);
-        payload.setAddress("Dirección de Tienda");
-        payload.setPhone("Teléfono de Tienda");
-        payload.setWeb("Web de Tienda");
-        payload.setEmail("Email de Tienda");
-        payload.setImage("Image de Tienda");
-        payload.setCharacteristicIds(Arrays.asList(1L, 5L, 7L, 8L));
-        storeService.mapRequest(store, payload);
+        Store store = new Store();
+        request.setStoreName("Mi Tienda");
+        request.setType(Type.restaurant);
+        request.setAddress("Dirección de Tienda");
+        request.setPhone("Teléfono de Tienda");
+        request.setWeb("Web de Tienda");
+        request.setEmail("Email de Tienda");
+        request.setImage("Image de Tienda");
+        request.setCharacteristicIds(Arrays.asList(1L, 5L, 7L, 8L));
+        storeService.mapRequest(store, request);
 
         when(storeRepository.save(any())).thenReturn(store);
 
@@ -83,19 +79,17 @@ public class StoreServiceTest {
 
     @Test
     public void test_get_all_stores() {
-        StoreCreateRequest payload;
-        Store store;
-        store = new Store();
-        payload = new StoreCreateRequest();
-        payload.setStoreName("Mi Tienda");
-        payload.setType(Type.restaurant);
-        payload.setAddress("Dirección de Tienda");
-        payload.setPhone("Teléfono de Tienda");
-        payload.setWeb("Web de Tienda");
-        payload.setEmail("Email de Tienda");
-        payload.setImage("Image de Tienda");
-        payload.setCharacteristicIds(Arrays.asList(1L, 5L, 7L, 8L));
-        storeService.mapRequest(store, payload);
+        StoreCreateRequest request = new StoreCreateRequest();
+        Store store = new Store();
+        request.setStoreName("Mi Tienda");
+        request.setType(Type.restaurant);
+        request.setAddress("Dirección de Tienda");
+        request.setPhone("Teléfono de Tienda");
+        request.setWeb("Web de Tienda");
+        request.setEmail("Email de Tienda");
+        request.setImage("Image de Tienda");
+        request.setCharacteristicIds(Arrays.asList(1L, 5L, 7L, 8L));
+        storeService.mapRequest(store, request);
 
         ArrayList<Store> storeList = new ArrayList<>();
         storeList.add(store);
@@ -110,24 +104,23 @@ public class StoreServiceTest {
     @Test
     public void update_a_store_by_id() {
         Store updateStore = new Store();
-        StoreCreateRequest payload;
-        payload = new StoreCreateRequest();
-        payload.setStoreName("Mi Tienda");
-        payload.setType(Type.restaurant);
-        payload.setAddress("Dirección de Tienda");
-        payload.setPhone("Teléfono de Tienda");
-        payload.setWeb("Web de Tienda");
-        payload.setEmail("Email de Tienda");
-        payload.setImage("Image de Tienda");
-        payload.setCharacteristicIds(Arrays.asList(1L, 5L, 7L, 8L));
-        storeService.mapRequest(updateStore, payload);
+        StoreCreateRequest request = new StoreCreateRequest();
+        request.setStoreName("Mi Tienda");
+        request.setType(Type.restaurant);
+        request.setAddress("Dirección de Tienda");
+        request.setPhone("Teléfono de Tienda");
+        request.setWeb("Web de Tienda");
+        request.setEmail("Email de Tienda");
+        request.setImage("Image de Tienda");
+        request.setCharacteristicIds(Arrays.asList(1L, 5L, 7L, 8L));
+        storeService.mapRequest(updateStore, request);
         updateStore.setId(1L);
 
 
         when(storeRepository.findById(1L)).thenReturn(Optional.of(updateStore));
         when(storeRepository.save(updateStore)).thenReturn(updateStore);
 
-        String result = storeService.updateStoreById(1L, payload);
+        String result = storeService.updateStoreById(1L, request);
 
         assertEquals("Store updated: 1" , result);
     }

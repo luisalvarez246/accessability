@@ -4,6 +4,10 @@ const urlStore = "http://localhost:8080/stores";
 
 const urlCharacteristic = "http://localhost:8080/characteristics";
 
+const urlType = "http://localhost:8080/api/type";
+
+const urlCity = "http://localhost:8080/api/cities";
+
 class ApiConnection {
   async getAllStores() {
     try {
@@ -93,6 +97,36 @@ class ApiConnection {
     } catch (error) {
       return error.message;
     }
+  }
+
+  async getAllTypes()
+  {
+	let response;
+	try
+	{
+		response = await axios.get(urlType);
+
+		return (response);
+	}
+	catch (error)
+	{
+		console.log(error.message);
+	}
+  }
+
+  async getAllCities()
+  {
+	let response;
+	try
+	{
+		response = await axios.get(urlCity);
+
+		return (response);
+	}
+	catch (error)
+	{
+		console.log(error.message);
+	}
   }
 }
 
