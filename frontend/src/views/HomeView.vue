@@ -115,4 +115,7 @@
 </script>
 
 <style scoped>
+:deep(.v-label.v-field-label.v-field-label--floating){
+  --v-field-label-scale: 1em;
+}
 </style>
