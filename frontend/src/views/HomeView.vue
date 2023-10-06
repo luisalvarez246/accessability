@@ -4,7 +4,8 @@
   <v-container>
     <v-card
       color="cardbackground"
-      class="rounded-lg pt-5 pb-10"
+      class="rounded-lg pt-5 pb-10 mx-auto"
+      max-width="1144"
     >
       <v-card-title class="text-center text-wrap pb-5">
         Discover the best accessible places in Asturias
@@ -12,7 +13,7 @@
       <v-card class="mx-auto rounded-lg" color="mainbackground" width="90%" >
         <v-card-text class="ma-4">
           <v-row>
-            <v-col cols="12" sm="12" md="12" lg="10">
+            <v-col cols="12" lg="9">
               <v-row align="center">
                 <v-col cols="auto">
                   <span class="font-weight-bold">Location</span>
@@ -21,7 +22,7 @@
                   <v-icon 
                     class="mb-1" size="36" aria-hidden="true" aria-label="Search Location">mdi-map-marker</v-icon>
                 </v-col>
-                <v-col cols="12" xs="12" sm="12" md="12" lg="9">
+                <v-col cols="12">
                   <v-text-field
                     id="search-location"
                     bg-color="white"
@@ -45,7 +46,7 @@
                   <v-icon
                     class="mb-" size="36" aria-hidden="true" aria-label="Search accessibility">mdi-magnify</v-icon>
                 </v-col>
-                <v-col cols="12" xs="12" sm="12" md="12" lg="9">
+                <v-col cols="12">
                   <v-text-field
                     id="search-type-of-site" 
                     bg-color="white"
@@ -63,11 +64,11 @@
               </v-row>
             </v-col>
             <v-col
-              class="d-flex align-center justify-sm-center justify-md-center justify-lg-start" sm="0" md="0" lg="2"
+              class="d-flex align-center" md="0" lg="3"
             >
               <v-btn 
                 text
-                class="text-none"
+                class="text-none mx-auto"
                 color="searchbtn"
                 rounded="lg"
                 size="x-large"
@@ -77,7 +78,7 @@
             </v-col>
           </v-row>
         </v-card-text>
-        <v-card-item class="justify-center">
+        <v-card-item class="justify-space-between">
           <v-row>
             <v-col
               v-for="(item, index) in [
@@ -90,7 +91,7 @@
               md="4"
               sm="6"
               xs="12"
-              class="d-flex justify-center align-center"
+              class="d-flex align-center"
             >
               <v-icon size="56">
                 {{ item.icon }}
@@ -114,11 +115,4 @@
 </script>
 
 <style scoped>
-/*.custom-label-color .v-field-label {
-  color: red;
-  opacity: 1;
-}
-.custom-label-color input{
-  color: red!important;
-}*/
 </style>
