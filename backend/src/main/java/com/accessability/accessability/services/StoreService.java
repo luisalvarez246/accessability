@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.text.Normalizer;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,25 +59,36 @@ public class StoreService {
 
     public String deleteStoreById(long id)
     {
+        StringBuilder   deletedImages;
         if (iStoreRepository.existsById(id))
         {
-            iStoreRepository.deleteById(id);
-            return ("Deleted store with ID: " + id);
+            try
+            {
+                iStoreRepository.deleteById(id);
+                deletedImages = deleteUnusedImages();
+                return ("Deleted store with ID: " + id + ", Deleted images: " + deletedImages);
+            }
+            catch (Exception error)
+            {
+                throw new RuntimeException("Store not deleted: " + error.getMessage());
+            }
         }
         else
             return ("Not deleted, store with ID: " + id + "does not exist");
     }
 
-    public String updateStoreById(long id, StoreCreateRequest request, MultipartFile image) {
-        Store updateStore = iStoreRepository.findById(id).orElse(null);
+    public String updateStoreById(long id, StoreCreateRequest request, MultipartFile image)
+    {
+        Store           updateStore = iStoreRepository.findById(id).orElse(null);
+        StringBuilder   deletedImages;
         try
         {
             if (updateStore != null)
             {
                 mapRequest(updateStore, request, image);
-                deleteUnusedImages();
                 iStoreRepository.save(updateStore);
-                return ("Store updated: " + updateStore.getId());
+                deletedImages = deleteUnusedImages();
+                return ("Store updated: " + updateStore.getId() + ", Deleted images: " + deletedImages);
             }
             else
             {
@@ -170,24 +182,32 @@ public class StoreService {
         return (fileName);
     }
 
-    public void deleteUnusedImages() throws IOException
+    public StringBuilder deleteUnusedImages() throws IOException
     {
         ArrayList<Store>    storeList;
         ArrayList<String>   imageList;
         File                directory;
         File[]              files;
+        String              normalizedFileNames;
+        StringBuilder       deletedImages;
 
         storeList = (ArrayList<Store>) iStoreRepository.findAll();
         imageList = (ArrayList<String>) storeList.stream()
-                .map(Store::getImage)
+                .map(store -> Normalizer.normalize(store.getImage(), Normalizer.Form.NFD))
                 .distinct()
                 .collect(Collectors.toList());
         directory = new File(storePath);
         files = directory.listFiles();
+        deletedImages = new StringBuilder();
         for (File file : files)
         {
-            if ((!imageList.contains(file.getName())) && (!file.getName().equals("default.png")))
+            normalizedFileNames = Normalizer.normalize(file.getName(), Normalizer.Form.NFD);
+            if ((!imageList.contains(normalizedFileNames)) && (!normalizedFileNames.equals("default.png")))
+            {
+                deletedImages.append(file.getName()).append(" ");
                 Files.delete(Path.of(storePath, file.getName()));
+            }
         }
+        return (deletedImages);
     }
 }
