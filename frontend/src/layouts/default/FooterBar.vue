@@ -83,14 +83,12 @@ const isLinkActive = (route) => router.name === route;
 
 .link-content:active .link-title {
   color: #FED636;
-  border: 2px solid #FED636;
-  border-radius: 10px; 
 }
 
 .custom-button {
   transition: color 0.3s;
   font-size: 1.1rem; 
-  padding: 8px 8px; 
+  padding: 0.5rem 0.5rem; 
 }
 
 .custom-button:hover {
@@ -99,8 +97,6 @@ const isLinkActive = (route) => router.name === route;
 
 .active-button {
   color: #FED636;
-  border: 2px solid #FED636;
-  border-radius: 10px; 
   font-size: 1.1rem; 
   padding: 8px 16px; 
 }
