@@ -251,7 +251,7 @@ onBeforeMount(() => {
               <v-img
                 class="characteristicsIcon"
                 :src="characteristic.icon"
-                :aria-label="characteristic.icon"
+                :alt="`Icon of ${characteristic.icon}`"
               ></v-img>
             </v-checkbox>
           </v-col>
@@ -288,7 +288,7 @@ onBeforeMount(() => {
                   <v-icon src="https://icons8.com/icon/bE5mRAhk65Br/verified-account">
 
                   </v-icon>
-                  Store Added!!
+                  Store Added Successfully!!
                 </v-card-text>
 
                 <v-card-actions>
