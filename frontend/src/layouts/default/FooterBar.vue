@@ -97,8 +97,7 @@ const isLinkActive = (route) => router.name === route;
 
 .active-button {
   color: #FED636;
-  font-size: 1.1rem; 
-  padding: 8px 16px; 
+  font-size: 1.1rem;  
 }
 </style>
 
