@@ -13,9 +13,10 @@
           'mx-4': true,
           'active-home': isHomeActive
         }"
+        class="logo"
         >
         <v-img src="../../assets/images/Logo.png"
-          class="mr-1 logo"
+          class="mr-1"
           width="56"
           alt="Accessability Logo">
         </v-img>
