@@ -47,7 +47,7 @@
             </v-form>
             <v-row>
               <v-col cols="12" md="10" class="mt-4 mx-auto">
-                <v-textarea id="send-us-your-thoughts" name="send-us-your-thoughts" type="text" label="Send us your thoughts" variant="outlined"
+                <v-textarea id="send-us-your-thoughts" name="send-us-your-thoughts" type="text" label="Send us your thoughts"
                   auto-grow bg-color="white"></v-textarea>
               </v-col>
             </v-row>
