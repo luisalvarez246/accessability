@@ -1,20 +1,18 @@
 <template>
-  <v-footer app class="d-flex no-wrap" color="footer">
+  <v-footer app class="d-flex no-wrap" color="footer" role="navigation">
     <v-row justify="center" no-gutters>
-      <v-btn
+      <router-link
         v-for="link in links"
         :key="link.text"
-        variant="text"
-        class="mx-3 text-h6 custom-button"
-        rounded="xl"
+        :to="{ name: link.route }"
+        class="mx-3 text-h6 custom-button link-content"
         role="link"
         :class="{ 'active-button': isLinkActive(link.route) }"
         :aria-label="link.text"
+        :aria-current="isLinkActive(link.route) ? 'page' : null"
       >
-        <router-link :to="{ name: link.route }" class="link-content">
-          <v-list-item-title class="link-title">{{ link.text }}</v-list-item-title>
-        </router-link>
-      </v-btn>
+        <v-list-item-title class="link-title">{{ link.text }}</v-list-item-title>
+      </router-link>
     </v-row>
 
     <v-row justify="start" no-gutters>
@@ -73,28 +71,38 @@ const isLinkActive = (route) => router.name === route;
   text-decoration: none;
 }
 
-.link-content:hover {
-  color: #340458 !important;
+.link-title {
+  transition: color 0.3s, border 0.3s;
+}
+
+.link-content:hover .link-title {
+  color: #FED636;
+  opacity: 2;
+  font-size: 1.1rem;
+}
+
+.link-content:active .link-title {
+  color: #FED636;
+  border: 2px solid #FED636;
+  border-radius: 10px; 
 }
 
 .custom-button {
-  background-color: transparent;
-  color: #340458 !important;
+  transition: color 0.3s;
+  font-size: 1.1rem; 
+  padding: 8px 8px; 
 }
 
-.custom-button:hover, :focus, :active {
-  background-color: #FED636 !important;
-  color: #340458 !important;
-  opacity: 1 !important;
-}
-
-.link-content :focus {
-  background-color: #FED636 !important;
-  color: #340458 !important;
+.custom-button:hover {
+  color: #FED636;
 }
 
 .active-button {
-  background-color: #FED636 !important;
-  color: #340458 !important;
+  color: #FED636;
+  border: 2px solid #FED636;
+  border-radius: 10px; 
+  font-size: 1.1rem; 
+  padding: 8px 16px; 
 }
 </style>
+
