@@ -1,7 +1,9 @@
 package com.accessability.accessability.controllers;
 
 import com.accessability.accessability.dto.StoreCreateRequest;
+import com.accessability.accessability.models.Category;
 import com.accessability.accessability.models.Store;
+import com.accessability.accessability.models.Type;
 import com.accessability.accessability.services.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -47,5 +49,15 @@ public class StoreController {
     public ResponseEntity<ArrayList<String>> getAllCities()
     {
        return (ResponseEntity.ok(storeService.getAllCities()));
+    }
+
+    @GetMapping(path = "/search")
+    public ResponseEntity<ArrayList<Store>> searchStores (
+            @RequestParam(value = "city", required = false) String city,
+            @RequestParam(value = "type", required = false) Type type,
+            @RequestParam(value = "categories", required = false) String categories
+    )
+    {
+        return (ResponseEntity.ok(storeService.searchStores(city, type, categories)));
     }
 }

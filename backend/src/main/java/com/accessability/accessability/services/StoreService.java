@@ -4,6 +4,7 @@ import com.accessability.accessability.dto.StoreCreateRequest;
 import com.accessability.accessability.models.Category;
 import com.accessability.accessability.models.Characteristic;
 import com.accessability.accessability.models.Store;
+import com.accessability.accessability.models.Type;
 import com.accessability.accessability.repositories.ICharacteristicRepository;
 import com.accessability.accessability.repositories.IStoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -209,5 +210,10 @@ public class StoreService {
             }
         }
         return (deletedImages);
+    }
+
+    public ArrayList<Store> searchStores(String city, Type type, String categories)
+    {
+        return (iStoreRepository.searchStores(city, type, categories));
     }
 }
