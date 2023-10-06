@@ -78,8 +78,9 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, } from 'vue';
 import { useRouter } from 'vue-router';
+
 
 const drawer = ref(false);
 
@@ -107,32 +108,37 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
   height: 3.2rem;
 }
 .active-home {
-  text-decoration: underline !important;
-  font-weight: 700 !important;
+  text-decoration: underline;
+  font-weight: 700;
 }
 .active-button {
   background: #4A148C !important;
-  border-bottom: 0.125rem #26C6DA solid !important;
-  color: #26C6DA !important;
+  border-bottom: 0.125rem #FFD740 solid !important;
+  color: #FFD740 !important;
 }
 .custom-button:focus {
   background-color: #4A148C !important;
-  color: #26C6DA !important;
-  border: 2px solid #26C6DA !important;
+  color: #FFD740 !important;
+  border: 2px solid #FFD740 !important;
 }
 .v-list-item:hover {
-  background-color: #26C6DA33 !important;
+  background-color: #FFD740 !important;
 }
 .v-list-item:active {
-  background-color: #26C6DA !important;
-  color: white !important;
+  background-color: #FFD740 !important;
+  color: white;
 }
 .v-list-item-title {
   color: #4A148C !important;
 }
 .v-list-item-title:hover, .v-list-item-title:active {
-  font-weight: 600 !important;  
-  font-size: 1.1rem !important;
+  font-weight: 600;  
+  font-size: 1.1rem;
+}
+
+.v-list-item--variant-plain, .v-list-item--variant-outlined, .v-list-item--variant-text, .v-list-item--variant-tonal {
+  background: transparent;
+  color: #FFD740;
 }
 
 </style>
