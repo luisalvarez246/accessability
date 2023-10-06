@@ -1,6 +1,6 @@
 <!-- eslint-disable no-unused-vars -->
 <script setup>
-import { ref, onBeforeMount, onUpdated } from "vue";
+import { ref, onBeforeMount } from "vue";
 import ApiConnection from "@/services/ApiConnection";
 import { useField, useForm } from "vee-validate";
 
@@ -157,7 +157,7 @@ onBeforeMount(() => {
   <div
     class="mainContainer bg-deep-purple-lighten-5 w-100 h-auto d-flex justify-center"
   >
-    <form @submit.prevent="" @reset.prevent="handleReset">
+    <form @submit.prevent="handleSubmit" @reset.prevent="handleReset">
       <div
         class="d-flex flex-column align-center bg-white rounded w-75 mt-10 ml-auto mr-auto pt-10"
       >
@@ -266,7 +266,7 @@ onBeforeMount(() => {
         ></v-textarea>
 
         <div class="btnsContainer d-flex justify-center pb-10">
-          <v-dialog width="500">
+          <v-dialog width="500" close-on-content-click>
             <template v-slot:activator="{ props }">
               <!-- <v-btn v-bind="props" text="Open Dialog"> </v-btn> -->
               <v-btn
