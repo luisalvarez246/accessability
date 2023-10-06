@@ -19,6 +19,7 @@
       <v-icon
         v-for="icon in icons"
         :key="icon"
+        tabindex="0"
         class="mx-5 my-2 social-icon"
         :icon="icon"
         variant="plain"
@@ -30,7 +31,7 @@
 
     <v-row justify="center" no-gutters>
       <v-col class="text-center mt-4" cols="12">
-        <span class="copyright text-yellow-accent-2">
+        <span class="copyright text-yellow-accent-2" tabindex="0">
           © Copyright {{ new Date().getFullYear() }} - Accessibility
         </span>
       </v-col>
