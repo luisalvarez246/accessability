@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <h1 class="text-center pt-10">Welcome to Accessability</h1>
   <v-container

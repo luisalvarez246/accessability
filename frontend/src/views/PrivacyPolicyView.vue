@@ -3,7 +3,7 @@ const email = "contact@accessability.com";
 </script>
 
 <template>
-  <div class="main-container bg-deep-purple-lighten-5">
+  <div class="main-container">
     <v-container class="privacy-policy-container bg-white">
       <v-card class="privacy-policy-card bg-transparent" variant="flat">
         <v-card-title class="font-weight-bold text-purple-darken-4"
@@ -16,9 +16,9 @@ const email = "contact@accessability.com";
           information when you use our website.
         </v-card-item>
 
-        <v-list bg-color="white">
+        <v-list>
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-purple-darken-4"
+            <v-list-item-title class="font-weight-bold text-navbar"
               >1. Information we collect</v-list-item-title
             >
             <v-list-item>
@@ -28,7 +28,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-purple-darken-4"
+            <v-list-item-title class="font-weight-bold text-navbar"
               >2. How we use your information:</v-list-item-title
             >
             <v-list-item>
@@ -38,7 +38,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-purple-darken-4"
+            <v-list-item-title class="font-weight-bold text-navbar"
               >3. Security
             </v-list-item-title>
             <v-list-item>
@@ -50,7 +50,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-purple-darken-4"
+            <v-list-item-title class="font-weight-bold text-navbar"
               >4. Cookies</v-list-item-title
             >
             <v-list-item>
@@ -60,7 +60,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-purple-darken-4"
+            <v-list-item-title class="font-weight-bold text-navbar"
               >5. Third-party links</v-list-item-title
             >
             <v-list-item>
@@ -70,7 +70,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-purple-darken-4"
+            <v-list-item-title class="font-weight-bold text-navbar"
               >6. Data retention</v-list-item-title
             >
             <v-list-item>
@@ -81,7 +81,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-purple-darken-4"
+            <v-list-item-title class="font-weight-bold text-navbar"
               >7. Changes to the Privacy Policy</v-list-item-title
             >
             <v-list-item>
@@ -92,7 +92,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-purple-darken-4"
+            <v-list-item-title class="font-weight-bold text-navbar"
               >8. Contact Information</v-list-item-title
             >
             <v-list-item>
@@ -109,7 +109,6 @@ const email = "contact@accessability.com";
 
 <style scoped>
 .privacy-policy-container {
-  line-height: 1.5;
   padding: 2rem;
   max-width: 80ch;
 }
