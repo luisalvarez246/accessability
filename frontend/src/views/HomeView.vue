@@ -4,7 +4,7 @@
     id="section_search"
   >
     <v-card
-      color="cardbackground"
+      color="cardbackground1"
       class="rounded-lg pt-5 pb-10 mx-auto"
       max-width="1140"
     >
@@ -13,7 +13,7 @@
       </v-card-title>
       <v-card
         class="mx-auto rounded-lg"
-        color="mainbackground"
+        color="cardbackground2"
         width="90%"
         >
         <v-card-text class="ma-4">

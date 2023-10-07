@@ -11,6 +11,6 @@
 
 <style>
 .v-main {
-  background-color: #EDE7F6;
+  background-color: #F9F7FB;
 }
 </style>

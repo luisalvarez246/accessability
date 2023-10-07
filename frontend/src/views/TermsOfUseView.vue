@@ -6,23 +6,18 @@ const email = "contact@accessability.com";
   <div class="main-container py-6">
     <v-container class="terms-use-container">
       <v-card class="privacy-policy-card" variant="flat">
-        <v-card-title class="font-weight-bold text-navbar"
-          >Terms of Use</v-card-title
-        >
+        <h2 class="font-weight-bold text-navbar text-center py-6">Terms of Use</h2>
         <v-card-item> Welcome to Accessability!</v-card-item>
 
         <v-card-item>
           By accessing and using the Accessability website, you agree to comply
           with and be bound by the following terms and conditions of use. If you
           disagree with any part of these terms, please do not use our
-          website.</v-card-item
-        >
+          website.</v-card-item>
 
         <v-list>
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-navbar"
-              >1. Acceptance of Terms</v-list-item-title
-            >
+            <v-list-item-title class="font-weight-bold text-navbar">1. Acceptance of Terms</v-list-item-title>
             <v-list-item>
               By using our website, you agree to be legally bound by these Terms
               of Use. If you do not agree to these terms, please do not use our
@@ -32,8 +27,7 @@ const email = "contact@accessability.com";
 
           <v-list-item>
             <v-list-item-title class="font-weight-bold text-navbar">
-              2. Use of the website</v-list-item-title
-            >
+              2. Use of the website</v-list-item-title>
 
             <v-list-item>
               The content of the pages of this website is for your general
@@ -47,9 +41,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-navbar"
-              >3. User responsibilities</v-list-item-title
-            >
+            <v-list-item-title class="font-weight-bold text-navbar">3. User responsibilities</v-list-item-title>
 
             <v-list-item>
               You are responsible for ensuring that any information or services
@@ -63,9 +55,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-navbar"
-              >4. Intellectual property</v-list-item-title
-            >
+            <v-list-item-title class="font-weight-bold text-navbar">4. Intellectual property</v-list-item-title>
 
             <v-list-item>
               This website contains material which is owned by or licensed to
@@ -79,9 +69,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-navbar"
-              >5. Limitation of liability</v-list-item-title
-            >
+            <v-list-item-title class="font-weight-bold text-navbar">5. Limitation of liability</v-list-item-title>
 
             <v-list-item>
               Your use of any information or materials on this website is
@@ -90,9 +78,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-navbar"
-              >6. User conduct</v-list-item-title
-            >
+            <v-list-item-title class="font-weight-bold text-navbar">6. User conduct</v-list-item-title>
             <v-list-item>
               You agree to use the website in accordance with all applicable
               laws and regulations. You also agree not to:
@@ -113,9 +99,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-navbar"
-              >7. Termination of access</v-list-item-title
-            >
+            <v-list-item-title class="font-weight-bold text-navbar">7. Termination of access</v-list-item-title>
 
             <v-list-item>
               Accessibility reserves the right to terminate or restrict access
@@ -124,9 +108,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-navbar"
-              >8. Privacy Policy</v-list-item-title
-            >
+            <v-list-item-title class="font-weight-bold text-navbar">8. Privacy Policy</v-list-item-title>
 
             <v-list-item>
               Please review our Privacy Policy to understand our practices
@@ -135,8 +117,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-navbar"
-              >8. Changes to Terms
+            <v-list-item-title class="font-weight-bold text-navbar">8. Changes to Terms
             </v-list-item-title>
 
             <v-list-item>
@@ -147,8 +128,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-navbar"
-              >9. Contact information
+            <v-list-item-title class="font-weight-bold text-navbar">9. Contact information
             </v-list-item-title>
 
             <v-list-item>
@@ -163,7 +143,7 @@ const email = "contact@accessability.com";
 </template>
 
 <style scoped>
-.terms-use-container { 
+.terms-use-container {
   max-width: 80ch;
 }
 </style>
