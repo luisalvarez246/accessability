@@ -1,7 +1,7 @@
 <template>
   <v-app class="appbar">
     <v-app-bar 
-      class="d-flex"
+      class="d-flex sticky"
       color="navbar">
       <router-link
         to="/"
@@ -15,7 +15,7 @@
         }"
         class="logo "
         >
-        <v-img src="../../assets/images/Logo.png"
+        <v-img src="../../assets/images/logo.png"
           class="mr-1"
           width="56"
           alt="Accessability Logo">
@@ -65,7 +65,6 @@
           v-for="(item, index) in navItems"
           :key="index"
           @click="goToPage(item.to)"
-          class="custom-list-item"
           >
           <router-link :to="item.to"
             class="text-decoration-none">

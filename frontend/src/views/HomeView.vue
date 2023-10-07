@@ -1,16 +1,22 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <h1 class="text-center mt-10">Welcome to Accessability</h1>
-  <v-container>
+  <h1 class="text-center pt-10">Welcome to Accessability</h1>
+  <v-container
+    id="section_search"
+  >
     <v-card
       color="cardbackground"
       class="rounded-lg pt-5 pb-10 mx-auto"
-      max-width="1144"
+      max-width="1140"
     >
       <v-card-title class="text-center text-wrap pb-5">
         Discover the best accessible places in Asturias
       </v-card-title>
-      <v-card class="mx-auto rounded-lg" color="mainbackground" width="90%" >
+      <v-card
+        class="mx-auto rounded-lg"
+        color="mainbackground"
+        width="90%"
+        >
         <v-card-text class="ma-4">
           <v-row>
             <v-col cols="12" lg="9">
@@ -20,13 +26,19 @@
                 </v-col>
                 <v-col cols="auto">
                   <v-icon 
-                    class="mb-1" size="36" aria-hidden="true" aria-label="Search Location">mdi-map-marker</v-icon>
+                    class="mb-1"
+                    size="36"
+                    aria-hidden="true"
+                    aria-label="Search Location"
+                    >
+                    mdi-map-marker
+                  </v-icon>
                 </v-col>
                 <v-col cols="12">
                   <v-text-field
                     id="search-location"
                     bg-color="white"
-                    color="#4A148C"
+                    color=""
                     base-color="#4A148C"
                     variant="outlined"
                     dense
@@ -44,7 +56,13 @@
                 </v-col>
                 <v-col class="pl-1" cols="auto">
                   <v-icon
-                    class="mb-" size="36" aria-hidden="true" aria-label="Search accessibility">mdi-magnify</v-icon>
+                    class="mb-"
+                    size="36"
+                    aria-hidden="true"
+                    aria-label="Search accessibility"
+                    >
+                    mdi-magnify
+                  </v-icon>
                 </v-col>
                 <v-col cols="12">
                   <v-text-field
@@ -64,7 +82,8 @@
               </v-row>
             </v-col>
             <v-col
-              class="d-flex align-center" md="0" lg="3"
+              class="d-flex align-center"
+              cols="12" md="0" lg="3"
             >
               <v-btn 
                 text
