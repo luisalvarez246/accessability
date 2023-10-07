@@ -1,11 +1,11 @@
 <template>
   <v-footer app class="d-flex no-wrap" color="navbar" role="navigation">
-    <v-row justify="start" no-gutters>
+    <v-row justify="start" no-gutters >
       <router-link
         v-for="link in links"
         :key="link.text"
         :to="{ name: link.route }"
-        class="mx-3 text-right custom-button link-content"
+        class="mx-3 py-2 text-right custom-button link-content"
         role="link"
         :class="{ 'active-button': isLinkActive(link.route) }"
         :aria-label="link.text"
@@ -22,7 +22,6 @@
         tabindex="0"
         class="mx-5 social-icon"
         :icon="icon"
-        variant="plain"
         size="30"
         color="navbarbtns"
         :aria-label="getAriaLabel(icon)"
@@ -32,7 +31,7 @@
     <v-row no-gutters>
       <v-col class="text-right pl-16 pr-4" cols="12">
         <span class="copyright" tabindex="0">
-          © Copyright {{ new Date().getFullYear() }} - Accessibility
+          © Copyright {{ new Date().getFullYear() }} - Accessability
         </span>
       </v-col>
     </v-row>
@@ -69,7 +68,6 @@ const isLinkActive = (route) => router.name === route;
 <style scoped>
 .link-content {
   color: white;
-  text-decoration: none;
 }
 .link-title {
   transition: color 0.3s, border 0.3s;
