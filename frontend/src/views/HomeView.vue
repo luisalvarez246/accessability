@@ -38,15 +38,17 @@
                   <v-text-field
                     id="search-location"
                     bg-color="white"
-                    color=""
-                    base-color="#4A148C"
+                    color="navbar"
+                    base-color="navbar"
                     variant="outlined"
-                    dense
+                    clearable
                     rounded="lg"
+                    :rules="[rules.required]"
+                    hint="Enter your city here"
                     label="Search location"
-                    placeholder="Avilés, Gijón, Oviedo..."
+                    persistent-hint
+                    type="input"
                     role="textbox"
-                    input-props="{ tabindex: 0 }"
                     />
                 </v-col>
               </v-row>
@@ -68,15 +70,17 @@
                   <v-text-field
                     id="search-type-of-site" 
                     bg-color="white"
-                    color="#4A148C"
-                    base-color="#4A148C"
+                    color="navbar"
+                    base-color="navbar"
                     variant="outlined"
-                    dense
+                    clearable
                     rounded="lg"
+                    :rules="[rules.required]"
+                    hint="Enter your site here"
                     label="Search type of site"
-                    placeholder="Hotel, Restaurant, Bar..."
+                    persistent-hint
+                    type="input"
                     role="textbox"
-                    input-props="{ tabindex: 0 }"
                   />
                 </v-col>
               </v-row>
@@ -117,7 +121,7 @@
               </v-icon>
               <v-checkbox
                 :label="item.label"
-                color="#4A148C"
+                color="cardbackground"
                 aria-checked="false"
                 class="d-flex align-center font-weight-medium"
               ></v-checkbox>
@@ -130,6 +134,9 @@
 </template>
 
 <script setup>
+const rules = {
+    required: value => !!value || 'Field is required',
+  }
 </script>
 
 <style scoped>
