@@ -3,10 +3,10 @@ const email = "contact@accessability.com";
 </script>
 
 <template>
-  <div class="main-container bg-deep-purple-lighten-5">
-    <v-container class="terms-use-container bg-white">
-      <v-card class="privacy-policy-card bg-transparent" variant="flat">
-        <v-card-title class="font-weight-bold text-purple-darken-4"
+  <div class="main-container py-6">
+    <v-container class="terms-use-container">
+      <v-card class="privacy-policy-card" variant="flat">
+        <v-card-title class="font-weight-bold text-navbar"
           >Terms of Use</v-card-title
         >
         <v-card-item> Welcome to Accessability!</v-card-item>
@@ -18,9 +18,9 @@ const email = "contact@accessability.com";
           website.</v-card-item
         >
 
-        <v-list bg-color="white">
+        <v-list>
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-purple-darken-4"
+            <v-list-item-title class="font-weight-bold text-navbar"
               >1. Acceptance of Terms</v-list-item-title
             >
             <v-list-item>
@@ -31,7 +31,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-purple-darken-4">
+            <v-list-item-title class="font-weight-bold text-navbar">
               2. Use of the website</v-list-item-title
             >
 
@@ -47,7 +47,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-purple-darken-4"
+            <v-list-item-title class="font-weight-bold text-navbar"
               >3. User responsibilities</v-list-item-title
             >
 
@@ -63,7 +63,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-purple-darken-4"
+            <v-list-item-title class="font-weight-bold text-navbar"
               >4. Intellectual property</v-list-item-title
             >
 
@@ -79,7 +79,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-purple-darken-4"
+            <v-list-item-title class="font-weight-bold text-navbar"
               >5. Limitation of liability</v-list-item-title
             >
 
@@ -90,7 +90,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-purple-darken-4"
+            <v-list-item-title class="font-weight-bold text-navbar"
               >6. User conduct</v-list-item-title
             >
             <v-list-item>
@@ -113,7 +113,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-purple-darken-4"
+            <v-list-item-title class="font-weight-bold text-navbar"
               >7. Termination of access</v-list-item-title
             >
 
@@ -124,7 +124,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-purple-darken-4"
+            <v-list-item-title class="font-weight-bold text-navbar"
               >8. Privacy Policy</v-list-item-title
             >
 
@@ -135,7 +135,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-purple-darken-4"
+            <v-list-item-title class="font-weight-bold text-navbar"
               >8. Changes to Terms
             </v-list-item-title>
 
@@ -147,7 +147,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-purple-darken-4"
+            <v-list-item-title class="font-weight-bold text-navbar"
               >9. Contact information
             </v-list-item-title>
 
@@ -164,8 +164,6 @@ const email = "contact@accessability.com";
 
 <style scoped>
 .terms-use-container { 
-  line-height: 1.5;
-  padding: 2rem;
   max-width: 80ch;
 }
 </style>

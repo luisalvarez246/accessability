@@ -3,10 +3,10 @@ const email = "contact@accessability.com";
 </script>
 
 <template>
-  <div class="main-container">
-    <v-container class="privacy-policy-container bg-white">
-      <v-card class="privacy-policy-card bg-transparent" variant="flat">
-        <v-card-title class="font-weight-bold text-purple-darken-4"
+  <div class="main-container py-6">
+    <v-container class="privacy-policy-container">
+      <v-card class="privacy-policy-card" variant="flat">
+        <v-card-title class="font-weight-bold text-navbar"
           >Privacy Policy</v-card-title
         >
         <v-card-item>Welcome to Accessability's Privacy Policy!</v-card-item>
@@ -109,7 +109,6 @@ const email = "contact@accessability.com";
 
 <style scoped>
 .privacy-policy-container {
-  padding: 2rem;
   max-width: 80ch;
 }
 </style>

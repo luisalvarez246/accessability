@@ -4,7 +4,7 @@ const email = "contact@accessability.com";
 </script>
 
 <template>
-  <div class="main-container">
+  <div class="main-container py-6">
     <v-container class="cookie-policy-container">
       <v-card class="cookie-policy-card" variant="flat">
         <v-card-title class="font-weight-bold text-navbar"
@@ -12,7 +12,7 @@ const email = "contact@accessability.com";
         >
         <v-card-item>Welcome to Accessability's Cookie Policy!</v-card-item>
 
-        <v-list bg-white>
+        <v-list>
           <v-list-item>
             <v-list-item-title class="font-weight-bold text-navbar"
               >1. What are cookies</v-list-item-title
@@ -97,7 +97,6 @@ const email = "contact@accessability.com";
 
 <style scoped>
 .cookie-policy-container {
-  padding: 2rem;
   max-width: 80ch;
 }
 </style>
