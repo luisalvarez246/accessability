@@ -1,7 +1,7 @@
 <template>
   <v-app class="appbar">
     <v-app-bar 
-      class="d-flex sticky"
+      class="d-flex position-sticky navbar"
       color="navbar">
       <router-link
         to="/"
@@ -105,7 +105,6 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
 .appbar {
   height: 3.2rem;
 }
-
 .textlogo:hover {
   color: #FED636 !important;
   font-weight: 600 !important;
@@ -138,5 +137,4 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
   font-weight: 600 !important;  
   font-size: 1.1rem !important;
 }
-
 </style>
