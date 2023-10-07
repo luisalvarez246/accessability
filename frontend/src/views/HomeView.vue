@@ -5,7 +5,9 @@
   >
     <v-card
       color="cardbackground1"
-      class="rounded-lg pt-5 pb-10 mx-auto"
+      elevation="8"
+      rounded="lg"
+      class="pt-5 pb-10 mx-auto"
       max-width="1140"
     >
       <v-card-title class="text-center text-wrap pb-5">
