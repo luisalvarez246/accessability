@@ -26,6 +26,21 @@ const routes = [
         name: 'RegisterView',
         component: () => import('@/views/RegisterView.vue'),
       },
+      { 
+        path: '/terms-of-use', 
+        name: 'terms-of-use', 
+        component: () => import('@/views/TermsOfUseView.vue'),
+      },
+      { 
+        path: '/privacy-policy', 
+        name: 'privacy-policy', 
+        component: () => import('@/views/PrivacyPolicyView.vue'),
+      },
+      { 
+        path: '/cookies', 
+        name: 'cookies', 
+        component: () => import('@/views/CookiesView.vue'),
+      },
     ],
   },
 ]
