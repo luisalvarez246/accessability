@@ -4,17 +4,17 @@ const email = "contact@accessability.com";
 </script>
 
 <template>
-  <div class="main-container bg-deep-purple-lighten-5">
-    <v-container class="cookie-policy-container bg-white">
-      <v-card class="cookie-policy-card bg-transparent" variant="flat">
-        <v-card-title class="font-weight-bold text-purple-darken-4"
+  <div class="main-container">
+    <v-container class="cookie-policy-container">
+      <v-card class="cookie-policy-card" variant="flat">
+        <v-card-title class="font-weight-bold text-navbar"
           >Cookie Policy</v-card-title
         >
         <v-card-item>Welcome to Accessability's Cookie Policy!</v-card-item>
 
         <v-list bg-white>
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-purple-darken-4"
+            <v-list-item-title class="font-weight-bold text-navbar"
               >1. What are cookies</v-list-item-title
             >
             <v-list-item>
@@ -25,7 +25,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-purple-darken-4"
+            <v-list-item-title class="font-weight-bold text-navbar"
               >2. How we use cookies</v-list-item-title
             >
             <v-list-item>
@@ -36,7 +36,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-purple-darken-4"
+            <v-list-item-title class="font-weight-bold text-navbar"
               >3. Types of cookies</v-list-item-title
             >
             <v-list-item>
@@ -47,7 +47,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-purple-darken-4"
+            <v-list-item-title class="font-weight-bold text-navbar"
               >4. Controlling cookies</v-list-item-title
             >
             <v-list-item>
@@ -58,7 +58,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-purple-darken-4"
+            <v-list-item-title class="font-weight-bold text-navbar"
               >5. Third-party cookies</v-list-item-title
             >
             <v-list-item>
@@ -68,7 +68,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-purple-darken-4"
+            <v-list-item-title class="font-weight-bold text-navbar"
               >6. Links to other websites</v-list-item-title
             >
             <v-list-item>
@@ -81,7 +81,7 @@ const email = "contact@accessability.com";
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-purple-darken-4"
+            <v-list-item-title class="font-weight-bold text-navbar"
               >7. Contact information</v-list-item-title
             >
             <v-list-item>
@@ -97,7 +97,6 @@ const email = "contact@accessability.com";
 
 <style scoped>
 .cookie-policy-container {
-  line-height: 1.5;
   padding: 2rem;
   max-width: 80ch;
 }
