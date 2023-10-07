@@ -1,7 +1,7 @@
 <template>
     <v-container>
       <v-container>
-        <v-sheet class="mt-10 mx-auto" max-width="33dvw" color="searchbtn" rounded="lg" elevation="8">
+        <v-sheet class="mt-2 mx-auto" max-width="33dvw" color="searchbtn" rounded="lg" elevation="8">
           <h1 class="text-center">
             About Us
           </h1>
