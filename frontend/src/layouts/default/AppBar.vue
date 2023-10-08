@@ -42,7 +42,7 @@
             'mr-6': true,
             'px-2': true,
           }"
-          rounded="lg"
+          rounded="xl"
         >
           {{ item.label }}
         </v-btn>
