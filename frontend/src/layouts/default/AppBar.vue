@@ -1,18 +1,22 @@
 <template>
   <v-app class="appbar">
     <v-app-bar class="d-flex position-sticky navbar" color="navbar">
-      <router-link to="/" :class="{
+      <router-link
+      to="/"
+      @click="goToPage('/')"
+      :class="{
         'd-flex': true,
         'align-center': true,
         'text-white': true,
         'text-decoration-none': true,
         'mx-4': true,
         'active-home': isHomeActive
-      }" class="logo ">
-        <v-img src="../../assets/images/logo.png" class="mr-1" width="56" alt="Accessability Logo">
-        </v-img>
-        <p class="textlogo">Accessability</p>
-      </router-link>
+      }"
+      class="logo"
+    >
+      <v-img src="../../assets/images/logo.png" class="mr-1" width="56" alt="Accessability Logo"></v-img>
+      <p class="textlogo">Accessability</p>
+    </router-link>
 
       <v-spacer></v-spacer>
 
@@ -78,7 +82,6 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
 
 .active-home {
   color: #FED636 !important;
-  font-weight: 600;
 }
 
 .active-button {

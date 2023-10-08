@@ -30,7 +30,7 @@
 
     <v-row no-gutters>
       <v-col class="text-right pl-16 pr-4" cols="12">
-        <span class="copyright" tabindex="0">
+        <span class="copyright">
           © Copyright {{ new Date().getFullYear() }} - Accessability
         </span>
       </v-col>
