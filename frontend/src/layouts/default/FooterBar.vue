@@ -1,5 +1,5 @@
 <template>
-  <v-footer class="d-flex no-wrap" color="navbar" role="navigation">
+  <v-footer class="d-flex no-wrap py-4" color="navbar" role="navigation">
     <v-row justify="start" no-gutters >
       <router-link
         v-for="link in links"
