@@ -1,22 +1,17 @@
 <template>
   <v-app class="appbar">
-    <v-app-bar class="d-flex position-sticky navbar" color="navbar">
-      <router-link
-      to="/"
-      @click="goToPage('/')"
-      :class="{
+    <v-app-bar class="d-flex position-sticky" :elevation="1" color="navbar">
+      <router-link to="/" @click="goToPage('/')" :class="{
         'd-flex': true,
         'align-center': true,
         'text-white': true,
         'text-decoration-none': true,
         'mx-4': true,
         'active-home': isHomeActive
-      }"
-      class="logo"
-    >
-      <v-img src="../../assets/images/logo.png" class="mr-1" width="56" alt="Accessability Logo"></v-img>
-      <p class="textlogo">Accessability</p>
-    </router-link>
+      }" class="logo">
+        <v-img src="../../assets/images/logo.png" class="mr-1" width="56" alt="Accessability Logo"></v-img>
+        <p class="textlogo">Accessability</p>
+      </router-link>
 
       <v-spacer></v-spacer>
 
@@ -24,8 +19,11 @@
         <v-btn v-for="(item, index) in navItems" :key="index" :to="item.to" @click="goToPage(item.to)" :class="{
           'active-button': isActiveButton(item.to),
           'text-none': true,
+          'font-weight-regular': true,
           'mr-6': true,
-          'px-2': true,
+          'px-2': smAndDown,
+          'px-4': !smAndDown,
+          'd-none': (index === 0 && mdAndDown || index === 1 && smAndDown),
         }" rounded="xl">
           {{ item.label }}
         </v-btn>
@@ -48,6 +46,9 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
+import { useDisplay } from "vuetify";
+
+const { smAndDown, mdAndDown } = useDisplay();
 
 const drawer = ref(false);
 
@@ -72,7 +73,7 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
 
 <style scoped>
 .appbar {
-  height: 3.2rem;
+  height: 3rem;
 }
 
 .textlogo:hover {
@@ -86,7 +87,7 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
 
 .active-button {
   background-color: #FED636 !important;
-  font-weight: 900 !important;
+  font-weight: 400 !important;
 }
 
 .v-btn:hover,
@@ -94,7 +95,8 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
   background-color: #FED636 !important;
   opacity: 0.85 !important;
   border-color: #340458 !important;
-  color: #4A148C;
+  color: #340458;
+  font-weight: 600 !important;
 }
 
 .v-list-item:hover {
@@ -108,7 +110,7 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
 }
 
 .v-list-item-title {
-  color: #4A148C !important;
+  color: #340458 !important;
 }
 
 .v-list-item-title:hover,
