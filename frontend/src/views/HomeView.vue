@@ -1,5 +1,6 @@
 <template>
-  <v-container height="250" width="100%" class="hero_section d-flex justify-center pb-0" color="mainbackground" rounded="lg">
+  <v-container height="250" width="100%" class="hero_section d-flex justify-center pb-0" color="mainbackground"
+    rounded="lg">
     <v-img src="../assets/images/hero.jpg" alt="girl whitout hands holding a cellphone" cover max-width="1140"
       max-height="250">
       <div class="title">
@@ -28,12 +29,13 @@
                 <v-col cols="12" class="pt-0">
                   <v-text-field id="search-location" bg-color="white" color="cardbackground1" base-color="navbar"
                     variant="outlined" clearable :rules="[rules.required]" hint="Enter your city here"
-                    label="Search place or town" persistent-hint type="input" role="textbox" />
+                    label="Search place or town" persistent-hint type="input" role="textbox" class="custom_messages" />
                 </v-col>
               </v-row>
               <v-row align="center">
                 <v-col class="pr-0" cols="auto">
-                  <v-card-text class="font-weight-bold text-subtitle-1 text-cardbackground1 px-0">I'm looking for...</v-card-text>
+                  <v-card-text class="font-weight-bold text-subtitle-1 text-cardbackground1 px-0">I'm looking
+                    for...</v-card-text>
                 </v-col>
                 <v-col cols="auto" class="pl-0">
                   <v-icon size="36" color="cardbackground1" aria-hidden="true" aria-label="Search accessibility">
@@ -43,14 +45,13 @@
                 <v-col cols="12" class="pt-0">
                   <v-text-field id="search-type-of-site" bg-color="white" color="cardbackground1" base-color="navbar"
                     variant="outlined" clearable :rules="[rules.required]" hint="Enter your site here"
-                    label="Search for coffe-shops, restaurants, hotels..." persistent-hint type="input"
-                    role="textbox" />
+                    label="Search for coffe-shops, restaurants, hotels..." persistent-hint type="input" role="textbox" />
                 </v-col>
               </v-row>
             </v-col>
             <v-col class="d-flex align-center pb-0" cols="12" md="0" lg="3">
               <v-btn text class="text-none mx-auto" color="searchbtn" rounded="xl" flat :block="xs"
-                :size="xs ? '' : 'x-large'" :height="xs ? 52 : ''" :class="{ 'text-h6': xs}">
+                :size="xs ? '' : 'x-large'" :height="xs ? 52 : ''" :class="{ 'text-h6': xs }">
                 Search
               </v-btn>
             </v-col>
@@ -90,7 +91,6 @@ const rules = {
 </script>
 
 <style scoped>
-
 .title {
   position: relative;
   color: #59029f;
@@ -124,7 +124,15 @@ h1.underline::after {
   width: 5rem;
 }
 
+.v-text-field .v-input__details {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+}
+.v-messages {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+}
+
 :deep(.v-label.v-field-label.v-field-label--floating) {
   --v-field-label-scale: 1rem;
-}
-</style>
+}</style>
