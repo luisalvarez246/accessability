@@ -31,14 +31,18 @@
       <v-row justify="center" class="mx-auto">
         <v-col cols="12" xs="12" sm="12" md="12" lg="8" xl="8">
           <v-card color="cardbackground1">
-            <v-card-title>
-              Contact
-            </v-card-title>
+            <v-row>
+              <v-col cols="12" xs="11" sm="11" class=" mx-auto">
+                <v-card-title>
+                  Contact
+                </v-card-title>
+              </v-col>
+            </v-row>
             <v-divider></v-divider>
             <v-card-item>
               <v-form role="form">
                 <v-row>
-                  <v-col cols="12" xs="11" sm="11" class="mx-auto">
+                  <v-col cols="12" xs="11" sm="11" class=" mx-auto">
                     <v-text-field label="Name" id="input-9" bg-color="white" color="navbar" base-color="navbar" clearable
                       :rules="[rules.required]" hint="Enter your name & surname here" persistent-hint type="input"
                       :role="'textbox'"></v-text-field>
@@ -114,9 +118,5 @@ const rules = {
 .v-card-title {
   font-size: 1.1rem;
   font-weight: 600;
-}
-
-:deep(.v-label.v-field-label.v-field-label--floating) {
-  --v-field-label-scale: 1em;
 }
 </style>
