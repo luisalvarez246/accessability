@@ -124,8 +124,8 @@ h1.underline::after {
   width: 5rem;
 }
 
-.v-label {
-  --v-high-emphasis-opacity:1 !important;
+:deep(.v-label ){
+  opacity: var(--v-high-emphasis-opacity);
 }
 
 :deep(.v-label.v-field-label.v-field-label--floating) {
