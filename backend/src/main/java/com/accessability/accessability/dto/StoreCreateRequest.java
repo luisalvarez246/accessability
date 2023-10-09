@@ -25,6 +25,7 @@ public class StoreCreateRequest
     private String          web;
     private String          email;
     private MultipartFile   image;
+    private String          description;
     private List<Long>      characteristicIds;
 
     @Override

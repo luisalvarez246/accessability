@@ -117,6 +117,7 @@ public class StoreService {
         store.setPhone(request.getPhone());
         store.setWeb(request.getWeb());
         store.setEmail(request.getEmail());
+        store.setDescription(request.getDescription());
         store.setImage(imageProcessing(image));
         selectedCharacteristics = iCharacteristicRepository.findAllById(request.getCharacteristicIds());
         store.setCharacteristic(new HashSet<>(selectedCharacteristics));
