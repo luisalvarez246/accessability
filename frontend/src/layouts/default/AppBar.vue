@@ -10,7 +10,7 @@
         'active-home': isHomeActive
       }" class="logo">
         <v-img src="../../assets/images/logo.png" class="mr-1" width="56" alt="Accessability Logo"></v-img>
-        <p class="textlogo">Accessability</p>
+        <span class="textlogo">AccessAbility</span>
       </router-link>
 
       <v-spacer></v-spacer>
@@ -74,6 +74,10 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
 <style scoped>
 .appbar {
   height: 3rem;
+}
+
+.textlogo {
+  font-size: 1.5rem;
 }
 
 .textlogo:hover {

@@ -3,10 +3,10 @@ const email = "contact@accessability.com";
 </script>
 
 <template>
-  <div class="main-container py-6">
+  <main-container class="main-container py-6">
     <v-container class="terms-use-container">
       <v-card class="privacy-policy-card" variant="flat">
-        <h2 class="font-weight-bold text-navbar underline pl-5 py-6">Terms of Use</h2>
+        <h3 class="font-weight-bold text-navbar underline pl-5 py-6">Terms of Use</h3>
         <v-card-item> Welcome to AccessAbility!</v-card-item>
 
         <v-card-item>
@@ -17,7 +17,7 @@ const email = "contact@accessability.com";
 
         <v-list>
           <v-list-item>
-            <v-list-item-title class="font-weight-bold text-navbar">1. Acceptance of Terms</v-list-item-title>
+            <v-list-item-title class="font-weight-bold text-navbar">1. Acceptance of terms</v-list-item-title>
             <v-list-item>
               By using our website, you agree to be legally bound by these Terms
               of Use. If you do not agree to these terms, please do not use our
@@ -142,7 +142,7 @@ const email = "contact@accessability.com";
         </v-list>
       </v-card>
     </v-container>
-  </div>
+</main-container>
 </template>
 
 <style scoped>
@@ -154,9 +154,13 @@ letter-spacing: 0.0125rem;
   position: relative;
 }
 
-h2.underline::after {
+h3 {
+  font-size: 1.5rem;
+}
+
+h3.underline::after {
   background: #FED636;
-  bottom: 0;
+  bottom: 0.25rem;
   content: "";
   display: block;
   height: 0.25rem;

@@ -10,11 +10,11 @@
         <v-list>
           <v-list-item>
             <v-list-item-title class="font-weight-bold text-navbar text-h6 pl-5 py-4"
-              >Accessability's commitment to website
+              >AccessAbility's commitment to website
               accessibility</v-list-item-title
             >
             <v-list-item>
-              At Accessability, we are deeply committed to ensuring the utmost
+              At AccessAbility, we are deeply committed to ensuring the utmost
               accessibility of our website.
             </v-list-item>
             <v-list-item>
@@ -29,18 +29,13 @@
               In developing the site, we have diligently adhered to best
               practice web accessibility guidelines, such as
               <a
-                href="https://www.w3.org/TR/WCAG20/"
+                href="https://www.w3.org/TR/WCAG22/"
                 aria-describedby="new-window-1"
                 rel="no-follow"
-                >WCAG 2.0</a
+                >WCAG 2.2</a
               >
-              and
-              <a
-                href="https://www.w3.org/TR/WCAG21/"
-                aria-describedby="new-window-1"
-                rel="no-follow"
-                >WCAG 2.1</a
-              >.
+            
+              >
             </v-list-item>
           </v-list-item>
 
@@ -131,7 +126,7 @@
 
 h2.underline::after {
   background: #FED636;
-  bottom: 0;
+  bottom: 0.25rem;
   content: "";
   display: block;
   height: 0.25rem;

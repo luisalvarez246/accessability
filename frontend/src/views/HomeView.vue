@@ -16,8 +16,8 @@
       <v-card class="mx-auto" color="cardbackground2" width="90%">
         <v-card-text>
           <v-row>
-            <v-col cols="12" lg="9">
-              <v-row align="center">
+            <v-col cols="12" lg="11">
+              <v-row align="center" class="ml-16">
                 <v-col cols="auto">
                   <p class="font-weight-bold text-subtitle-1 text-cardbackground1 pl-0 pr-6">Near to...</p>
                 </v-col>
@@ -32,7 +32,7 @@
                     label="Search place or town" persistent-hint type="input" role="textbox" class="custom_messages" />
                 </v-col>
               </v-row>
-              <v-row align="center">
+              <v-row align="center" class="ml-16">
                 <v-col class="pr-0" cols="auto">
                   <v-card-text class="font-weight-bold text-subtitle-1 text-cardbackground1 px-0">I'm looking
                     for...</v-card-text>
@@ -45,16 +45,11 @@
                 <v-col cols="12" class="pt-0">
                   <v-text-field id="search-type-of-site" bg-color="white" color="cardbackground1" base-color="navbar"
                     variant="outlined" clearable :rules="[rules.required]" hint="Enter your site here"
-                    label="Search for coffe-shops, restaurants, hotels..." persistent-hint type="input" role="textbox" />
+                    label="Search for shops, hotels..." persistent-hint type="input" role="textbox" />
                 </v-col>
               </v-row>
             </v-col>
-            <v-col class="d-flex align-center pb-0" cols="12" md="0" lg="3">
-              <v-btn text class="text-none mx-auto" color="searchbtn" rounded="xl" flat :block="xs"
-                :size="xs ? '' : 'x-large'" :height="xs ? 52 : ''" :class="{ 'text-h6': xs }">
-                Search
-              </v-btn>
-            </v-col>
+            
           </v-row>
         </v-card-text>
         <v-card-item class="justify-space-between">
@@ -75,6 +70,12 @@
             </v-col>
           </v-row>
         </v-card-item>
+        <v-col class="d-flex mx-auto pb-5" cols="12" md="0" lg="3">
+              <v-btn text class="text-none mx-auto" color="searchbtn" rounded="xl" flat :block="xs"
+                :size="xs ? '' : 'x-large'" :height="xs ? 52 : ''" :class="{ 'text-h6': xs }">
+                Search
+              </v-btn>
+            </v-col>
       </v-card>
     </v-card>
   </v-container>
