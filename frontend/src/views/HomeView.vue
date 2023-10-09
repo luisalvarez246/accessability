@@ -28,8 +28,8 @@
                 </v-col>
                 <v-col cols="12" class="pt-0">
                   <v-text-field id="search-location" bg-color="white" color="cardbackground1" base-color="navbar"
-                    variant="outlined" clearable :rules="[rules.required]" hint="Enter your city here"
-                    label="Search place or town" persistent-hint type="input" role="textbox" class="custom_messages" />
+                    variant="outlined" clearable :rules="[rules.required]"
+                    label="Search place or town" type="input" role="textbox" class="custom_messages" />
                 </v-col>
               </v-row>
               <v-row align="center">
@@ -44,8 +44,8 @@
                 </v-col>
                 <v-col cols="12" class="pt-0">
                   <v-text-field id="search-type-of-site" bg-color="white" color="cardbackground1" base-color="navbar"
-                    variant="outlined" clearable :rules="[rules.required]" hint="Enter your site here"
-                    label="Search for coffe-shops, restaurants, hotels..." persistent-hint type="input" role="textbox" />
+                    variant="outlined" clearable :rules="[rules.required]"
+                    label="Search for coffe-shops, restaurants, hotels..." type="input" role="textbox" />
                 </v-col>
               </v-row>
             </v-col>
@@ -96,7 +96,6 @@ const rules = {
   color: #59029f;
   text-wrap: wrap;
 }
-
 div.title {
   background-color: #fed636;
   width: auto;
@@ -108,11 +107,9 @@ div.title {
   position: absolute;
   padding: 0 1rem .5rem .25rem;
 }
-
 .underline {
   position: relative;
 }
-
 h1.underline::after {
   background: #14cac9;
   bottom: 0;
@@ -123,16 +120,17 @@ h1.underline::after {
   position: absolute;
   width: 5rem;
 }
-
 .v-text-field .v-input__details {
   font-size: 1rem !important;
   font-weight: 600 !important;
 }
-.v-messages {
-  font-size: 1rem !important;
-  font-weight: 600 !important;
+.v-input__details {
+  font-weight: 600;
 }
-
+.v-label {
+  --v-high-emphasis-opacity:1 !important;
+}
 :deep(.v-label.v-field-label.v-field-label--floating) {
   --v-field-label-scale: 1rem;
-}</style>
+}
+</style>
