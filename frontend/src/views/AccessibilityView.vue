@@ -32,10 +32,7 @@
                 href="https://www.w3.org/TR/WCAG22/"
                 aria-describedby="new-window-1"
                 rel="no-follow"
-                >WCAG 2.2</a
-              >
-            
-              >
+                >WCAG 2.2</a>.
             </v-list-item>
           </v-list-item>
 
