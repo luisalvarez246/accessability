@@ -120,15 +120,9 @@ h1.underline::after {
   position: absolute;
   width: 5rem;
 }
-.v-text-field .v-input__details {
-  font-size: 1rem !important;
-  font-weight: 600 !important;
-}
-.v-input__details {
-  font-weight: 600;
-}
-.v-label {
-  --v-high-emphasis-opacity:1 !important;
+
+:deep(.v-label ){
+  opacity: var(--v-high-emphasis-opacity);
 }
 :deep(.v-label.v-field-label.v-field-label--floating) {
   --v-field-label-scale: 1rem;

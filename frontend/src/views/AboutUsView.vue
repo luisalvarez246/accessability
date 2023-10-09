@@ -43,15 +43,15 @@
               <v-form role="form">
                 <v-row>
                   <v-col cols="12" xs="11" sm="11" class=" mx-auto">
-                    <v-text-field label="Name" id="input-9" bg-color="white" color="navbar" base-color="navbar" clearable
-                      :rules="[rules.required]" hint="Enter your name & surname here" persistent-hint type="input"
+                    <v-text-field label="Fullname" id="input-9" bg-color="white" color="navbar" base-color="navbar" clearable
+                      :rules="[rules.required]" type="input"
                       :role="'textbox'"></v-text-field>
                   </v-col>
                 </v-row>
                 <v-row>
                   <v-col cols="12" xs="11" sm="11" class="mt-2 mx-auto">
                     <v-text-field label="Email" id="input-11" bg-color="white" color="navbar" base-color="navbar"
-                      clearable :rules="[rules.required]" hint="Enter your email here" persistent-hint type="input"
+                      clearable :rules="[rules.required]" type="input"
                       :role="'textbox'"></v-text-field>
                   </v-col>
                 </v-row>
