@@ -1,7 +1,6 @@
 package com.accessability.accessability.services;
 
 import com.accessability.accessability.dto.StoreCreateRequest;
-import com.accessability.accessability.models.Category;
 import com.accessability.accessability.models.Characteristic;
 import com.accessability.accessability.models.Store;
 import com.accessability.accessability.models.Type;
@@ -19,7 +18,6 @@ import java.nio.file.StandardCopyOption;
 import java.text.Normalizer;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -141,7 +139,7 @@ public class StoreService {
         return (iStoreRepository.findByCharacteristicId(characteristicId));
     }
 
-    public ArrayList<String> getAllCities()
+    public ArrayList<String> getCitiesInStore()
     {
         ArrayList<Store>    stores;
         ArrayList<String>   cities;
@@ -154,7 +152,7 @@ public class StoreService {
         return (cities);
     }
 
-    public ArrayList<Type> getAllTypesInStore()
+    public ArrayList<Type> getTypesInStore()
     {
         ArrayList<Store>    stores;
         ArrayList<Type>   types;
@@ -192,7 +190,7 @@ public class StoreService {
             }
         }
         else
-            fileName = "";
+            fileName = "default.png";
         return (fileName);
     }
 

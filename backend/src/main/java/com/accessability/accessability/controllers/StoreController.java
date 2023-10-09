@@ -1,7 +1,6 @@
 package com.accessability.accessability.controllers;
 
 import com.accessability.accessability.dto.StoreCreateRequest;
-import com.accessability.accessability.models.Category;
 import com.accessability.accessability.models.Store;
 import com.accessability.accessability.models.Type;
 import com.accessability.accessability.services.StoreService;
@@ -35,7 +34,8 @@ public class StoreController {
     }
 
     @PostMapping
-    public String saveStore(@ModelAttribute StoreCreateRequest request, @RequestParam("image") MultipartFile image) {
+    public String saveStore(@ModelAttribute StoreCreateRequest request, @RequestParam(value = "image", required = false) MultipartFile image)
+    {
         return (storeService.saveStore(request, image));
     }
 
@@ -46,15 +46,15 @@ public class StoreController {
     }
 
     @GetMapping(path = "/cities")
-    public ResponseEntity<ArrayList<String>> getAllCities()
+    public ResponseEntity<ArrayList<String>> getCitiesInStore()
     {
-       return (ResponseEntity.ok(storeService.getAllCities()));
+       return (ResponseEntity.ok(storeService.getCitiesInStore()));
     }
 
     @GetMapping(path = "/types")
-    public ResponseEntity<ArrayList<Type>> getAllTypesInStore()
+    public ResponseEntity<ArrayList<Type>> getTypesInStore()
     {
-       return (ResponseEntity.ok(storeService.getAllTypesInStore()));
+       return (ResponseEntity.ok(storeService.getTypesInStore()));
     }
 
     @GetMapping(path = "/search")
