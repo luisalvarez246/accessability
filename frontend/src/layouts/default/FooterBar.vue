@@ -1,5 +1,5 @@
 <template>
-  <v-footer app class="d-flex no-wrap" color="navbar" role="navigation">
+  <v-footer class="d-flex no-wrap py-4" color="navbar" role="navigation">
     <v-row justify="start" no-gutters >
       <router-link
         v-for="link in links"
@@ -30,7 +30,7 @@
 
     <v-row no-gutters>
       <v-col class="text-right pl-16 pr-4" cols="12">
-        <span class="copyright" tabindex="0">
+        <span class="copyright">
           © Copyright {{ new Date().getFullYear() }} - Accessability
         </span>
       </v-col>
