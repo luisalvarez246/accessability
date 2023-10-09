@@ -53,7 +53,7 @@ const { smAndDown, mdAndDown } = useDisplay();
 const drawer = ref(false);
 
 const navItems = [
-  { label: 'Accessibility', to: '/accessability' },
+  { label: 'Accessibility', to: '/accessibility' },
   { label: 'About us', to: '/about-us' },
   { label: 'Register your site', to: '/register' },
 ];

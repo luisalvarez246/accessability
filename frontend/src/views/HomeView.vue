@@ -28,8 +28,8 @@
                 </v-col>
                 <v-col cols="12" class="pt-0">
                   <v-text-field id="search-location" bg-color="white" color="cardbackground1" base-color="navbar"
-                    variant="outlined" clearable :rules="[rules.required]" hint="Enter your city here"
-                    label="Search place or town" persistent-hint type="input" role="textbox" class="custom_messages" />
+                    variant="outlined" clearable :rules="[rules.required]"
+                    label="Search place or town" type="input" role="textbox" class="custom_messages" />
                 </v-col>
               </v-row>
               <v-row align="center">
@@ -44,8 +44,8 @@
                 </v-col>
                 <v-col cols="12" class="pt-0">
                   <v-text-field id="search-type-of-site" bg-color="white" color="cardbackground1" base-color="navbar"
-                    variant="outlined" clearable :rules="[rules.required]" hint="Enter your site here"
-                    label="Search for coffe-shops, restaurants, hotels..." persistent-hint type="input" role="textbox" />
+                    variant="outlined" clearable :rules="[rules.required]"
+                    label="Search for coffe-shops, restaurants, hotels..." type="input" role="textbox" />
                 </v-col>
               </v-row>
             </v-col>
@@ -124,8 +124,8 @@ h1.underline::after {
   width: 5rem;
 }
 
-.v-label {
-  --v-high-emphasis-opacity:1 !important;
+:deep(.v-label ){
+  opacity: var(--v-high-emphasis-opacity);
 }
 
 :deep(.v-label.v-field-label.v-field-label--floating) {
