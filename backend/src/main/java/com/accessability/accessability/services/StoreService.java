@@ -154,6 +154,19 @@ public class StoreService {
         return (cities);
     }
 
+    public ArrayList<Type> getAllTypesInStore()
+    {
+        ArrayList<Store>    stores;
+        ArrayList<Type>   types;
+
+        stores = (ArrayList<Store>) iStoreRepository.findAll();
+        types = (ArrayList<Type>) stores.stream()
+                    .map(Store::getType)
+                    .distinct()
+                    .collect(Collectors.toList());
+        return (types);
+    }
+
     public String imageProcessing(MultipartFile image)
     {
         String  originalFileName;

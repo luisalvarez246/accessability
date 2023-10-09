@@ -51,6 +51,12 @@ public class StoreController {
        return (ResponseEntity.ok(storeService.getAllCities()));
     }
 
+    @GetMapping(path = "/types")
+    public ResponseEntity<ArrayList<Type>> getAllTypesInStore()
+    {
+       return (ResponseEntity.ok(storeService.getAllTypesInStore()));
+    }
+
     @GetMapping(path = "/search")
     public ResponseEntity<ArrayList<Store>> searchStores (
             @RequestParam(value = "city", required = false) String city,
