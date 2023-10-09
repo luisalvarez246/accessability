@@ -1,10 +1,10 @@
 <template>
   <v-container height="250" width="100%" class="hero_section d-flex justify-center pb-0" color="mainbackground"
     rounded="lg">
-    <v-img src="../assets/images/hero.jpg" alt="girl whitout hands holding a cellphone" cover max-width="1140"
+    <v-img src="../assets/images/hero.jpg" alt="" cover max-width="1140"
       max-height="250">
       <div class="title">
-        <h1 class="underline pl-4">Welcome to Accessability</h1>
+        <h1 class="underline pl-4">Welcome to AccessAbility</h1>
       </div>
     </v-img>
   </v-container>
@@ -28,8 +28,8 @@
                 </v-col>
                 <v-col cols="12" class="pt-0">
                   <v-text-field id="search-location" bg-color="white" color="cardbackground1" base-color="navbar"
-                    variant="outlined" clearable :rules="[rules.required]" hint="Enter your city here"
-                    label="Search place or town" persistent-hint type="input" role="textbox" class="custom_messages" />
+                    variant="outlined" clearable :rules="[rules.required]"
+                    label="Search place or town" type="input" role="textbox" class="custom_messages" />
                 </v-col>
               </v-row>
               <v-row align="center" class="ml-16">
@@ -44,8 +44,8 @@
                 </v-col>
                 <v-col cols="12" class="pt-0">
                   <v-text-field id="search-type-of-site" bg-color="white" color="cardbackground1" base-color="navbar"
-                    variant="outlined" clearable :rules="[rules.required]" hint="Enter your site here"
-                    label="Search for shops, hotels..." persistent-hint type="input" role="textbox" />
+                    variant="outlined" clearable :rules="[rules.required]"
+                    label="Search for shops, hotels..." type="input" role="textbox" />
                 </v-col>
               </v-row>
             </v-col>

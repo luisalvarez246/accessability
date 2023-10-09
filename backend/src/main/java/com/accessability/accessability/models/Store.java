@@ -41,6 +41,8 @@ public class Store {
 
     private String image;
 
+    private String description;
+
     @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinTable(
             name = "store_characteristic",

@@ -9,8 +9,8 @@
         'mx-4': true,
         'active-home': isHomeActive
       }" class="logo">
-        <v-img src="../../assets/images/logo.png" class="mr-1" width="56" alt="Accessability Logo"></v-img>
-        <span class="textlogo">AccessAbility</span>
+        <v-img src="../../assets/images/logo.png" class="mr-1" width="56" alt="AccessAbility Logo"></v-img>
+        <p class="textlogo">AccessAbility</p>
       </router-link>
 
       <v-spacer></v-spacer>
@@ -23,7 +23,7 @@
           'mr-6': true,
           'px-2': smAndDown,
           'px-4': !smAndDown,
-          'd-none': (index === 0 && mdAndDown || index === 1 && smAndDown),
+          'd-none': sm,
         }" rounded="xl">
           {{ item.label }}
         </v-btn>
@@ -48,7 +48,7 @@ import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useDisplay } from "vuetify";
 
-const { smAndDown, mdAndDown } = useDisplay();
+const { smAndDown } = useDisplay();
 
 const drawer = ref(false);
 
