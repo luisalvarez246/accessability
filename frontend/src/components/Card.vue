@@ -11,119 +11,97 @@ export default {
 </script> -->
 
 <template>
-  <div>
-    <div class="d-flex justify-space-around align-center py-4">
-      <v-btn
-        variant="text"
-        icon="mdi-minus"
-        @click="model = Math.max(model - 1, 0)"
-      ></v-btn>
-      {{ model }}
-      <v-btn
-        variant="text"
-        icon="mdi-plus"
-        @click="model = Math.min(model + 1, 4)"
-      ></v-btn>
-    </div>
-    <v-carousel
-      v-model="model"
-      :height="calculateCarouselHeight()"
-      :cycle="false"
-      :continuous="true"
-      hide-delimiter-background
-    >
-      <v-carousel-item v-for="(color, i) in colors" :key="color" :value="i">
-        <v-sheet :color="color" height="100%" tile>
-          <div class="d-flex fill-height justify-center align-center">
-            <v-container fluid>
-              <v-row justify="center" align-center>
-                <v-col v-for="cardIndex in 3" :key="cardIndex" cols="4">
-                  <v-card
-                    color="#59029F"
-                    class="mb-7"
-                    min-width="300"
-                    max-width="400"
-                  >
-                    <v-img
-                      src="https://hips.hearstapps.com/hmg-prod/images/los-mejores-restaurantes-que-tienes-que-probar-en-madrid-1644914076.jpeg?crop=0.753xw:1.00xh;0.125xw,0&resize=1200:*"
-                    ></v-img>
-                    <v-card-title>
-                      <h2>Casa Pepe</h2>
-                    </v-card-title>
-                    <v-card-text>
-                      <p>
-                        Aviles Calle Invierno N21
-                        PRM Aviles Calle Invierno N21
-                        PRM Aviles Calle Invierno N21
-                        PRM Aviles Calle Invierno N21
-                        PRM Aviles Calle Invierno N21
-                        PRM Aviles Calle Invierno N21
-                        PRM Aviles Calle Invierno N21
-                        PRM Aviles Calle Invierno N21
-                        PRM Aviles Calle Invierno N21
-                        PRM
-                      </p>
-                    </v-card-text>
+  <v-card
+    color="#59029F"
+    class="mb-7"
+    min-width="300"
+    max-width="400"
+  >
+    <v-img
+      src="https://hips.hearstapps.com/hmg-prod/images/los-mejores-restaurantes-que-tienes-que-probar-en-madrid-1644914076.jpeg?crop=0.753xw:1.00xh;0.125xw,0&resize=1200:*"
+    ></v-img>
+    <v-card-title>
+      <!-- <h2>Casa Pepe</h2> -->
+     {{ props.type }} {{ props.storeName }}
+    </v-card-title>
+    <v-card-text>
+      <p>
+        {{ props.city }} 
+      </p>
 
-                    <v-card-actions>
-                      <v-btn
-                        @click="toggleShow(cardIndex)"
-                        class="text-none text-subtitle-1 mx-auto"
-                        variant="flat"
-                        color="#7ED057"
-                        block
-                      >
-                        {{ show[cardIndex] ? 'HIDE INFO' : 'MORE INFO' }}
-                      </v-btn>
-                    </v-card-actions>
-                    <v-expand-transition>
-                      <div v-if="show[cardIndex]">
-                        <v-divider></v-divider>
+      <p>Category: {{ props.category }}</p>
+    </v-card-text>
 
-                        <v-card-text>
-                          I'm a thing. But, like most politicians, he promised
-                          more than he could deliver. You won't have time for
-                          sleeping, soldier, not with all the bed making you'll
-                          be doing. Then we'll go with that data file! Hey, you
-                          add a one and two zeros to that or we walk! You're
-                          going to do his laundry? I've got to find a way to
-                          escape.
-                        </v-card-text>
-                      </div>
-                    </v-expand-transition>
-                  </v-card>
-                </v-col>
-              </v-row>
-            </v-container>
-          </div>
-        </v-sheet>
-      </v-carousel-item>
-    </v-carousel>
-  </div>
+    <v-card-actions>
+      <v-btn
+        @click="toggleShow(cardIndex)"
+        class="text-none text-subtitle-1 mx-auto"
+        variant="flat"
+        color="#7ED057"
+        block
+      >
+        {{ show[cardIndex] ? "HIDE INFO" : "MORE INFO" }}
+      </v-btn>
+    </v-card-actions>
+    <v-expand-transition>
+      <div v-if="show[cardIndex]">
+        <v-divider></v-divider>
+
+        <v-card-text>
+          <p>
+            Address: {{ props.address }}
+          </p>
+          <p>
+            Phone: {{ props.phone }}
+          </p>
+          <p>
+            Email: {{ props.email }}
+          </p>
+           
+          <p class="descriptionField">
+            {{ props.description }}
+          </p>
+        </v-card-text>
+      </div>
+    </v-expand-transition>
+  </v-card>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      colors: ["primary", "secondary", "yellow darken-2", "red", "orange"],
-      model: 0,
-      show: Array(3).fill(false),
-    };
-  },
-  methods: {
-    calculateCarouselHeight() {
-      const cardHeight = 350;
-      const numRows = Math.ceil(this.colors.length / 3);
-      return numRows * cardHeight;
-    },
-    toggleShow(cardIndex) {
-      this.show[cardIndex] = !this.show[cardIndex];
-    },
-  },
-};
-</script>
+<script setup>
+import ApiConnection from "@/services/ApiConnection";
+import { ref, onBeforeMount } from "vue";
 
+const props = defineProps({
+  storeName: String,
+  type: String,
+  city: String,
+  category: String,
+  address: String,
+  phone: String,
+  email: String,
+  description: String
+})
+
+
+const show = ref(Array(3).fill(false));
+const stores = ref([]);
+
+
+
+function toggleShow(cardIndex) {
+  show.value[cardIndex] = !show.value[cardIndex];
+}
+
+const getStores = async () => {
+  let response = await ApiConnection.getAllStores();
+  stores.value = response.data;
+  return stores.value;
+};
+
+onBeforeMount(() => {
+  getStores();
+});
+</script>
 
 <style>
 .v-carousel {
@@ -134,6 +112,10 @@ export default {
 
 .v-carousel .v-carousel-control__item.v-carousel-indicator__item--active {
   box-shadow: none !important;
+}
+
+.descriptionField {
+  margin-top: 0.625rem;
 }
 </style>
 
