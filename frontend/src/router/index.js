@@ -12,9 +12,9 @@ const routes = [
         component: () => import('@/views/HomeView.vue'),
       },
       {
-        path: '/accessability',
-        name: 'Accessability',
-        component: () => import('@/views/AccessabilityView.vue'),
+        path: '/accessibility',
+        name: 'Accessibility',
+        component: () => import('@/views/AccessibilityView.vue'),
       },
       {
         path: '/about-us',

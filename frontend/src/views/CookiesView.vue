@@ -7,9 +7,9 @@ const email = "contact@accessability.com";
   <div class="main-container py-6">
     <v-container class="cookie-policy-container">
       <v-card class="cookie-policy-card" variant="flat">
-        <h2 class="font-weight-bold text-navbar text-center py-6">Cookie Policy</h2>
-        <v-card-item>Welcome to Accessability's Cookie Policy!</v-card-item>
-
+        <h2 class="font-weight-bold text-navbar underline pl-5 py-6">Cookie Policy</h2>
+        <v-card-item> Welcome to Accessability's Cookie Policy!</v-card-item>
+        
         <v-list>
           <v-list-item>
             <v-list-item-title class="font-weight-bold text-navbar">1. What are cookies</v-list-item-title>
@@ -82,5 +82,20 @@ const email = "contact@accessability.com";
 <style scoped>
 .cookie-policy-container {
   max-width: 80ch;
+  letter-spacing: 0.0125rem;
+}
+.underline {
+  position: relative;
+}
+
+h2.underline::after {
+  background: #FED636;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 0.25rem;
+  left: 5;
+  position: absolute;
+  width: 4rem;
 }
 </style>

@@ -3,10 +3,10 @@ const email = "contact@accessability.com";
 </script>
 
 <template>
-  <div class="main-container py-6">
+  <div class="main-container pl-5 py-6">
     <v-container class="privacy-policy-container">
       <v-card class="privacy-policy-card" variant="flat">
-        <h2 class="font-weight-bold text-navbar text-center py-6">Privacy Policy</h2>
+        <h2 class="font-weight-bold text-navbar underline pl-5 py-6">Privacy Policy</h2>
         <v-card-item>Welcome to Accessability's Privacy Policy!</v-card-item>
         <v-card-item>
           At Accessability, we are committed to protecting your privacy. This
@@ -93,5 +93,20 @@ const email = "contact@accessability.com";
 <style scoped>
 .privacy-policy-container {
   max-width: 80ch;
+  letter-spacing: 0.0125rem;
+}
+.underline {
+  position: relative;
+}
+
+h2.underline::after {
+  background: #FED636;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 0.25rem;
+  left: 5;
+  position: absolute;
+  width: 4rem;
 }
 </style>
