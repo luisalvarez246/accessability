@@ -8,6 +8,8 @@ const urlType = "http://localhost:8080/api/type";
 
 const urlCity = "http://localhost:8080/api/cities";
 
+const urlImage = "http://localhost:8080/images";
+
 class ApiConnection {
   async getAllStores() {
     try {
@@ -51,6 +53,32 @@ class ApiConnection {
       return response;
     } catch (error) {
       return error.message;
+    }
+  }
+
+  async getCitiesInStore() 
+  {
+    try 
+	{
+		let response = await axios.get(`${urlStore}/cities`);
+		return response;
+    } 
+	catch (error)
+	{
+		return error.message;
+    }
+  }
+
+  async getTypesInStore() 
+  {
+    try 
+	{
+		let response = await axios.get(`${urlStore}/types`);
+		return response;
+    } 
+	catch (error)
+	{
+		return error.message;
     }
   }
 
@@ -120,6 +148,21 @@ class ApiConnection {
 	try
 	{
 		response = await axios.get(urlCity);
+
+		return (response);
+	}
+	catch (error)
+	{
+		console.log(error.message);
+	}
+  }
+
+  async getImage(imageName)
+  {
+	let response;
+	try
+	{
+		response = await axios.get(`${urlImage}/${imageName}`);
 
 		return (response);
 	}

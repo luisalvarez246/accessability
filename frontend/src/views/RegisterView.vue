@@ -75,6 +75,7 @@ const store = ref({
   description: "",
   web: "",
   characteristicIds: [],
+  image: [],
 });
 
 const initialStore = {
@@ -92,22 +93,38 @@ const initialStore = {
 const checkboxValues = ref([]);
 
 const updateCheckbox = (id, value) => {
+	//store.value.characteristicIds.push(value);
+	console.log(store.value.characteristicIds);
   checkboxValues.value[id] = value;
   console.log(checkboxValues.value);
 };
 
+const imageUpload = (event) =>
+{
+	console.log(event.target.files[0]);
+}
+
 const addStore = async () => {
-  const newStore = {
+	const formData = new FormData();
+	store.value.characteristicIds = checkboxValues.value;
+	//store.value.type = types.value;
+	if (store.value.image[0])
+			formData.append('image', store.value.image[0]);
+	for (const key in store.value)
+	{
+		if (key !== "image")
+		formData.append(key, store.value[key]);
+	}
+  /*const newStore = {
     ...store.value,
     characteristicIds: checkboxValues.value,
     image: store.value.image[0].name,
     type: types.value.id,
     city: cities.value.id,
-  };
+  };*/
   try {
-    let response = await ApiConnection.saveStore(newStore);
-    console.log(response);
-    console.log(newStore);
+    let response = await ApiConnection.saveStore(formData);
+    // alert("Store successfully created");
     if (response.status === 200) validated.value = true;
   } catch (error) {
     alert("Cannot add the store: " + error);
@@ -150,6 +167,11 @@ onBeforeMount(() => {
   getCities();
   getTypes();
 });
+
+onUpdated(() =>
+{
+	console.log(store.value.image[0]);
+})
 </script>
 
 <template>
@@ -197,7 +219,7 @@ onBeforeMount(() => {
 
         <v-select
           class="w-75 v-labelText"
-          v-model="cities.id"
+          v-model="store.city"
           label="City"
           :items="cities"
           item-value="id"
@@ -207,7 +229,7 @@ onBeforeMount(() => {
         <v-select
           class="w-75 v-labelText"
           label="Type of businnes"
-          v-model="types.id"
+          v-model="store.type"
           :items="types"
           item-value="id"
         >
@@ -216,6 +238,7 @@ onBeforeMount(() => {
         <v-file-input
           class="w-50 v-labelText"
           v-model="store.image"
+          @change="imageUpload($event)"
           label="Image"
           variant="filled"
           prepend-icon="mdi-camera"

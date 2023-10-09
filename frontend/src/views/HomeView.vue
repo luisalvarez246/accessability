@@ -1,7 +1,7 @@
 <template>
   <v-container height="250" width="100%" class="hero_section d-flex justify-center pb-0" color="mainbackground"
     rounded="lg">
-    <v-img src="../assets/images/hero.jpg" alt="girl whitout hands holding a cellphone" cover max-width="1140"
+    <v-img src="../assets/images/hero.jpg" alt="" cover max-width="1140"
       max-height="250">
       <div class="title">
         <h1 class="underline pl-4">Welcome to Accessability</h1>
@@ -22,14 +22,14 @@
                   <p class="font-weight-bold text-subtitle-1 text-cardbackground1 pl-0 pr-6">Near to...</p>
                 </v-col>
                 <v-col cols="auto">
-                  <v-icon color="cardbackground1" size="36" aria-hidden="true" aria-label="Search Place or Town">
+                  <v-icon color="cardbackground1" size="36" aria-hidden="true" aria-label="Search Place or Town" alt="Localizar">
                     mdi-map-marker
                   </v-icon>
                 </v-col>
                 <v-col cols="12" class="pt-0">
                   <v-text-field id="search-location" bg-color="white" color="cardbackground1" base-color="navbar"
-                    variant="outlined" clearable :rules="[rules.required]" hint="Enter your city here"
-                    label="Search place or town" persistent-hint type="input" role="textbox" class="custom_messages" />
+                    variant="outlined" clearable :rules="[rules.required]"
+                    label="Search place or town" type="input" role="textbox" class="custom_messages" />
                 </v-col>
               </v-row>
               <v-row align="center">
@@ -38,14 +38,14 @@
                     for...</v-card-text>
                 </v-col>
                 <v-col cols="auto" class="pl-0">
-                  <v-icon size="36" color="cardbackground1" aria-hidden="true" aria-label="Search accessibility">
+                  <v-icon size="36" color="cardbackground1" aria-hidden="true" aria-label="Search accessibility" alt="Buscar">
                     mdi-magnify
                   </v-icon>
                 </v-col>
                 <v-col cols="12" class="pt-0">
                   <v-text-field id="search-type-of-site" bg-color="white" color="cardbackground1" base-color="navbar"
-                    variant="outlined" clearable :rules="[rules.required]" hint="Enter your site here"
-                    label="Search for coffe-shops, restaurants, hotels..." persistent-hint type="input" role="textbox" />
+                    variant="outlined" clearable :rules="[rules.required]"
+                    label="Search for coffe-shops, restaurants, hotels..." type="input" role="textbox" />
                 </v-col>
               </v-row>
             </v-col>
@@ -124,13 +124,8 @@ h1.underline::after {
   width: 5rem;
 }
 
-.v-text-field .v-input__details {
-  font-size: 1rem !important;
-  font-weight: 600 !important;
-}
-.v-messages {
-  font-size: 1rem !important;
-  font-weight: 600 !important;
+:deep(.v-label ){
+  opacity: var(--v-high-emphasis-opacity);
 }
 
 :deep(.v-label.v-field-label.v-field-label--floating) {
