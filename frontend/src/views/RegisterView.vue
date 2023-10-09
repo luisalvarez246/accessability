@@ -108,7 +108,6 @@ const addStore = async () => {
     let response = await ApiConnection.saveStore(newStore);
     console.log(response);
     console.log(newStore);
-    // alert("Store successfully created");
     if (response.status === 200) validated.value = true;
   } catch (error) {
     alert("Cannot add the store: " + error);
