@@ -17,6 +17,9 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.text.Normalizer;
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -31,6 +34,7 @@ public class StoreService {
     @Autowired
     ICharacteristicRepository iCharacteristicRepository;
     private final String storePath = System.getProperty("user.dir") + "/src/main/webapp/images";
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH_mm_ss");
 
     public String saveStore(StoreCreateRequest request, MultipartFile image)
     {
@@ -171,7 +175,6 @@ public class StoreService {
         String  originalFileName;
         String  extension;
         String  fileNameWithoutExtension;
-        String  timestamp;
         String  fileName;
 
         if ((image != null) && (!image.isEmpty()))
@@ -181,8 +184,7 @@ public class StoreService {
                 originalFileName = image.getOriginalFilename();
                 extension = originalFileName.substring(originalFileName.lastIndexOf('.'));
                 fileNameWithoutExtension = originalFileName.substring(0, originalFileName.lastIndexOf('.'));
-                timestamp = Instant.now().toString().substring(0, Instant.now().toString().lastIndexOf('.'));
-                fileName = fileNameWithoutExtension + timestamp + extension;
+                fileName = fileNameWithoutExtension + formatImageName() + extension;
                 Files.copy(image.getInputStream(), Path.of(storePath, fileName), StandardCopyOption.REPLACE_EXISTING);
             }
             catch (Exception error)
@@ -227,5 +229,16 @@ public class StoreService {
     public ArrayList<Store> searchStores(String city, Type type, String categories)
     {
         return (iStoreRepository.searchStores(city, type, categories));
+    }
+
+    public String formatImageName()
+    {
+        String timestamp;
+        Instant instant = Instant.now();
+        LocalDateTime localDateTime = instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH_mm_ss");
+
+        timestamp = formatter.format(localDateTime);
+        return (timestamp);
     }
 }
