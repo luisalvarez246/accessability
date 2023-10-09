@@ -124,13 +124,8 @@ h1.underline::after {
   width: 5rem;
 }
 
-.v-text-field .v-input__details {
-  font-size: 1rem !important;
-  font-weight: 600 !important;
-}
-.v-messages {
-  font-size: 1rem !important;
-  font-weight: 600 !important;
+.v-label {
+  --v-high-emphasis-opacity:1 !important;
 }
 
 :deep(.v-label.v-field-label.v-field-label--floating) {
