@@ -56,6 +56,32 @@ class ApiConnection {
     }
   }
 
+  async getCitiesInStore() 
+  {
+    try 
+	{
+		let response = await axios.get(`${urlStore}/cities`);
+		return response;
+    } 
+	catch (error)
+	{
+		return error.message;
+    }
+  }
+
+  async getTypesInStore() 
+  {
+    try 
+	{
+		let response = await axios.get(`${urlStore}/types`);
+		return response;
+    } 
+	catch (error)
+	{
+		return error.message;
+    }
+  }
+
   async getAllCharacteristics() {
     try {
       let response = await axios.get(urlCharacteristic);
@@ -145,7 +171,6 @@ class ApiConnection {
 		console.log(error.message);
 	}
   }
-
 }
 
 export default new ApiConnection();
