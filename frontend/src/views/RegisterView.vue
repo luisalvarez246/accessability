@@ -93,7 +93,8 @@ const initialStore = {
 const checkboxValues = ref([]);
 
 const updateCheckbox = (id, value) => {
-	store.value.characteristicIds.push(value);
+	//store.value.characteristicIds.push(value);
+	console.log(store.value.characteristicIds);
   checkboxValues.value[id] = value;
   console.log(checkboxValues.value);
 };
@@ -105,22 +106,22 @@ const imageUpload = (event) =>
 
 const addStore = async () => {
 	const formData = new FormData();
-	store.value.type = items.value.id;
+	store.value.characteristicIds = checkboxValues.value;
+	//store.value.type = types.value;
+	if (store.value.image[0])
+			formData.append('image', store.value.image[0]);
 	for (const key in store.value)
 	{
-		console.log(key);
-		if (key === "image")
-			formData.append(key, store.value.image[0]);
-		else
-			formData.append(key, store.value[key]);
+		if (key !== "image")
+		formData.append(key, store.value[key]);
 	}
-  const newStore = {
+  /*const newStore = {
     ...store.value,
     characteristicIds: checkboxValues.value,
     image: store.value.image[0].name,
     type: types.value.id,
     city: cities.value.id,
-  };
+  };*/
   try {
     let response = await ApiConnection.saveStore(formData);
     // alert("Store successfully created");
@@ -218,7 +219,7 @@ onUpdated(() =>
 
         <v-select
           class="w-75 v-labelText"
-          v-model="cities.id"
+          v-model="store.city"
           label="City"
           :items="cities"
           item-value="id"
@@ -228,7 +229,7 @@ onUpdated(() =>
         <v-select
           class="w-75 v-labelText"
           label="Type of businnes"
-          v-model="types.id"
+          v-model="store.type"
           :items="types"
           item-value="id"
         >
