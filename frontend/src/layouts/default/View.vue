@@ -10,4 +10,7 @@
 </script>
 
 <style>
+.v-main {
+  background-color: #F9F7FB;
+}
 </style>
