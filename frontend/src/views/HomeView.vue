@@ -22,7 +22,7 @@
                   <p class="font-weight-bold text-subtitle-1 text-cardbackground1 pl-0 pr-6">Near to...</p>
                 </v-col>
                 <v-col cols="auto">
-                  <v-icon color="cardbackground1" size="36" aria-hidden="true" aria-label="Search Place or Town">
+                  <v-icon color="cardbackground1" size="36" aria-hidden="true" aria-label="Search Place or Town" alt="Localizar">
                     mdi-map-marker
                   </v-icon>
                 </v-col>
@@ -38,7 +38,7 @@
                     for...</v-card-text>
                 </v-col>
                 <v-col cols="auto" class="pl-0">
-                  <v-icon size="36" color="cardbackground1" aria-hidden="true" aria-label="Search accessibility">
+                  <v-icon size="36" color="cardbackground1" aria-hidden="true" aria-label="Search accessibility" alt="Buscar">
                     mdi-magnify
                   </v-icon>
                 </v-col>
