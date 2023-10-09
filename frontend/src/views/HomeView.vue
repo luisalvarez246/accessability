@@ -194,6 +194,7 @@
                       :phone="store.phone"
                       :email="store.email"
                       :description="store.description"
+                      :web="store.web"
                     />
                   </v-col>
                 </v-row>

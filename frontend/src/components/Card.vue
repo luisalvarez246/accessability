@@ -57,6 +57,9 @@ export default {
           <p>
             Email: {{ props.email }}
           </p>
+          <p>
+            web: {{ props.web }}
+          </p>
            
           <p class="descriptionField">
             {{ props.description }}
@@ -79,7 +82,8 @@ const props = defineProps({
   address: String,
   phone: String,
   email: String,
-  description: String
+  description: String,
+  web: String
 })
 
 
