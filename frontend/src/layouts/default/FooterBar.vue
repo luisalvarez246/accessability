@@ -5,7 +5,7 @@
         v-for="link in links"
         :key="link.text"
         :to="{ name: link.route }"
-        class="mx-3 py-2 text-right custom-button link-content"
+        class="mx-3 py-2 text-right link-content"
         role="link"
         :class="{ 'active-button': isLinkActive(link.route) }"
         :aria-label="link.text"
@@ -40,7 +40,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 
 const links = ref([
   { text: "Terms of Use", route: "terms-of-use" },
@@ -59,7 +59,7 @@ const getAriaLabel = (icon) => {
   return socialLabels[icon] || "Social media icons";
 };
 
-const router = useRoute();
+const router = useRouter();
 
 const isLinkActive = (route) => router.name === route;
 
@@ -71,6 +71,7 @@ const isLinkActive = (route) => router.name === route;
 }
 .link-title {
   transition: color 0.3s, border 0.3s;
+  letter-spacing: 0.0125rem;
 }
 .link-content:hover .link-title {
   color: #FED636;
@@ -81,6 +82,9 @@ const isLinkActive = (route) => router.name === route;
 }
 .active-button {
   color: #FED636;
+}
+.copyright {
+  letter-spacing: 0.0125rem;
 }
 </style>
 

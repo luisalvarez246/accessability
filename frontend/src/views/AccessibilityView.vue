@@ -1,13 +1,13 @@
 <template>
-  <div class="main-container pl-5 py-6">
+  <div class="main-container py-6">
     <v-container class="accessibility-container">
       <v-card class="accessibility-card" variant="flat">
-        <h1
+        <h2
           class="font-weight-bold text-navbar underline pl-5 py-5 mx-6"
         >
           Website Accessibility Statement
-        </h1>
-        <v-list class="py-5 mx-6 text-left">
+        </h2>
+        <v-list>
           <v-list-item>
             <v-list-item-title class="font-weight-bold text-navbar text-h6 pl-5 py-4"
               >Accessability's commitment to website
@@ -85,11 +85,11 @@
               Our current focus includes addressing the following concerns:
             </v-list-item>
             <v-list-item class="custom-list-item">
-              some websites we link may not have undergone accessibility testing
+              Some websites we link may not have undergone accessibility testing.
             </v-list-item>
             <v-list-item class="custom-list-item">
-              the cookies banner may remain accessible to screen readers when
-              closed and visually unnoticeable
+              The cookies banner may remain accessible to screen readers when
+              closed and visually unnoticeable.
             </v-list-item>
             <v-list-item>
               If any of these issues hinder your access to the information or
@@ -105,21 +105,7 @@
             <v-list-item>
               We are dedicated to continual improvement in the accessibility of
               our site. If you encounter any challenges while using our site,
-              kindly share your feedback using this form.
-            </v-list-item>
-            <v-list-item>
-              To help us promptly address the issue, provide the following
-              details:
-            </v-list-item>
-            <v-list-item class="custom-list-item">
-              the web address or title of the page where you encountered a
-              problem
-            </v-list-item>
-            <v-list-item class="custom-list-item">
-              a description of the issue
-            </v-list-item>
-            <v-list-item class="custom-list-item">
-              information about your computer and software
+              kindly share your feedback using this contact form.
             </v-list-item>
             <v-list-item>
               We welcome all constructive feedback regarding the accessibility
@@ -143,15 +129,15 @@
   position: relative;
 }
 
-h1.underline::after {
-  background: #14cac9;
+h2.underline::after {
+  background: #FED636;
   bottom: 0;
   content: "";
   display: block;
   height: 0.25rem;
   left: 5;
   position: absolute;
-  width: 3rem;
+  width: 4rem;
 }
 
 .custom-list-item::before {

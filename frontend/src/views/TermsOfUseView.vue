@@ -6,11 +6,11 @@ const email = "contact@accessability.com";
   <div class="main-container py-6">
     <v-container class="terms-use-container">
       <v-card class="privacy-policy-card" variant="flat">
-        <h2 class="font-weight-bold text-navbar text-center py-6">Terms of Use</h2>
-        <v-card-item> Welcome to Accessability!</v-card-item>
+        <h2 class="font-weight-bold text-navbar underline pl-5 py-6">Terms of Use</h2>
+        <v-card-item> Welcome to AccessAbility!</v-card-item>
 
         <v-card-item>
-          By accessing and using the Accessability website, you agree to comply
+          By accessing and using the AccessAbility website, you agree to comply
           with and be bound by the following terms and conditions of use. If you
           disagree with any part of these terms, please do not use our
           website.</v-card-item>
@@ -81,19 +81,22 @@ const email = "contact@accessability.com";
             <v-list-item-title class="font-weight-bold text-navbar">6. User conduct</v-list-item-title>
             <v-list-item>
               You agree to use the website in accordance with all applicable
-              laws and regulations. You also agree not to:
+              laws and regulations.
+            </v-list-item>
+                <v-list-item> 
+              You also agree not to:
             </v-list-item>
 
-            <v-list-item>
+            <v-list-item class="custom-list-item">
               Use the website for any unlawful purpose.
             </v-list-item>
 
-            <v-list-item>
+            <v-list-item class="custom-list-item">
               Engage in any conduct that could damage, disable, or overburden
               the website.
             </v-list-item>
 
-            <v-list-item>
+            <v-list-item class="custom-list-item">
               Attempt to gain unauthorized access to any part of the website.
             </v-list-item>
           </v-list-item>
@@ -145,5 +148,27 @@ const email = "contact@accessability.com";
 <style scoped>
 .terms-use-container {
   max-width: 80ch;
+letter-spacing: 0.0125rem;
+}
+.underline {
+  position: relative;
+}
+
+h2.underline::after {
+  background: #FED636;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 0.25rem;
+  left: 5;
+  position: absolute;
+  width: 4rem;
+}
+.custom-list-item::before {
+  content: "•";
+  margin-right: 1rem;
+  color: #340458;
+  font-size: 2rem;
+  vertical-align: text-top;
 }
 </style>
