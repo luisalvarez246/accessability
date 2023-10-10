@@ -1,15 +1,15 @@
 <template>
+  <v-container height="250" width="100%" class="hero_section d-flex justify-center pb-0 mb-0" color="mainbackground"
+    rounded="lg">
+    <v-img src="../assets/images/hero.jpg" alt="" cover max-width="1140"
+      max-height="250">
+      <div class="title">
+        <h2 class="underline pl-4">About Us</h2>
+      </div>
+    </v-img>
+  </v-container>
   <v-container>
-    <v-container fluid class="title">
-      <v-row justify="center" class="mx-auto">
-        <v-col cols="12" xs="12" sm="12" md="12" lg="8" xl="8">
-          <v-card color="searchbtn" max-width="1140">
-            <h1 class="text-center">
-              About Us
-            </h1>
-          </v-card>
-        </v-col>
-      </v-row>
+    <v-container fluid class="mt-0 pt-0">
       <v-container fluid class="team_members">
         <v-row justify="center">
           <v-col cols="12" xs="12" sm="12" md="12" lg="8" xl="8">
@@ -115,8 +115,37 @@ const rules = {
 }
 </script>
 <style scoped>
+.title {
+  position: relative;
+  color: #59029f;
+  text-wrap: wrap;
+}
+div.title {
+  background-color: #fed636;
+  width: auto;
+  height: auto;
+  bottom: 0;
+  content: "";
+  display: block;
+  left: 0;
+  position: absolute;
+  padding: 0 1rem .5rem .25rem;
+}
+.underline {
+  position: relative;
+}
+h2.underline::after {
+  background: #14cac9;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 0.25rem;
+  left: 5;
+  position: absolute;
+  width: 5rem;
+}
 .v-card-title {
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   font-weight: 600;
 }
 </style>
