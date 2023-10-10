@@ -1,10 +1,10 @@
 <template>
   <v-container height="250" width="100%" class="hero_section d-flex justify-center pb-0" color="mainbackground"
     rounded="lg">
-    <v-img src="../assets/images/hero.jpg" alt="girl whitout hands holding a cellphone" cover max-width="1140"
+    <v-img src="../assets/images/hero.jpg" alt="" cover max-width="1140"
       max-height="250">
       <div class="title">
-        <h1 class="underline pl-4">Welcome to Accessability</h1>
+        <h1 class="underline pl-4">Welcome to AccessAbility</h1>
       </div>
     </v-img>
   </v-container>

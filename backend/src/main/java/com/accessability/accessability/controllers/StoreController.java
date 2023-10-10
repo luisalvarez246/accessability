@@ -2,10 +2,12 @@ package com.accessability.accessability.controllers;
 
 import com.accessability.accessability.dto.StoreCreateRequest;
 import com.accessability.accessability.models.Store;
+import com.accessability.accessability.models.Type;
 import com.accessability.accessability.services.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 
@@ -32,18 +34,36 @@ public class StoreController {
     }
 
     @PostMapping
-    public String saveStore(@RequestBody StoreCreateRequest request) {
-        return (storeService.saveStore(request));
+    public String saveStore(@ModelAttribute StoreCreateRequest request, @RequestParam(value = "image", required = false) MultipartFile image)
+    {
+        return (storeService.saveStore(request, image));
     }
 
     @PutMapping(path = "/update/{id}")
-    public String updateStoreById (@PathVariable long id, @RequestBody StoreCreateRequest request) {
-        return (storeService.updateStoreById(id, request));
+    public String updateStoreById (@PathVariable long id, @ModelAttribute StoreCreateRequest request, @RequestParam("image") MultipartFile image)
+    {
+        return (storeService.updateStoreById(id, request, image));
     }
 
     @GetMapping(path = "/cities")
-    public ResponseEntity<ArrayList<String>> getAllCities()
+    public ResponseEntity<ArrayList<String>> getCitiesInStore()
     {
-       return (ResponseEntity.ok(storeService.getAllCities()));
+       return (ResponseEntity.ok(storeService.getCitiesInStore()));
+    }
+
+    @GetMapping(path = "/types")
+    public ResponseEntity<ArrayList<Type>> getTypesInStore()
+    {
+       return (ResponseEntity.ok(storeService.getTypesInStore()));
+    }
+
+    @GetMapping(path = "/search")
+    public ResponseEntity<ArrayList<Store>> searchStores (
+            @RequestParam(value = "city", required = false) String city,
+            @RequestParam(value = "type", required = false) Type type,
+            @RequestParam(value = "categories", required = false) String categories
+    )
+    {
+        return (ResponseEntity.ok(storeService.searchStores(city, type, categories)));
     }
 }
