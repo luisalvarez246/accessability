@@ -7,8 +7,8 @@ const email = "contact@accessability.com";
   <div class="main-container py-6">
     <v-container class="cookie-policy-container">
       <v-card class="cookie-policy-card" variant="flat">
-        <h2 class="font-weight-bold text-navbar underline pl-5 py-6">Cookie Policy</h2>
-        <v-card-item> Welcome to Accessability's Cookie Policy!</v-card-item>
+        <h3 class="font-weight-bold text-navbar underline pl-5 py-6">Cookie Policy</h3>
+        <v-card-item> Welcome to AccessAbility's Cookie Policy!</v-card-item>
         
         <v-list>
           <v-list-item>
@@ -88,9 +88,13 @@ const email = "contact@accessability.com";
   position: relative;
 }
 
-h2.underline::after {
+h3 {
+  font-size: 1.5rem;
+}
+
+h3.underline::after {
   background: #FED636;
-  bottom: 0;
+  bottom: 0.25rem;
   content: "";
   display: block;
   height: 0.25rem;

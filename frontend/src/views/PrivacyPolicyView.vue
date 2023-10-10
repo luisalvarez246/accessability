@@ -6,10 +6,10 @@ const email = "contact@accessability.com";
   <div class="main-container pl-5 py-6">
     <v-container class="privacy-policy-container">
       <v-card class="privacy-policy-card" variant="flat">
-        <h2 class="font-weight-bold text-navbar underline pl-5 py-6">Privacy Policy</h2>
-        <v-card-item>Welcome to Accessability's Privacy Policy!</v-card-item>
+        <h3 class="font-weight-bold text-navbar underline pl-5 py-6">Privacy Policy</h3>
+        <v-card-item>Welcome to AccessAbility's Privacy Policy!</v-card-item>
         <v-card-item>
-          At Accessability, we are committed to protecting your privacy. This
+          At AccessAbility, we are committed to protecting your privacy. This
           Privacy Policy outlines how we collect, use, and protect your personal
           information when you use our website.
         </v-card-item>
@@ -99,9 +99,13 @@ const email = "contact@accessability.com";
   position: relative;
 }
 
-h2.underline::after {
+h3 {
+  font-size: 1.5rem;
+}
+
+h3.underline::after {
   background: #FED636;
-  bottom: 0;
+  bottom: 0.25rem;
   content: "";
   display: block;
   height: 0.25rem;
