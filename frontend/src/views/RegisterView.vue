@@ -348,4 +348,8 @@ onUpdated(() =>
   font-weight: 900 !important;
   color: black !important;
 }
+
+:deep(.v-selection-control) {
+  gap: 1.25rem;
+}
 </style>
