@@ -243,7 +243,6 @@ const breakpoints = ref({
   color: #59029f;
   text-wrap: wrap;
 }
-
 div.title {
   background-color: #fed636;
   width: auto;
@@ -255,11 +254,9 @@ div.title {
   position: absolute;
   padding: 0 1rem 0.5rem 0.25rem;
 }
-
 .underline {
   position: relative;
 }
-
 h1.underline::after {
   background: #14cac9;
   bottom: 0;
@@ -274,7 +271,6 @@ h1.underline::after {
 :deep(.v-label) {
   opacity: var(--v-high-emphasis-opacity);
 }
-
 :deep(.v-label.v-field-label.v-field-label--floating) {
   --v-field-label-scale: 1rem;
 }
