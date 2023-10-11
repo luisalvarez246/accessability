@@ -9,7 +9,7 @@
         'mx-4': true,
         'active-home': isHomeActive
       }" class="logo">
-        <v-img src="../../assets/images/logo.png" class="mr-1" width="56" alt="AccessAbility Logo"></v-img>
+        <v-img src="../../assets/images/logo.png" class="mr-1" width="56" alt="Accessability Logo"></v-img>
         <p class="textlogo">AccessAbility</p>
       </router-link>
 
@@ -74,10 +74,6 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
 <style scoped>
 .appbar {
   height: 3rem;
-}
-
-.textlogo {
-  font-size: 1.5rem;
 }
 
 .textlogo:hover {
