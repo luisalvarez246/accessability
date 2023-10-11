@@ -29,7 +29,7 @@
         </v-btn>
       </v-btn-group>
 
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" aria-label="Menu" class="d-flex d-sm-none">
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" aria-label="Menu" class="d-flex d-md-none">
       </v-app-bar-nav-icon>
     </v-app-bar>
 

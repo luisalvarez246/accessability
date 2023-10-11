@@ -50,7 +50,7 @@
                     color="cardbackground1"
                     size="36"
                     aria-hidden="true"
-                    aria-label="Search Place or Town"
+                    aria-label="Search Place"
                     alt="Localizar"
                   >
                     mdi-map-marker
@@ -65,7 +65,7 @@
                     variant="outlined"
                     clearable
                     :rules="[rules.required]"
-                    label="Search place or town"
+                    label="Search location..."
                     type="input"
                     role="textbox"
                     class="custom_messages"
@@ -93,7 +93,7 @@
                 <v-col cols="12" class="pt-0">
                   <v-text-field id="search-type-of-site" bg-color="white" color="cardbackground1" base-color="navbar"
                     variant="outlined" clearable :rules="[rules.required]"
-                    label="Search for coffe-shops, restaurants, hotels..." type="input" role="textbox" />
+                    label="Search site..." type="input" role="textbox" />
                 </v-col>
               </v-row>
             </v-col>
