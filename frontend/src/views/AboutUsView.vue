@@ -38,9 +38,10 @@
           </v-form>
           <v-textarea id="send-us-your-thoughts" name="send-us-your-thoughts" type="text" label="Send us your thoughts"
             auto-grow bg-color="white"></v-textarea>
-          </v-card-item>
+        </v-card-item>
         <v-card-item class="d-flex justify-center pb-4">
-          <v-btn class="text-none" size="x-large" color="searchbtn">
+          <v-btn text class="text-none mx-auto" rounded="xl" flat :block="xs" :size="xs ? '' : 'x-large'"
+            :height="xs ? 52 : ''" :class="{ 'text-h6': xs }" color="searchbtn" text-color="navbar">
             Submit
           </v-btn>
         </v-card-item>
@@ -51,6 +52,7 @@
   
 <script setup>
 import { ref } from 'vue';
+import { useDisplay } from "vuetify";
 
 const authors = ref([
   {
@@ -84,9 +86,12 @@ const authors = ref([
     photo: "/aboutus/images/Sonia.jpg",
   },
 ]);
+
 const rules = {
   required: value => !!value || 'Field is required',
-}
+};
+
+const { xs } = useDisplay();
 </script>
 <style scoped>
 .title {
