@@ -30,7 +30,7 @@ public class StoreController {
 
     @DeleteMapping(path = "/delete/{id}")
     public String deleteStoreById(@PathVariable long id) {
-        return storeService.deleteStoreById(id);
+        return storeService.deleteStoreById(id, false);
     }
 
     @PostMapping
@@ -42,7 +42,7 @@ public class StoreController {
     @PutMapping(path = "/update/{id}")
     public String updateStoreById (@PathVariable long id, @ModelAttribute StoreCreateRequest request, @RequestParam("image") MultipartFile image)
     {
-        return (storeService.updateStoreById(id, request, image));
+        return (storeService.updateStoreById(id, request, image, false));
     }
 
     @GetMapping(path = "/cities")

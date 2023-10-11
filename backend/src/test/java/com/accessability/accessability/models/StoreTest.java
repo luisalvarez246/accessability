@@ -9,7 +9,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/*@SpringBootTest
+@SpringBootTest
 class StoreTest {
 
     private Store store;
@@ -26,7 +26,6 @@ class StoreTest {
         store.setWeb("manolito.com");
         store.setEmail("manolito@manolito.com");
         store.setImage("image.png");
-
     }
 
     @Test
@@ -129,6 +128,4 @@ class StoreTest {
 
         assertEquals("testingImage.png", store.getImage());
     }
-
 }
-*/

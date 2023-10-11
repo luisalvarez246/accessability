@@ -60,7 +60,7 @@ public class StoreService {
         return (ArrayList<Store>) iStoreRepository.findAll();
     }
 
-    public String deleteStoreById(long id)
+    public String deleteStoreById(long id, boolean isTest)
     {
         StringBuilder   deletedImages;
         if (iStoreRepository.existsById(id))
@@ -68,7 +68,7 @@ public class StoreService {
             try
             {
                 iStoreRepository.deleteById(id);
-                deletedImages = deleteUnusedImages();
+                deletedImages = deleteUnusedImages(isTest);
                 return ("Deleted store with ID: " + id + ", Deleted images: " + deletedImages);
             }
             catch (Exception error)
@@ -80,7 +80,7 @@ public class StoreService {
             return ("Not deleted, store with ID: " + id + "does not exist");
     }
 
-    public String updateStoreById(long id, StoreCreateRequest request, MultipartFile image)
+    public String updateStoreById(long id, StoreCreateRequest request, MultipartFile image, boolean isTest)
     {
         Store           updateStore = iStoreRepository.findById(id).orElse(null);
         StringBuilder   deletedImages;
@@ -90,7 +90,7 @@ public class StoreService {
             {
                 mapRequest(updateStore, request, image);
                 iStoreRepository.save(updateStore);
-                deletedImages = deleteUnusedImages();
+                deletedImages = deleteUnusedImages(isTest);
                 return ("Store updated: " + updateStore.getId() + ", Deleted images: " + deletedImages);
             }
             else
@@ -197,17 +197,19 @@ public class StoreService {
         return (fileName);
     }
 
-    public StringBuilder deleteUnusedImages() throws IOException
+    public StringBuilder deleteUnusedImages(boolean isTest) throws IOException
     {
-        ArrayList<Store>    storeList;
-        ArrayList<String>   imageList;
+        List<Store>         storeList;
+        List<String>        imageList;
         File                directory;
         File[]              files;
         String              normalizedFileNames;
         StringBuilder       deletedImages;
 
-        storeList = (ArrayList<Store>) iStoreRepository.findAll();
-        imageList = (ArrayList<String>) storeList.stream()
+        if (isTest)
+            return (null);
+        storeList = iStoreRepository.findAll();
+        imageList = storeList.stream()
                 .map(store -> Normalizer.normalize(store.getImage(), Normalizer.Form.NFD))
                 .distinct()
                 .collect(Collectors.toList());

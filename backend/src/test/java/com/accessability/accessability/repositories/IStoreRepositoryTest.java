@@ -16,7 +16,7 @@ class IStoreRepositoryTest
     IStoreRepository    iStoreRepository;
 
     @Test
-    void findByCharacteristicId()
+    void findByCharacteristicId_returns_all_the_stores_that_contain_the_searched_characteristic()
     {
         ArrayList<Store> storeList;
 

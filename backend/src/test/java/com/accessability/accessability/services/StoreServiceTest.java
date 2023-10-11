@@ -6,80 +6,174 @@ import com.accessability.accessability.models.Type;
 import com.accessability.accessability.repositories.ICharacteristicRepository;
 import com.accessability.accessability.repositories.IStoreRepository;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
 public class StoreServiceTest {
 
-    //@InjectMocks
-    //private StoreService storeService;
-
     @Autowired
-    IStoreRepository iStoreRepository;
+    private StoreService storeService;
 
-    @Mock
+    @MockBean
+    IStoreRepository storeRepository;
+
+    @MockBean
     private ICharacteristicRepository characteristicRepository;
-/*
+
+    private ArrayList<Store>    storeList;
+
+    private StoreCreateRequest  payload;
+
     @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
+    public void setup()
+    {
+        Store               store;
+
+        storeList = new ArrayList<>();
+        for (int i = 0; i < 2; i++)
+        {
+            store = new Store();
+            store.setStoreName("Store");
+            store.setType(Type.restaurant);
+            store.setAddress("address");
+            store.setPhone("0000000");
+            store.setWeb("store.com");
+            store.setEmail("store@gmail.com");
+            store.setDescription("description");
+            store.setImage("default.png");
+            storeList.add(store);
+        }
+        storeList.get(0).setId(1L);
+        storeList.get(1).setId(2L);
+
+        payload = new StoreCreateRequest();
+        payload.setStoreName("Store");
+        payload.setType(Type.restaurant);
+        payload.setAddress("Address");
+        payload.setPhone("0000000");
+        payload.setWeb("store.com");
+        payload.setEmail("store@gmail.com");
+        payload.setDescription("description");
+        payload.setImage(null);
+        payload.setCharacteristicIds(Arrays.asList(1L, 5L, 7L, 8L));
     }
 
     @Test
-    public void test_save_store() {
-        StoreCreateRequest request = new StoreCreateRequest();
-        StoreCreateRequest payload;
-        Store store;
+    public void test_save_store()
+    {
+        //Arrange
+        String  result;
 
-        store = new Store();
-        payload = new StoreCreateRequest();
-        payload.setStoreName("Mi Tienda");
-        payload.setType(Type.restaurant);
-        payload.setAddress("Dirección de Tienda");
-        payload.setPhone("Teléfono de Tienda");
-        payload.setWeb("Web de Tienda");
-        payload.setEmail("Email de Tienda");
-        //payload.setImage("Image de Tienda");
-        payload.setCharacteristicIds(Arrays.asList(1L, 5L, 7L, 8L));
-        storeService.mapRequest(store, payload);
-
-        when(storeRepository.save(any())).thenReturn(store);
-
-        String result = storeService.saveStore(request);
-
+        when(storeRepository.save(any(Store.class))).thenReturn(any(Store.class));
+        //Act
+        result = storeService.saveStore(payload, null);
+        //Assert
+        verify(storeRepository, times(1)).save(any());
         assertEquals("Added new Store", result);
     }
 
-    @Test
-    public void test_get_store_by_id() {
-        long storeId = 1L;
-        Store expectedStore = new Store();
-        when(storeRepository.findById(storeId)).thenReturn(Optional.of(expectedStore));
+    @Nested
+    public class GetStoreById
+    {
+        @Test
+        public void getStoreById_existing_id_returns_a_store()
+        {
+            //Arrange
+            long    storeId;
+            Store   expectedStore;
+            Store   result;
 
-        Store result = storeService.getStoreById(storeId);
+            storeId = 1L;
+            expectedStore = storeList.get(0);
+            when(storeRepository.findById(storeId)).thenReturn(Optional.of(expectedStore));
+            //Act
+            result = storeService.getStoreById(storeId);
+            //Assert
+            verify(storeRepository, times(1)).findById(storeId);
+            assertEquals(expectedStore, result);
+        }
 
-        assertEquals(expectedStore, result);
+        @Test
+        public void getStoreById_non_existing_id_returns_null()
+        {
+            //Arrange
+            long    storeId;
+            Store   result;
+
+            storeId = storeList.size() + 1L;
+            when(storeRepository.findById(storeId)).thenReturn(Optional.empty());
+            //Act
+            result = storeService.getStoreById(storeId);
+            //Assert
+            verify(storeRepository, times(1)).findById(storeId);
+            assertNull(result);
+        }
     }
 
+    @Test
+    public void getAllStores_returns_ArrayList_of_Store()
+    {
+        //Arrange
+        ArrayList<Store>  result;
+        when(storeRepository.findAll()).thenReturn(storeList);
+        //Act
+        result = storeService.getAllStores();
+        //Assert
+        verify(storeRepository, times(1)).findAll();
+        assertNotNull(result);
+    }
+
+    @Nested
+    public class DeleteStoreById
+    {
+        @Test
+        public void deleteStoreById_existing_id_deletes_a_store() throws IOException
+        {
+            //Arrange
+            long    storeId;
+            String  expectedMessage;
+            String   result;
+
+            storeId = 1L;
+            expectedMessage = "Deleted store with ID: " + storeId + ", Deleted images: null";
+            doNothing().when(storeRepository).deleteById(any(Long.class));
+            when(storeRepository.existsById(any(Long.class))).thenReturn(true);
+            //Act
+            result = storeService.deleteStoreById(storeId, true);
+            //Assert
+            verify(storeRepository, times(1)).deleteById(any(Long.class));
+            assertEquals(expectedMessage, result);
+        }
+
+        @Test
+        public void deleteStoreById_non_existing_id_returns_error_message()
+        {
+            //Arrange
+            long    storeId;
+            Store   result;
+
+            storeId = storeList.size() + 1L;
+            when(storeRepository.findById(storeId)).thenReturn(Optional.empty());
+            //Act
+            result = storeService.getStoreById(storeId);
+            //Assert
+            verify(storeRepository, times(1)).findById(storeId);
+            assertNull(result);
+        }
+    }
+/*
     @Test
     public void test_delete_store_by_id() {
         long storeId = 1L;
@@ -140,32 +234,4 @@ public class StoreServiceTest {
 
         assertEquals("Store updated: 1" , result);
     }*/
-
-    @Test
-    void dumbTest() throws IOException {
-        String storePath = System.getProperty("user.dir") + "/src/main/webapp/images";
-        File    directory;
-        File[]  files;
-        ArrayList<String> fileNames;
-        ArrayList<Store>    storeList;
-        ArrayList<String>   imageList;
-
-        storeList = (ArrayList<Store>) iStoreRepository.findAll();
-        imageList = (ArrayList<String>) storeList.stream()
-                .map(Store::getImage)
-                .distinct()
-                .collect(Collectors.toList());
-        directory = new File(storePath);
-        files = new File(storePath).listFiles();
-        fileNames = new ArrayList<>();
-        for (File file : files)
-        {
-            fileNames.add(file.getName());
-            if (!imageList.contains(file.getName()) && !file.getName().equals("default.png"))
-                Files.delete(Path.of(storePath, file.getName()));
-        }
-        //Files.delete(Path.of(storePath, fileNames.get(1)));
-
-        System.out.println(fileNames);
-    }
 }
