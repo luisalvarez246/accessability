@@ -3,11 +3,10 @@
   <v-card
     color="#59029F"
     class="mb-7"
-    min-width="300"
-    max-width="400"
+    width="300"
   >
-    <v-img
-      src="https://hips.hearstapps.com/hmg-prod/images/los-mejores-restaurantes-que-tienes-que-probar-en-madrid-1644914076.jpeg?crop=0.753xw:1.00xh;0.125xw,0&resize=1200:*"
+    <v-img 
+      :src="`${imagesUrl}/${props.image}`"
     ></v-img>
     <v-card-title>
       <!-- <h2>Casa Pepe</h2> -->
@@ -72,13 +71,15 @@ const props = defineProps({
   phone: String,
   email: String,
   description: String,
-  web: String
+  web: String,
+  image: String
 })
 
 
 const show = ref(Array(3).fill(false));
 const stores = ref([]);
 const cardIndex = ref()
+const imagesUrl = "http://localhost:8080/images/"
 
 
 function toggleShow(cardIndex) {
@@ -90,6 +91,12 @@ const getStores = async () => {
   stores.value = response.data;
   return stores.value;
 };
+
+// const getImageUrl = async (imageName) =>  {
+//   let response = await ApiConnection.getImage(imageName)
+//   console.log(response.request);
+//   return response
+// }
 
 onBeforeMount(() => {
   getStores();
