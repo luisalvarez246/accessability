@@ -14,7 +14,7 @@
       max-height="250"
     >
       <div class="title">
-        <h1 class="underline pl-4">Welcome to Accessability</h1>
+        <h1 class="underline pl-4">Welcome to AccessAbility</h1>
       </div>
     </v-img>
   </v-container>
@@ -31,13 +31,13 @@
       max-width="1140"
     >
       <v-card-title class="text-center text-wrap pb-4">
-        Discover accessible places in Asturias to go
+        Discover accessible places in Asturias
       </v-card-title>
       <v-card class="mx-auto" color="cardbackground2" width="90%">
         <v-card-text>
           <v-row>
-            <v-col cols="12" lg="9">
-              <v-row align="center">
+            <v-col cols="12" lg="11">
+              <v-row align="center" class="ml-16">
                 <v-col cols="auto">
                   <p
                     class="font-weight-bold text-subtitle-1 text-cardbackground1 pl-0 pr-6"
@@ -72,7 +72,7 @@
                   />
                 </v-col>
               </v-row>
-              <v-row align="center">
+              <v-row align="center" class="ml-16">
                 <v-col class="pr-0" cols="auto">
                   <v-card-text
                     class="font-weight-bold text-subtitle-1 text-cardbackground1 px-0"
@@ -91,33 +91,15 @@
                   </v-icon>
                 </v-col>
                 <v-col cols="12" class="pt-0">
-                  <v-text-field
-                    id="search-type-of-site"
-                    bg-color="white"
-                    color="cardbackground1"
-                    base-color="navbar"
-                    variant="outlined"
-                    clearable
-                    :rules="[rules.required]"
-                    label="Search for coffe-shops, restaurants, hotels..."
-                    type="input"
-                    role="textbox"
-                  />
+                  <v-text-field id="search-type-of-site" bg-color="white" color="cardbackground1" base-color="navbar"
+                    variant="outlined" clearable :rules="[rules.required]"
+                    label="Search for coffe-shops, restaurants, hotels..." type="input" role="textbox" />
                 </v-col>
               </v-row>
             </v-col>
             <v-col class="d-flex align-center pb-0" cols="12" md="0" lg="3">
-              <v-btn
-                text
-                class="text-none mx-auto"
-                color="searchbtn"
-                rounded="xl"
-                flat
-                :block="xs"
-                :size="xs ? '' : 'x-large'"
-                :height="xs ? 52 : ''"
-                :class="{ 'text-h6': xs }"
-              >
+              <v-btn text class="text-none mx-auto" color="searchbtn" rounded="xl" flat :block="xs"
+                :size="xs ? '' : 'x-large'" :height="xs ? 52 : ''" :class="{ 'text-h6': xs }">
                 Search
               </v-btn>
             </v-col>
@@ -153,6 +135,21 @@
             </v-col>
           </v-row>
         </v-card-item>
+        <v-col class="d-flex mx-auto pb-5" cols="12" md="0" lg="3">
+          <v-btn
+            text
+            class="text-none mx-auto"
+            color="searchbtn"
+            rounded="xl"
+            flat
+            :block="xs"
+            :size="xs ? '' : 'x-large'"
+            :height="xs ? 52 : ''"
+            :class="{ 'text-h6': xs }"
+          >
+            Search
+          </v-btn>
+        </v-col>
       </v-card>
     </v-card>
   </v-container>
@@ -285,70 +282,4 @@ h1.underline::after {
 
 :deep(.v-label.v-field-label.v-field-label--floating) {
   --v-field-label-scale: 1rem;
-}
-
-/* Carousel */
-.carousel__slide {
-  padding: 5px;
-}
-
-.carousel__viewport {
-  perspective: 2000px;
-}
-
-.carousel__track {
-  transform-style: preserve-3d;
-}
-
-.carousel__slide--sliding {
-  transition: 0.5s;
-}
-
-.carousel__slide {
-  opacity: 0.9;
-  transform: rotateY(-20deg) scale(0.9);
-}
-
-.carousel__slide--active ~ .carousel__slide {
-  transform: rotateY(20deg) scale(0.9);
-}
-
-.carousel__slide--prev {
-  opacity: 1;
-  transform: rotateY(-10deg) scale(0.95);
-}
-
-.carousel__slide--next {
-  opacity: 1;
-  transform: rotateY(10deg) scale(0.95);
-}
-
-.carousel__slide--active {
-  opacity: 1;
-  transform: rotateY(0) scale(1.1);
-}
-
-
-:deep(.carousel__prev) {
-  color: #59029F;
-  width: 3.75rem;
-  height: 3.75rem;
-  background-color: #FED636;
-  border-radius: 3.125rem;
-  border: 2px solid #59029F
-}
-
-:deep(.carousel__next) {
-  color: #59029F;
-  width: 3.75rem;
-  height: 3.75rem;
-  background-color: #FED636;
-  border-radius: 3.125rem;
-  border: 2px solid #59029F;
-}
-
-:deep(.carousel__icon) {
-  width: 5rem;
-  height: 5rem;
-}
-</style>
+}</style>
