@@ -97,12 +97,12 @@
                 </v-col>
               </v-row>
             </v-col>
-            <v-col class="d-flex align-center pb-0" cols="12" md="0" lg="3">
+            <!-- <v-col class="d-flex align-center pb-0" cols="12" md="0" lg="3">
               <v-btn text class="text-none mx-auto" color="searchbtn" rounded="xl" flat :block="xs"
                 :size="xs ? '' : 'x-large'" :height="xs ? 52 : ''" :class="{ 'text-h6': xs }">
                 Search
               </v-btn>
-            </v-col>
+            </v-col> -->
           </v-row>
         </v-card-text>
         <v-card-item class="justify-space-between">
@@ -282,4 +282,70 @@ h1.underline::after {
 
 :deep(.v-label.v-field-label.v-field-label--floating) {
   --v-field-label-scale: 1rem;
-}</style>
+}
+
+/* Carousel */
+.carousel__slide {
+  padding: 5px;
+}
+
+.carousel__viewport {
+  perspective: 2000px;
+}
+
+.carousel__track {
+  transform-style: preserve-3d;
+}
+
+.carousel__slide--sliding {
+  transition: 0.5s;
+}
+
+.carousel__slide {
+  opacity: 0.9;
+  transform: rotateY(-20deg) scale(0.9);
+}
+
+.carousel__slide--active ~ .carousel__slide {
+  transform: rotateY(20deg) scale(0.9);
+}
+
+.carousel__slide--prev {
+  opacity: 1;
+  transform: rotateY(-10deg) scale(0.95);
+}
+
+.carousel__slide--next {
+  opacity: 1;
+  transform: rotateY(10deg) scale(0.95);
+}
+
+.carousel__slide--active {
+  opacity: 1;
+  transform: rotateY(0) scale(1.1);
+}
+
+
+:deep(.carousel__prev) {
+  color: #59029F;
+  width: 3.75rem;
+  height: 3.75rem;
+  background-color: #FED636;
+  border-radius: 3.125rem;
+  border: 2px solid #59029F
+}
+
+:deep(.carousel__next) {
+  color: #59029F;
+  width: 3.75rem;
+  height: 3.75rem;
+  background-color: #FED636;
+  border-radius: 3.125rem;
+  border: 2px solid #59029F;
+}
+
+:deep(.carousel__icon) {
+  width: 5rem;
+  height: 5rem;
+}
+</style>
