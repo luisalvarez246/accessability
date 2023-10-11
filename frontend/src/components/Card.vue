@@ -1,15 +1,4 @@
 <!-- eslint-disable vue/multi-word-component-names -->
-<!-- <script>
-export default {
-  data() {
-    return {
-      model: 0,
-      cardData: Array.from({ length: 45 }, (_, index) => index),
-    };
-  },
-};
-</script> -->
-
 <template>
   <v-card
     color="#59029F"
