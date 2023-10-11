@@ -97,12 +97,6 @@
                 </v-col>
               </v-row>
             </v-col>
-            <!-- <v-col class="d-flex align-center pb-0" cols="12" md="0" lg="3">
-              <v-btn text class="text-none mx-auto" color="searchbtn" rounded="xl" flat :block="xs"
-                :size="xs ? '' : 'x-large'" :height="xs ? 52 : ''" :class="{ 'text-h6': xs }">
-                Search
-              </v-btn>
-            </v-col> -->
           </v-row>
         </v-card-text>
         <v-card-item class="justify-space-between">
@@ -138,8 +132,7 @@
         <v-col class="d-flex mx-auto pb-5" cols="12" md="0" lg="3">
           <v-btn
             text
-            class="text-none mx-auto"
-            color="searchbtn"
+            class="text-none mx-auto searchButton"
             rounded="xl"
             flat
             :block="xs"
@@ -283,6 +276,12 @@ h1.underline::after {
 :deep(.v-label.v-field-label.v-field-label--floating) {
   --v-field-label-scale: 1rem;
 }
+
+.searchButton {
+  color: #340458;
+  background-color: #FED636;
+}
+
 
 /* Carousel */
 .carousel__slide {

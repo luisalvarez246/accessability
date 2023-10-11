@@ -15,11 +15,11 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn-group class="d-none d-sm-flex" density="compact" color="navbarbtns" variant="flat">
-        <v-btn v-for="(item, index) in navItems" :key="index" :to="item.to" @click="goToPage(item.to)" :class="{
+      <v-btn-group class="d-none d-sm-flex" density="compact"  variant="flat">
+        <v-btn v-for="(item, index) in navItems" :key="index" :to="item.to" @click="goToPage(item.to)" class="navButtons" :class="{
           'active-button': isActiveButton(item.to),
           'text-none': true,
-          'font-weight-regular': true,
+          'font-weight-bold': true,
           'mr-6': true,
           'px-2': smAndDown,
           'px-4': !smAndDown,
@@ -78,11 +78,17 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
 
 .textlogo {
   font-size: 1.5rem;
+  color: #fff;
 }
 
 .textlogo:hover {
   color: #FED636 !important;
   font-weight: 600 !important;
+}
+
+.navButtons {
+  color: #340458;
+  background-color: #14CAC9;
 }
 
 .active-home {
@@ -122,4 +128,5 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
   font-weight: 600 !important;
   font-size: 1.1rem !important;
 }
+
 </style>
