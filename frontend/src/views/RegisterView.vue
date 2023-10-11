@@ -178,7 +178,7 @@ onUpdated(() =>
   <div
     class="mainContainer bg-deep-purple-lighten-5 w-100 h-auto d-flex justify-center"
   >
-    <form @submit.prevent="" @reset.prevent="handleReset">
+    <form @submit.prevent="handleSubmit" @reset.prevent="handleReset">
       <div
         class="d-flex flex-column align-center bg-white rounded w-75 mt-10 ml-auto mr-auto pt-10"
       >
@@ -288,7 +288,7 @@ onUpdated(() =>
         ></v-textarea>
 
         <div class="btnsContainer d-flex justify-center pb-10">
-          <v-dialog width="500">
+          <v-dialog width="500" close-on-content-click>
             <template v-slot:activator="{ props }">
               <!-- <v-btn v-bind="props" text="Open Dialog"> </v-btn> -->
               <v-btn
@@ -347,5 +347,9 @@ onUpdated(() =>
 .checkboxes {
   font-weight: 900 !important;
   color: black !important;
+}
+
+:deep(.v-selection-control) {
+  gap: 1.25rem;
 }
 </style>
