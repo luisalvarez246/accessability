@@ -157,53 +157,29 @@
     </v-card>
   </v-container>
 
-  <v-container>
-    <div>
-      <div class="d-flex justify-space-around align-center py-4">
-        <v-btn
-          variant="text"
-          icon="mdi-minus"
-          @click="model = Math.max(model - 1, 0)"
-        ></v-btn>
-        {{ model }}
-        <v-btn
-          variant="text"
-          icon="mdi-plus"
-          @click="model = Math.min(model + 1, 4)"
-        ></v-btn>
-      </div>
-      <v-carousel
-        v-model="model"
-        :height="calculateCarouselHeight()"
-        :cycle="false"
-        :continuous="true"
-        hide-delimiter-background
-      >
-        <v-carousel-item v-for="(color, i) in colors" :key="color" :value="i">
-          <v-sheet :color="color" height="100%" tile>
-            <div class="d-flex fill-height justify-center align-center">
-              <v-container fluid>
-                <v-row justify="center" align-center>
-                  <v-col v-for="store in stores" :key="store.id" cols="4">
-                    <Card
-                      :store-name="store.storeName"
-                      :type="store.type"
-                      :city="store.city"
-                      :category="store.categories"
-                      :address="store.address"
-                      :phone="store.phone"
-                      :email="store.email"
-                      :description="store.description"
-                      :web="store.web"
-                    />
-                  </v-col>
-                </v-row>
-              </v-container>
-            </div>
-          </v-sheet>
-        </v-carousel-item>
-      </v-carousel>
-    </div>
+  <v-container touchDrag="true" class="w-75 mb-10 rounded-lg" max-width="1140">
+    <Carousel :wrapAround="true" :transition="500" :breakpoints="breakpoints">
+      <Slide v-for="store in stores" :key="store.id">
+        <div class="carousel__item">
+          <Card 
+          :store-name="store.storeName"
+          :type="store.type"
+          :city="store.city"
+          :category="store.categories"
+          :address="store.address"
+          :phone="store.phone"
+          :email="store.email"
+          :description="store.description"
+          :web="store.web"
+          />
+        </div>
+      </Slide>
+
+      <template #addons>
+    <Navigation />
+    <Pagination />
+  </template>
+    </Carousel>
   </v-container>
 </template>
 
@@ -212,16 +188,18 @@ import { useDisplay } from "vuetify";
 import { ref, onBeforeMount } from "vue";
 import Card from "../components/Card.vue";
 import ApiConnection from "@/services/ApiConnection";
+import { Carousel, Pagination, Slide, Navigation } from "vue3-carousel";
+import "vue3-carousel/dist/carousel.css";
 
-const model = ref(0);
+// const model = ref(0);
 
-const colors = ref([
-  "primary",
-  "secondary",
-  "yellow darken-2",
-  "red",
-  "orange",
-]);
+// const colors = ref([
+//   "primary",
+//   "secondary",
+//   "yellow darken-2",
+//   "red",
+//   "orange",
+// ]);
 
 const stores = ref([]);
 
@@ -236,16 +214,35 @@ onBeforeMount(() => {
   getStores();
 });
 
-function calculateCarouselHeight() {
-  const cardHeight = 350;
-  const numRows = Math.ceil(colors.value.length / 3);
-  return numRows * cardHeight;
-}
+// function calculateCarouselHeight() {
+//   const cardHeight = 350;
+//   const numRows = Math.ceil(colors.value.length / 3);
+//   return numRows * cardHeight;
+// }
 const { xs } = useDisplay();
 
 const rules = {
   required: (value) => !!value || "Field is required",
 };
+
+const breakpoints = ref({
+  
+  480: {
+    itemsToShow:1
+  },
+  768: {
+    itemsToShow: 2
+  },
+  1024: {
+    itemsToShow:4.1  
+  }
+})
+
+// a computed ref
+// const publishedBooksMessage = computed(() => {
+//   return author.books.length > 0 ? 'Yes' : 'No'
+// })
+
 </script>
 
 <style scoped>
@@ -288,5 +285,70 @@ h1.underline::after {
 
 :deep(.v-label.v-field-label.v-field-label--floating) {
   --v-field-label-scale: 1rem;
+}
+
+/* Carousel */
+.carousel__slide {
+  padding: 5px;
+}
+
+.carousel__viewport {
+  perspective: 2000px;
+}
+
+.carousel__track {
+  transform-style: preserve-3d;
+}
+
+.carousel__slide--sliding {
+  transition: 0.5s;
+}
+
+.carousel__slide {
+  opacity: 0.9;
+  transform: rotateY(-20deg) scale(0.9);
+}
+
+.carousel__slide--active ~ .carousel__slide {
+  transform: rotateY(20deg) scale(0.9);
+}
+
+.carousel__slide--prev {
+  opacity: 1;
+  transform: rotateY(-10deg) scale(0.95);
+}
+
+.carousel__slide--next {
+  opacity: 1;
+  transform: rotateY(10deg) scale(0.95);
+}
+
+.carousel__slide--active {
+  opacity: 1;
+  transform: rotateY(0) scale(1.1);
+}
+
+
+:deep(.carousel__prev) {
+  color: #59029F;
+  width: 3.75rem;
+  height: 3.75rem;
+  background-color: #FED636;
+  border-radius: 3.125rem;
+  border: 2px solid #59029F
+}
+
+:deep(.carousel__next) {
+  color: #59029F;
+  width: 3.75rem;
+  height: 3.75rem;
+  background-color: #FED636;
+  border-radius: 3.125rem;
+  border: 2px solid #59029F;
+}
+
+:deep(.carousel__icon) {
+  width: 5rem;
+  height: 5rem;
 }
 </style>

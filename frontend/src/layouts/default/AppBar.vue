@@ -48,7 +48,7 @@ import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useDisplay } from "vuetify";
 
-const { smAndDown } = useDisplay();
+const { sm, smAndDown } = useDisplay();
 
 const drawer = ref(false);
 

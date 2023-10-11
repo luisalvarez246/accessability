@@ -58,7 +58,7 @@ export default {
             Email: {{ props.email }}
           </p>
           <p>
-            web: {{ props.web }}
+            Web: {{ props.web }}
           </p>
            
           <p class="descriptionField">
@@ -89,7 +89,7 @@ const props = defineProps({
 
 const show = ref(Array(3).fill(false));
 const stores = ref([]);
-
+const cardIndex = ref()
 
 
 function toggleShow(cardIndex) {
