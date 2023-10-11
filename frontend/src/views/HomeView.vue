@@ -161,6 +161,7 @@
           :email="store.email"
           :description="store.description"
           :web="store.web"
+          :image="store.image"
           />
         </div>
       </Slide>
@@ -199,6 +200,7 @@ const getStores = async () => {
   console.log(stores.value);
   return stores.value;
 };
+
 
 onBeforeMount(() => {
   getStores();
