@@ -57,7 +57,7 @@
 					</v-icon>
 				  </v-col>
 				  <v-col cols="12" class="pt-0">
-					<v-text-field
+					<v-select
 					  id="search-location"
 					  bg-color="white"
 					  color="cardbackground1"
@@ -66,9 +66,9 @@
 					  clearable
 					  :rules="[rules.required]"
 					  label="Search place or town"
-					  type="input"
-					  role="textbox"
 					  class="custom_messages"
+					  :items="citiesInStore"
+					  v-model="search.city"
 					/>
 				  </v-col>
 				</v-row>
@@ -91,9 +91,17 @@
 					</v-icon>
 				  </v-col>
 				  <v-col cols="12" class="pt-0">
-					<v-text-field id="search-type-of-site" bg-color="white" color="cardbackground1" base-color="navbar"
-					  variant="outlined" clearable :rules="[rules.required]"
-					  label="Search for coffe-shops, restaurants, hotels..." type="input" role="textbox" />
+					<v-select 
+						id="search-type-of-site" 
+						bg-color="white" color="cardbackground1" 
+						base-color="navbar"
+					  	variant="outlined" 
+						clearable 
+						:rules="[rules.required]"
+					  	label="Search for coffe-shops, restaurants, hotels..." 
+						:items="typesInStore"
+						v-model="search.type"
+					/>
 				  </v-col>
 				</v-row>
 			  </v-col>
@@ -106,9 +114,10 @@
 				  {
 					icon: 'mdi-wheelchair',
 					label: 'PRM (People with reduced mobility)',
+					value: 'prm'
 				  },
-				  { icon: 'mdi-eye-off-outline', label: 'Visually impaired' },
-				  { icon: 'mdi-ear-hearing-off', label: 'Impaired hearing' },
+				  { icon: 'mdi-eye-off-outline', label: 'Visually impaired', value: 'visual' },
+				  { icon: 'mdi-ear-hearing-off', label: 'Impaired hearing', value: 'hearing' },
 				]"
 				:key="index"
 				cols="12"
@@ -122,6 +131,8 @@
 				</v-icon>
 				<v-checkbox
 				  :label="item.label"
+				  :value="item.value"
+				  v-model="search.categories[index]"
 				  color="cardbackground1"
 				  aria-checked="false"
 				  class="d-flex align-center font-weight-bold text-cardbackground1"
@@ -139,6 +150,7 @@
 			  :size="xs ? '' : 'x-large'"
 			  :height="xs ? 52 : ''"
 			  :class="{ 'text-h6': xs }"
+			  @click="test()"
 			>
 			  Search
 			</v-btn>
@@ -176,23 +188,23 @@
   
   <script setup>
   import { useDisplay } from "vuetify";
-  import { ref, onBeforeMount } from "vue";
+  import { ref, onBeforeMount, onUpdated } from "vue";
   import Card from "../components/Card.vue";
   import ApiConnection from "@/services/ApiConnection";
+  import { useLaunchStore } from "../store/launchStore";
   import { Carousel, Pagination, Slide, Navigation } from "vue3-carousel";
   import "vue3-carousel/dist/carousel.css";
-  
-  // const model = ref(0);
-  
-  // const colors = ref([
-  //   "primary",
-  //   "secondary",
-  //   "yellow darken-2",
-  //   "red",
-  //   "orange",
-  // ]);
-  
+    
   const stores = ref([]);
+  const citiesInStore = ref();
+  const typesInStore = ref();
+  const search = ref(
+	{
+		city: "",
+		type: "",
+		categories: [],
+	}
+  )
   
   const getStores = async () => {
 	let response = await ApiConnection.getAllStores();
@@ -201,16 +213,15 @@
 	return stores.value;
   };
   
-  
   onBeforeMount(() => {
 	getStores();
+	citiesInStore.value = useLaunchStore().getCities;
+	typesInStore.value = useLaunchStore().getTypes;
+
+	console.log(citiesInStore.value);
+	console.log(typesInStore.value);
   });
-  
-  // function calculateCarouselHeight() {
-  //   const cardHeight = 350;
-  //   const numRows = Math.ceil(colors.value.length / 3);
-  //   return numRows * cardHeight;
-  // }
+
   const { xs } = useDisplay();
   
   const rules = {
@@ -230,10 +241,40 @@
 	}
   })
   
-  // a computed ref
-  // const publishedBooksMessage = computed(() => {
-  //   return author.books.length > 0 ? 'Yes' : 'No'
-  // })
+  const sortCategories = () =>
+  {
+	if (search.value.categories.includes('visual') && search.value.categories.includes('hearing'))
+	{
+		let	aux;
+		let firstIndex;
+		let lastIndex;
+
+		firstIndex = search.value.categories.indexOf('visual');
+		lastIndex = search.value.categories.indexOf('hearing');
+		aux = search.value.categories[firstIndex];
+		search.value.categories[firstIndex] = search.value.categories[lastIndex];
+		search.value.categories[lastIndex] = aux;
+	}
+  }
+
+  const test = async () =>
+  {
+	let categories;
+	let	filtereUnchecked;
+	let response;
+
+	if (search.value.categories.length > 0)
+	{
+		sortCategories();
+		filtereUnchecked = search.value.categories.filter(x => x !== false);
+		categories = filtereUnchecked.reduce((acc, currentValue) => acc + "," + currentValue);
+	}
+	console.log(search.value);
+	console.log(categories);
+	console.log(filtereUnchecked);
+	response = await ApiConnection.searchStores(search.value.city, search.value.type, categories);
+	console.log(response);
+  }
   
   </script>
   
