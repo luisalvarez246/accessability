@@ -8,14 +8,14 @@
         'text-decoration-none': true,
         'mx-4': true,
         'active-home': isHomeActive
-      }" class="logo">
+      }">
         <v-img src="../../assets/images/logo.png" class="mr-1" width="56" alt="AccessAbility Logo"></v-img>
-        <p class="textlogo">AccessAbility</p>
+        <span class="textlogo">AccessAbility</span>
       </router-link>
 
       <v-spacer></v-spacer>
 
-      <v-btn-group class="d-none d-sm-flex" density="compact"  variant="flat">
+      <v-btn-group class="d-none d-md-flex" density="compact"  variant="flat">
         <v-btn v-for="(item, index) in navItems" :key="index" :to="item.to" @click="goToPage(item.to)" class="navButtons" :class="{
           'active-button': isActiveButton(item.to),
           'text-none': true,
@@ -29,7 +29,7 @@
         </v-btn>
       </v-btn-group>
 
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" aria-label="Menu" class="d-flex d-sm-none">
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" aria-label="Menu" class="d-flex d-md-none">
       </v-app-bar-nav-icon>
     </v-app-bar>
 
@@ -76,28 +76,20 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
   height: 3rem;
 }
 
+.active-home{
+  color:#FED636 !important;
+}
 .textlogo {
   font-size: 1.5rem;
-  color: #fff;
 }
-
 .textlogo:hover {
-  color: #FED636 !important;
-  font-weight: 600 !important;
+  color: #FED636;
+  font-weight: 600;
 }
 
 .navButtons {
   color: #340458;
   background-color: #14CAC9;
-}
-
-.active-home {
-  color: #FED636 !important;
-}
-
-.active-button {
-  background-color: #FED636 !important;
-  font-weight: 400 !important;
 }
 
 .v-btn:hover,
@@ -110,7 +102,7 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
 }
 
 .v-list-item:hover {
-  background-color: #FED63688 !important;
+  background-color: #FED636 !important;
 }
 
 .v-list-item:focus,
