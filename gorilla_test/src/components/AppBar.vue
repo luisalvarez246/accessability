@@ -8,14 +8,14 @@
         'text-decoration-none': true,
         'mx-4': true,
         'active-home': isHomeActive
-      }" class="logo">
+      }">
         <v-img src="../assets/images/logo.png" class="mr-1" width="56" alt="AccessAbility Logo"></v-img>
         <p class="textlogo">AccessAbility</p>
       </router-link>
 
       <v-spacer></v-spacer>
 
-      <v-btn-group class="d-none d-sm-flex" density="compact" color="navbarbtns" variant="flat">
+      <v-btn-group class="d-none d-md-flex" density="compact" color="navbarbtns" variant="flat">
         <v-btn v-for="(item, index) in navItems" :key="index" :to="item.to" @click="goToPage(item.to)" :class="{
           'active-button': isActiveButton(item.to),
           'text-none': true,
@@ -29,7 +29,7 @@
         </v-btn>
       </v-btn-group>
 
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" aria-label="Menu" class="d-flex d-sm-none">
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" aria-label="Menu" class="d-flex d-md-none">
       </v-app-bar-nav-icon>
     </v-app-bar>
 
@@ -48,7 +48,7 @@ import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useDisplay } from "vuetify";
 
-const { smAndDown } = useDisplay();
+const { sm, smAndDown } = useDisplay();
 
 const drawer = ref(false);
 
@@ -81,45 +81,25 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
 }
 
 .textlogo:hover {
-  color: #FED636 !important;
-  font-weight: 600 !important;
-}
-
-.active-home {
-  color: #FED636 !important;
-}
-
-.active-button {
-  background-color: #FED636 !important;
-  font-weight: 400 !important;
+  color: #FED636;
+  font-weight: 600;
 }
 
 .v-btn:hover,
 .v-btn:focus {
   background-color: #FED636 !important;
-  opacity: 0.85 !important;
-  border-color: #340458 !important;
+  opacity: 1;
+  border-color: #340458;
   color: #340458;
   font-weight: 600 !important;
 }
-
-.v-list-item:hover {
-  background-color: #FED63688 !important;
-}
-
 .v-list-item:focus,
 .v-list-item:active {
-  background-color: #FED636 !important;
-  color: white !important;
+  background-color: #FED636;
 }
 
 .v-list-item-title {
-  color: #340458 !important;
+  color: #340458;
 }
 
-.v-list-item-title:hover,
-.v-list-item-title:active {
-  font-weight: 600 !important;
-  font-size: 1.1rem !important;
-}
 </style>
