@@ -14,8 +14,8 @@ const	loadSearchData = async () =>
 	const typesInStore = await ApiConnection.getTypesInStore()
 	const citiesInStore = await ApiConnection.getCitiesInStore();
 
-	useLaunchStore().setTypes(typesInStore.data);
-	useLaunchStore().setCities(citiesInStore.data);
+	useLaunchStore().setTypes(typesInStore.data.sort());
+	useLaunchStore().setCities(citiesInStore.data.sort());
 }
 
 const router = createRouter({
