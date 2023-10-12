@@ -8,7 +8,7 @@
         </div>
       </v-img>
     </v-container>
-    <v-container class="pt-0">
+    <v-container fluid class="pt-0">
       <v-card class="team_members mx-auto" max-width="1140" color="cardbackground1">
         <v-card-title>The team</v-card-title>
         <v-row justify="center">
@@ -17,14 +17,14 @@
               <v-col v-for="author in authors" :key="author.id" cols="6" sm="4" lg="4">
                 <v-card-item class="text-center justify-center align-center" color="cardbackground1">
                   <v-img :src="author.photo" :alt="author.name + ' ' + 'photo'" :width="120" />
-                  <v-card-title class="text-wrap pt-2">{{ author.name }}</v-card-title>
+                  <v-card-title class="team_members text-wrap pt-2">{{ author.name }}</v-card-title>
                 </v-card-item>
               </v-col>
             </v-row>
           </v-col>
         </v-row>
       </v-card>
-      <v-card class="mx-auto mt-4" max-width="1140" color="cardbackground1">
+      <v-card class="mt-4 mx-auto" max-width="1140" color="cardbackground1">
         <v-card-title class="w-75 mx-auto">
           Contact
         </v-card-title>
@@ -39,12 +39,15 @@
           <v-textarea id="send-us-your-thoughts" name="send-us-your-thoughts" type="text" label="Send us your thoughts"
             auto-grow bg-color="white"></v-textarea>
         </v-card-item>
-        <v-card-item class="d-flex justify-center pb-4">
-          <v-btn text class="text-none mx-auto" rounded="xl" flat :block="xs" :size="xs ? '' : 'x-large'"
-            :height="xs ? 52 : ''" :class="{ 'text-h6': xs }" color="searchbtn" text-color="navbar">
+        <v-card-actions class="w-100 px-4 mx-auto d-flex justify-center" align="center">
+          <v-btn @click="submitForm" class="submit_btn text-none mb-4" rounded="xl" :block="xs" :size="xs ? '' : 'x-large'"
+            :height="xs ? 52 : ''" :class="{ 'text-h6': xs }" color="navbar">
             Submit
           </v-btn>
-        </v-card-item>
+          <v-snackbar v-model="snackbar" color="success">
+            Form send succesfully
+          </v-snackbar>
+        </v-card-actions>
       </v-card>
     </v-container>
   </v-container>
@@ -52,6 +55,7 @@
   
 <script setup>
 import { ref } from 'vue';
+import axios from 'axios';
 import { useDisplay } from "vuetify";
 
 const authors = ref([
@@ -92,24 +96,51 @@ const rules = {
 };
 
 const { xs } = useDisplay();
+
+const formData = ref({
+  fullname: '',
+  email: '',
+  thoughts: ''
+});
+
+const snackbar = ref(false);
+const snackbarMessage = ref('');
+const snackbarColor = ref('');
+
+const submitForm = () => {
+  axios.post('/api/submit-form', formData.value)
+    .then(response => {
+      console.log(response.data);
+      showSnackbar('Form submitted successfully', 'success');
+    })
+    .catch(error => {
+      console.error(error);
+      showSnackbar('Error processing the form', 'error');
+    });
+};
+
+const showSnackbar = (message, color) => {
+  snackbarMessage.value = message;
+  snackbarColor.value = color;
+  snackbar.value = true;
+};
 </script>
 <style scoped>
 .title {
   position: relative;
   color: #59029f;
-  text-wrap: wrap;
 }
 
 div.title {
   background-color: #fed636;
-  width: auto;
-  height: auto;
+  width: 25.5rem;
+  height: 3.5rem;
   bottom: 0;
   content: "";
   display: block;
   left: 0;
   position: absolute;
-  padding: 0 1rem .5rem .25rem;
+  padding-top: .25rem;
 }
 
 .underline {
@@ -118,7 +149,7 @@ div.title {
 
 h2.underline::after {
   background: #14cac9;
-  bottom: 0;
+  bottom: 4;
   content: "";
   display: block;
   height: 0.25rem;
@@ -128,7 +159,16 @@ h2.underline::after {
 }
 
 .v-card-title {
-  font-size: 1.4rem;
-  font-weight: 600;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.v-card-title.team_members {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.v-btn.submit_btn {
+  background: #fed636;
 }
 </style>
