@@ -97,14 +97,10 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
 .v-btn:hover,
 .v-btn:focus {
   background-color: #FED636;
-  opacity: 0.85 !important;
+  opacity: 1 !important;
   border-color: #340458;
   color: #340458;
   font-weight: 600;
-}
-
-.v-list-item:hover {
-  background-color: #FED636;
 }
 
 .v-list-item:focus,
@@ -115,12 +111,6 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
 
 .v-list-item-title {
   color: #340458;
-}
-
-.v-list-item-title:hover,
-.v-list-item-title:active {
-  font-weight: 500;
-  font-size: 1.1rem;
 }
 
 </style>
