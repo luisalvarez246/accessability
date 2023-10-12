@@ -8,9 +8,9 @@
         'text-decoration-none': true,
         'mx-4': true,
         'active-home': isHomeActive
-      }">
+      }" class="logo">
         <v-img src="../../assets/images/logo.png" class="mr-1" width="56" alt="AccessAbility Logo"></v-img>
-        <span class="textlogo">AccessAbility</span>
+        <p class="textlogo">AccessAbility</p>
       </router-link>
 
       <v-spacer></v-spacer>
@@ -76,12 +76,10 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
   height: 3rem;
 }
 
-.active-home{
-  color:#FED636 !important;
-}
 .textlogo {
   font-size: 1.5rem;
 }
+
 .textlogo:hover {
   color: #FED636;
   font-weight: 600;
@@ -92,33 +90,37 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
   background-color: #14CAC9;
 }
 
+.active-home {
+  color: #FED636;
+}
+
 .v-btn:hover,
 .v-btn:focus {
-  background-color: #FED636 !important;
+  background-color: #FED636;
   opacity: 0.85 !important;
-  border-color: #340458 !important;
+  border-color: #340458;
   color: #340458;
-  font-weight: 600 !important;
+  font-weight: 600;
 }
 
 .v-list-item:hover {
-  background-color: #FED636 !important;
+  background-color: #FED636;
 }
 
 .v-list-item:focus,
 .v-list-item:active {
-  background-color: #FED636 !important;
-  color: white !important;
+  background-color: #FED636;
+  color: white;
 }
 
 .v-list-item-title {
-  color: #340458 !important;
+  color: #340458;
 }
 
 .v-list-item-title:hover,
 .v-list-item-title:active {
-  font-weight: 600 !important;
-  font-size: 1.1rem !important;
+  font-weight: 500;
+  font-size: 1.1rem;
 }
 
 </style>
