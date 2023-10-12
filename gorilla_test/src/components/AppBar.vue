@@ -15,8 +15,8 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn-group class="d-none d-md-flex" density="compact" color="navbarbtns" variant="flat">
-        <v-btn v-for="(item, index) in navItems" :key="index" :to="item.to" @click="goToPage(item.to)" :class="{
+      <v-btn-group class="d-none d-md-flex" density="compact" variant="flat">
+        <v-btn v-for="(item, index) in navItems" :key="index" :to="item.to" @click="goToPage(item.to)" class="navButtons" :class="{
           'active-button': isActiveButton(item.to),
           'text-none': true,
           'font-weight-regular': true,
@@ -85,21 +85,31 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
   font-weight: 600;
 }
 
+.navButtons {
+  color: #340458;
+  background-color: #14CAC9;
+}
+
+.active-home {
+  color: #FED636;
+}
+
 .v-btn:hover,
 .v-btn:focus {
-  background-color: #FED636 !important;
+  background-color: #FED636;
   opacity: 1;
   border-color: #340458;
   color: #340458;
   font-weight: 600 !important;
 }
+
 .v-list-item:focus,
 .v-list-item:active {
   background-color: #FED636;
+  color: white;
 }
 
 .v-list-item-title {
   color: #340458;
 }
-
 </style>
