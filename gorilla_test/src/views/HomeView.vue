@@ -257,21 +257,27 @@
 	}
   }
 
-  const test = async () =>
+  const parseCategories = () =>
   {
 	let categories;
 	let	filtereUnchecked;
-	let response;
 
-	if (search.value.categories.length > 0)
+	if (search.value.categories.length > 0 && !search.value.categories.every((value) => value === false))
 	{
 		sortCategories();
 		filtereUnchecked = search.value.categories.filter(x => x !== false);
 		categories = filtereUnchecked.reduce((acc, currentValue) => acc + "," + currentValue);
+		return (categories);
 	}
-	console.log(search.value);
-	console.log(categories);
-	console.log(filtereUnchecked);
+	return (null);
+  }
+
+  const test = async () =>
+  {
+	let categories;
+	let response;
+	
+	categories = parseCategories();
 	response = await ApiConnection.searchStores(search.value.city, search.value.type, categories);
 	console.log(response);
   }
