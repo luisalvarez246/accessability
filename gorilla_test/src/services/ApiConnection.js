@@ -10,6 +10,8 @@ const urlCity = "http://localhost:8080/api/cities";
 
 const urlImage = "http://localhost:8080/images";
 
+const urlSearch = "http://localhost:8080/stores/search?";
+
 class ApiConnection 
 {
   async getAllStores() {
@@ -158,12 +160,20 @@ class ApiConnection
 	}
   }
 
-  async getImage(imageName)
+  async searchStores(city, type, categories)
   {
+	let	newSearchUrl = urlSearch;
 	let response;
+
+	if (city)
+		newSearchUrl = `${newSearchUrl}&city=${city}`;
+	if (type)
+		newSearchUrl = `${newSearchUrl}&type=${type}`;
+	if (categories)
+		newSearchUrl = `${newSearchUrl}&categories=${categories}`;
 	try
 	{
-		response = await axios.get(`${urlImage}/${imageName}`);
+		response = await axios.get(newSearchUrl);
 
 		return (response);
 	}
