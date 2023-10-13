@@ -17,7 +17,7 @@ onBeforeMount(() => {
 </script>
 
 <template>
-    <v-container>
+    <v-container class="d-flex justify-center align-center mt-10">
         <h1>Searched Bussiness</h1>
     </v-container>
 
