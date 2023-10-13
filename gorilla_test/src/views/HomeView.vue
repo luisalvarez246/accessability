@@ -188,7 +188,7 @@
   
   <script setup>
   import { useDisplay } from "vuetify";
-  import { ref, onBeforeMount, onUpdated } from "vue";
+  import { ref, onBeforeMount } from "vue";
   import Card from "../components/Card.vue";
   import ApiConnection from "@/services/ApiConnection";
   import { useLaunchStore } from "../store/launchStore";
@@ -274,9 +274,20 @@
 	return (null);
   }
 
-  const hasBeenSearched = () =>
+  const hasBeenSearched = (newSearch) =>
   {
-	console.log("hola");
+	let searchHistory;
+
+	searchHistory = searchStore.getSearchHistory;
+	console.log(newSearch);
+	console.log(searchHistory[0]);
+	for (const search of searchHistory)
+	{
+		console.log(search);
+		if (search.localeCompare(newSearch) === 0)
+			return (true);
+	}
+	return (false);
   }
 
   const test = async () =>
@@ -284,15 +295,19 @@
 	let categories;
 	let response;
 	let	newSearch;
+	let searchIndex;
 	
 	categories = parseCategories();
 	newSearch = search.value.city.concat(",", search.value.type, ",", categories);
-	if (searchStore.getSearchHistory.length !== 0 && hasBeenSearched())
+	if (searchStore.getSearchHistory.length !== 0 && hasBeenSearched(newSearch))
 	{
-		searchStore.get
+		console.log('enters cache');
+		searchIndex = searchStore.getSearchHistory.indexOf(newSearch);
+		console.log(searchStore.getSearchResults[searchIndex]);
 	}
 	else
 	{
+		console.log('enters DB');
 		response = await ApiConnection.searchStores(search.value.city, search.value.type, categories);
 		searchStore.setSearchHistory(newSearch);
 		searchStore.setSearchResults(response.data);
