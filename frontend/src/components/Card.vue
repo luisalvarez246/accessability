@@ -7,7 +7,7 @@
   >
     <v-img 
       :src="`${imagesUrl}/${props.image}`"
-      :alt="props.alt"
+      alt=""
     ></v-img>
     <v-card-title>
       <!-- <h2>Casa Pepe</h2> -->

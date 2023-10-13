@@ -174,7 +174,6 @@
 			:description="store.description"
 			:web="store.web"
 			:image="store.image"
-			:alt="`Image of ${store.storeName} bussiness`"
 			:width="300"
 			/>
 		  </div>

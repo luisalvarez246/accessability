@@ -35,7 +35,7 @@ onBeforeMount(() => {
 			:email="store.email"
 			:description="store.description"
 			:web="store.web"
-			:image="store.image" 
+			:image="store.image"
             :width="400"
             />
             
