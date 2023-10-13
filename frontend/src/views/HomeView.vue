@@ -97,6 +97,8 @@
       </template>
     </Carousel>
   </v-container>
+
+  
 </template>
 
 <script setup>

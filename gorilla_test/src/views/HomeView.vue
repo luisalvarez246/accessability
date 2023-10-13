@@ -174,6 +174,8 @@
 			:description="store.description"
 			:web="store.web"
 			:image="store.image"
+			:alt="`Image of ${store.storeName} bussiness`"
+			:width="300"
 			/>
 		  </div>
 		</Slide>
@@ -183,6 +185,10 @@
 	  <Pagination />
 	</template>
 	  </Carousel>
+	</v-container>
+
+	<v-container>
+		<router-link to="/search">Hola</router-link>
 	</v-container>
   </template>
   

@@ -8,6 +8,7 @@ import RegisterView from '../views/RegisterView.vue'
 import TermsOfUseView from '../views/TermsOfUseView.vue'
 import PrivacyPolicyView from '../views/PrivacyPolicyView.vue'
 import CookiesView from '../views/CookiesView.vue'
+import SearchView from '../views/SearchView.vue'
 
 const	loadSearchData = async () =>
 {
@@ -56,6 +57,11 @@ const router = createRouter({
       path: '/cookies',
       name: 'cookies',
       component: CookiesView,
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: SearchView,
     }
   ]
 })
