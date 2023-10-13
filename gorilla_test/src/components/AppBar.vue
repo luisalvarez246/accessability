@@ -8,18 +8,18 @@
         'text-decoration-none': true,
         'mx-4': true,
         'active-home': isHomeActive
-      }" class="logo">
-        <v-img src="../../assets/images/logo.png" class="mr-1" width="56" alt="AccessAbility Logo"></v-img>
+      }">
+        <v-img src="../assets/images/logo.png" class="mr-1" width="56" alt="AccessAbility Logo"></v-img>
         <p class="textlogo">AccessAbility</p>
       </router-link>
 
       <v-spacer></v-spacer>
 
-      <v-btn-group class="d-none d-md-flex" density="compact"  variant="flat">
+      <v-btn-group class="d-none d-md-flex" density="compact" variant="flat">
         <v-btn v-for="(item, index) in navItems" :key="index" :to="item.to" @click="goToPage(item.to)" class="navButtons" :class="{
           'active-button': isActiveButton(item.to),
           'text-none': true,
-          'font-weight-bold': true,
+          'font-weight-regular': true,
           'mr-6': true,
           'px-2': smAndDown,
           'px-4': !smAndDown,
@@ -97,10 +97,10 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
 .v-btn:hover,
 .v-btn:focus {
   background-color: #FED636;
-  opacity: 1 !important;
+  opacity: 1;
   border-color: #340458;
   color: #340458;
-  font-weight: 600;
+  font-weight: 600 !important;
 }
 
 .v-list-item:focus,
@@ -112,5 +112,4 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
 .v-list-item-title {
   color: #340458;
 }
-
 </style>

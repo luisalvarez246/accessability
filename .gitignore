@@ -52,3 +52,6 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+### Backend Images ###
+/Backend/src/main/webapp/images
+
