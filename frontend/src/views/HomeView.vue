@@ -23,7 +23,7 @@
                   </p>
                 </v-col>
                 <v-col cols="auto">
-                  <v-icon color="cardbackground1" size="36" aria-hidden="true" aria-label="Search Place" alt="Localizar">
+                  <v-icon color="cardbackground1" size="36" aria-hidden="true" aria-label="Search Place" alt="">
                     mdi-map-marker
                   </v-icon>
                 </v-col>
@@ -40,7 +40,7 @@
                 </v-col>
                 <v-col cols="auto" class="pl-0">
                   <v-icon size="36" color="cardbackground1" aria-hidden="true" aria-label="Search accessibility"
-                    alt="Buscar">
+                    alt="">
                     mdi-magnify
                   </v-icon>
                 </v-col>
