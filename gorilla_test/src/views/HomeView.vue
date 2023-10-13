@@ -192,6 +192,7 @@
   import Card from "../components/Card.vue";
   import ApiConnection from "@/services/ApiConnection";
   import { useLaunchStore } from "../store/launchStore";
+  import { useSearchStore } from "../store/searchStore";
   import { Carousel, Pagination, Slide, Navigation } from "vue3-carousel";
   import "vue3-carousel/dist/carousel.css";
     
@@ -205,6 +206,7 @@
 		categories: [],
 	}
   )
+  const searchStore = useSearchStore();
   
   const getStores = async () => {
 	let response = await ApiConnection.getAllStores();
@@ -272,14 +274,30 @@
 	return (null);
   }
 
+  const hasBeenSearched = () =>
+  {
+	console.log("hola");
+  }
+
   const test = async () =>
   {
 	let categories;
 	let response;
+	let	newSearch;
 	
 	categories = parseCategories();
-	response = await ApiConnection.searchStores(search.value.city, search.value.type, categories);
-	console.log(response);
+	newSearch = search.value.city.concat(",", search.value.type, ",", categories);
+	if (searchStore.getSearchHistory.length !== 0 && hasBeenSearched())
+	{
+		searchStore.get
+	}
+	else
+	{
+		response = await ApiConnection.searchStores(search.value.city, search.value.type, categories);
+		searchStore.setSearchHistory(newSearch);
+		searchStore.setSearchResults(response.data);
+		console.log(response);
+	}
   }
   
   </script>
