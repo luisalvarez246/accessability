@@ -1,23 +1,13 @@
 <!-- eslint-disable vue/multi-word-component-names -->
-<!-- <script>
-export default {
-  data() {
-    return {
-      model: 0,
-      cardData: Array.from({ length: 45 }, (_, index) => index),
-    };
-  },
-};
-</script> -->
-
 <template>
   <v-card
     color="#59029F"
     class="mb-7"
-    width="300"
+    :width="props.width"
   >
     <v-img 
       :src="`${imagesUrl}/${props.image}`"
+      :alt="props.alt"
     ></v-img>
     <v-card-title>
       <!-- <h2>Casa Pepe</h2> -->
@@ -83,7 +73,9 @@ const props = defineProps({
   email: String,
   description: String,
   web: String,
-  image: String
+  image: String,
+  width: String,
+  alt: String
 })
 
 
