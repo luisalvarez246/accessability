@@ -57,7 +57,7 @@
 					</v-icon>
 				  </v-col>
 				  <v-col cols="12" class="pt-0">
-					<v-text-field
+					<v-select
 					  id="search-location"
 					  bg-color="white"
 					  color="cardbackground1"
@@ -66,9 +66,9 @@
 					  clearable
 					  :rules="[rules.required]"
 					  label="Search place or town"
-					  type="input"
-					  role="textbox"
 					  class="custom_messages"
+					  :items="citiesInStore"
+					  v-model="search.city"
 					/>
 				  </v-col>
 				</v-row>
@@ -91,9 +91,17 @@
 					</v-icon>
 				  </v-col>
 				  <v-col cols="12" class="pt-0">
-					<v-text-field id="search-type-of-site" bg-color="white" color="cardbackground1" base-color="navbar"
-					  variant="outlined" clearable :rules="[rules.required]"
-					  label="Search for coffe-shops, restaurants, hotels..." type="input" role="textbox" />
+					<v-select 
+						id="search-type-of-site" 
+						bg-color="white" color="cardbackground1" 
+						base-color="navbar"
+					  	variant="outlined" 
+						clearable 
+						:rules="[rules.required]"
+					  	label="Search for coffe-shops, restaurants, hotels..." 
+						:items="typesInStore"
+						v-model="search.type"
+					/>
 				  </v-col>
 				</v-row>
 			  </v-col>
@@ -106,9 +114,10 @@
 				  {
 					icon: 'mdi-wheelchair',
 					label: 'PRM (People with reduced mobility)',
+					value: 'prm'
 				  },
-				  { icon: 'mdi-eye-off-outline', label: 'Visually impaired' },
-				  { icon: 'mdi-ear-hearing-off', label: 'Impaired hearing' },
+				  { icon: 'mdi-eye-off-outline', label: 'Visually impaired', value: 'visual' },
+				  { icon: 'mdi-ear-hearing-off', label: 'Impaired hearing', value: 'hearing' },
 				]"
 				:key="index"
 				cols="12"
@@ -122,6 +131,8 @@
 				</v-icon>
 				<v-checkbox
 				  :label="item.label"
+				  :value="item.value"
+				  v-model="search.categories[index]"
 				  color="cardbackground1"
 				  aria-checked="false"
 				  class="d-flex align-center font-weight-bold text-cardbackground1"
@@ -139,6 +150,7 @@
 			  :size="xs ? '' : 'x-large'"
 			  :height="xs ? 52 : ''"
 			  :class="{ 'text-h6': xs }"
+			  @click="test()"
 			>
 			  Search
 			</v-btn>
@@ -162,6 +174,8 @@
 			:description="store.description"
 			:web="store.web"
 			:image="store.image"
+			:alt="`Image of ${store.storeName} bussiness`"
+			:width="300"
 			/>
 		  </div>
 		</Slide>
@@ -172,6 +186,10 @@
 	</template>
 	  </Carousel>
 	</v-container>
+
+	<v-container>
+		<router-link to="/search">Hola</router-link>
+	</v-container>
   </template>
   
   <script setup>
@@ -179,20 +197,22 @@
   import { ref, onBeforeMount } from "vue";
   import Card from "../components/Card.vue";
   import ApiConnection from "@/services/ApiConnection";
+  import { useLaunchStore } from "../store/launchStore";
+  import { useSearchStore } from "../store/searchStore";
   import { Carousel, Pagination, Slide, Navigation } from "vue3-carousel";
   import "vue3-carousel/dist/carousel.css";
-  
-  // const model = ref(0);
-  
-  // const colors = ref([
-  //   "primary",
-  //   "secondary",
-  //   "yellow darken-2",
-  //   "red",
-  //   "orange",
-  // ]);
-  
+    
   const stores = ref([]);
+  const citiesInStore = ref();
+  const typesInStore = ref();
+  const search = ref(
+	{
+		city: "",
+		type: "",
+		categories: [],
+	}
+  )
+  const searchStore = useSearchStore();
   
   const getStores = async () => {
 	let response = await ApiConnection.getAllStores();
@@ -201,16 +221,15 @@
 	return stores.value;
   };
   
-  
   onBeforeMount(() => {
 	getStores();
+	citiesInStore.value = useLaunchStore().getCities;
+	typesInStore.value = useLaunchStore().getTypes;
+
+	console.log(citiesInStore.value);
+	console.log(typesInStore.value);
   });
-  
-  // function calculateCarouselHeight() {
-  //   const cardHeight = 350;
-  //   const numRows = Math.ceil(colors.value.length / 3);
-  //   return numRows * cardHeight;
-  // }
+
   const { xs } = useDisplay();
   
   const rules = {
@@ -230,10 +249,77 @@
 	}
   })
   
-  // a computed ref
-  // const publishedBooksMessage = computed(() => {
-  //   return author.books.length > 0 ? 'Yes' : 'No'
-  // })
+  const sortCategories = () =>
+  {
+	if (search.value.categories.includes('visual') && search.value.categories.includes('hearing'))
+	{
+		let	aux;
+		let firstIndex;
+		let lastIndex;
+
+		firstIndex = search.value.categories.indexOf('visual');
+		lastIndex = search.value.categories.indexOf('hearing');
+		aux = search.value.categories[firstIndex];
+		search.value.categories[firstIndex] = search.value.categories[lastIndex];
+		search.value.categories[lastIndex] = aux;
+	}
+  }
+
+  const parseCategories = () =>
+  {
+	let categories;
+	let	filtereUnchecked;
+
+	if (search.value.categories.length > 0 && !search.value.categories.every((value) => value === false))
+	{
+		sortCategories();
+		filtereUnchecked = search.value.categories.filter(x => x !== false);
+		categories = filtereUnchecked.reduce((acc, currentValue) => acc + "," + currentValue);
+		return (categories);
+	}
+	return (null);
+  }
+
+  const hasBeenSearched = (newSearch) =>
+  {
+	let searchHistory;
+
+	searchHistory = searchStore.getSearchHistory;
+	console.log(newSearch);
+	console.log(searchHistory[0]);
+	for (const search of searchHistory)
+	{
+		console.log(search);
+		if (search.localeCompare(newSearch) === 0)
+			return (true);
+	}
+	return (false);
+  }
+
+  const test = async () =>
+  {
+	let categories;
+	let response;
+	let	newSearch;
+	let searchIndex;
+	
+	categories = parseCategories();
+	newSearch = search.value.city.concat(",", search.value.type, ",", categories);
+	if (searchStore.getSearchHistory.length !== 0 && hasBeenSearched(newSearch))
+	{
+		console.log('enters cache');
+		searchIndex = searchStore.getSearchHistory.indexOf(newSearch);
+		console.log(searchStore.getSearchResults[searchIndex]);
+	}
+	else
+	{
+		console.log('enters DB');
+		response = await ApiConnection.searchStores(search.value.city, search.value.type, categories);
+		searchStore.setSearchHistory(newSearch);
+		searchStore.setSearchResults(response.data);
+		console.log(response);
+	}
+  }
   
   </script>
   
