@@ -273,7 +273,7 @@ onUpdated(() =>
               <v-img
                 class="characteristicsIcon"
                 :src="characteristic.icon"
-                :alt="`Icon of ${characteristic.icon}`"
+                alt=""
               ></v-img>
             </v-checkbox>
           </v-col>

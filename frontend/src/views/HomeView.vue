@@ -1,7 +1,7 @@
 <template>
-  <v-container height="250" width="100%" class="hero_section d-flex justify-center pb-0" color="mainbackground"
+  <v-container height="auto" width="100%" class="hero_section d-flex justify-center pb-0" color="mainbackground"
     rounded="lg">
-    <v-img src="../assets/images/hero.jpg" alt="" cover max-width="1140" max-height="250">
+    <v-img src="../assets/images/hero.avif" lazy-src="../assets/images/hero.avif" alt="" cover max-width="1140" max-height="290">
       <div class="title">
         <h1 class="underline pl-4">Welcome to AccessAbility</h1>
       </div>
@@ -23,7 +23,7 @@
                   </p>
                 </v-col>
                 <v-col cols="auto">
-                  <v-icon color="cardbackground1" size="36" aria-hidden="true" aria-label="Search Place" alt="Localizar">
+                  <v-icon color="cardbackground1" size="36" aria-hidden="true" aria-label="Search Place" alt="">
                     mdi-map-marker
                   </v-icon>
                 </v-col>
@@ -40,7 +40,7 @@
                 </v-col>
                 <v-col cols="auto" class="pl-0">
                   <v-icon size="36" color="cardbackground1" aria-hidden="true" aria-label="Search accessibility"
-                    alt="Buscar">
+                    alt="">
                     mdi-magnify
                   </v-icon>
                 </v-col>
