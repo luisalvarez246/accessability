@@ -67,7 +67,7 @@ public class ImageService
 
     public StringBuilder deleteUnusedImages() throws IOException
     {
-        List<Store> storeList;
+        List<Store>         storeList;
         List<String>        imageList;
         File directory;
         File[]              files;
@@ -76,9 +76,9 @@ public class ImageService
 
         storeList = iStoreRepository.findAll();
         imageList = storeList.stream()
-                .map(store -> Normalizer.normalize(store.getImage(), Normalizer.Form.NFD))
-                .distinct()
-                .collect(Collectors.toList());
+                    .map(store -> Normalizer.normalize(store.getImage(), Normalizer.Form.NFD))
+                    .distinct()
+                    .collect(Collectors.toList());
         directory = new File(storePath);
         files = directory.listFiles();
         deletedImages = new StringBuilder();
