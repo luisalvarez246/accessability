@@ -14,24 +14,24 @@ import java.util.stream.Collectors;
 public class EnumsService implements IEnumRepository
 {
     @Override
-    public ArrayList<Type> getAllTypes()
+    public List<Type> getAllTypes()
     {
-        Type[]          enumValues;
-        ArrayList<Type> typeList;
+        Type[]      enumValues;
+        List<Type>  typeList;
 
         enumValues = Type.values();
         typeList = new ArrayList<>(Arrays.asList(enumValues));
         return (typeList);
     }
     @Override
-    public ArrayList<String> getAllCities()
+    public List<String> getAllCities()
     {
-        City[]              enumValues;
-        ArrayList<String> cityList;
+        City[]          enumValues;
+        List<String>    cityList;
 
 
         enumValues = City.values();
-        cityList = (ArrayList<String>) new ArrayList<>(Arrays.asList(enumValues))
+        cityList = new ArrayList<>(Arrays.asList(enumValues))
                         .stream()
                         .map(city -> city.toString().replace("_", " "))
                         .collect(Collectors.toList());

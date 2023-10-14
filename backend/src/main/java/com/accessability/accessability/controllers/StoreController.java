@@ -20,7 +20,7 @@ public class StoreController {
     StoreService storeService;
 
     @GetMapping
-    public ArrayList<Store> getAllStores() {
+    public List<Store> getAllStores() {
         return storeService.getAllStores();
     }
 
@@ -59,7 +59,7 @@ public class StoreController {
     }
 
     @GetMapping(path = "/search")
-    public ResponseEntity<ArrayList<Store>> searchStores (
+    public ResponseEntity<List<Store>> searchStores (
             @RequestParam(value = "city", required = false) String city,
             @RequestParam(value = "type", required = false) Type type,
             @RequestParam(value = "categories", required = false) String categories

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api")
@@ -19,13 +20,13 @@ public class EnumsController
     IEnumRepository iEnumRepository;
 
     @GetMapping(path = "/type")
-    public ResponseEntity<ArrayList<Type>> getAllTypes()
+    public ResponseEntity<List<Type>> getAllTypes()
     {
         return (ResponseEntity.ok(iEnumRepository.getAllTypes()));
     }
 
     @GetMapping(path = "/cities")
-    public ResponseEntity<ArrayList<String>> getAllCities()
+    public ResponseEntity<List<String>> getAllCities()
     {
         return (ResponseEntity.ok(iEnumRepository.getAllCities()));
     }

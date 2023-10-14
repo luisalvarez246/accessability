@@ -28,8 +28,6 @@ public class StoreService {
     @Autowired
     ImageService    imageService;
 
-    private final String storePath = System.getProperty("user.dir") + "/src/main/webapp/images";
-
     public String saveStore(StoreCreateRequest request, MultipartFile image)
     {
         Store store = new Store();
@@ -50,8 +48,8 @@ public class StoreService {
         return (Store) iStoreRepository.findById(id).orElse(null);
     }
 
-    public ArrayList<Store> getAllStores() {
-        return (ArrayList<Store>) iStoreRepository.findAll();
+    public List<Store> getAllStores() {
+        return (iStoreRepository.findAll());
     }
 
     public String deleteStoreById(long id)
@@ -133,7 +131,7 @@ public class StoreService {
         return (categories);
     }
 
-    public ArrayList<Store> findByCharacteristicId(Long characteristicId)
+    public List<Store> findByCharacteristicId(Long characteristicId)
     {
         return (iStoreRepository.findByCharacteristicId(characteristicId));
     }
@@ -161,7 +159,7 @@ public class StoreService {
         return (getFieldValuesInStore(Store::getType));
     }
 
-    public ArrayList<Store> searchStores(String city, Type type, String categories)
+    public List<Store> searchStores(String city, Type type, String categories)
     {
         return (iStoreRepository.searchStores(city, type, categories));
     }

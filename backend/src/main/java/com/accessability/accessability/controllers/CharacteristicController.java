@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/characteristics")
@@ -17,7 +18,7 @@ public class CharacteristicController {
     CharacteristicService characteristicService;
 
     @GetMapping
-    public ArrayList<Characteristic> getAllCharacteristics() {
+    public List<Characteristic> getAllCharacteristics() {
         return characteristicService.getAllCharacteristics();
     }
 
@@ -40,6 +41,4 @@ public class CharacteristicController {
     public String updateCharacteristicById (@PathVariable long id, @RequestBody Characteristic characteristic) {
         return (characteristicService.updateCharacteristicById(id, characteristic));
     }
-
-
 }
