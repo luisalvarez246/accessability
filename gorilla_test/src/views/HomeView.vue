@@ -150,7 +150,7 @@
 			  :size="xs ? '' : 'x-large'"
 			  :height="xs ? 52 : ''"
 			  :class="{ 'text-h6': xs }"
-			  @click="test()"
+			  @click="makeSearch()"
 			>
 			  Search
 			</v-btn>
@@ -199,6 +199,7 @@
   import { useLaunchStore } from "../store/launchStore";
   import { useSearchStore } from "../store/searchStore";
   import { Carousel, Pagination, Slide, Navigation } from "vue3-carousel";
+  import { useRouter } from "vue-router";
   import "vue3-carousel/dist/carousel.css";
     
   const stores = ref([]);
@@ -212,6 +213,7 @@
 	}
   )
   const searchStore = useSearchStore();
+  const router = useRouter();
   
   const getStores = async () => {
 	let response = await ApiConnection.getAllStores();
@@ -279,45 +281,12 @@
 	return (null);
   }
 
-  const hasBeenSearched = (newSearch) =>
-  {
-	let searchHistory;
-
-	searchHistory = searchStore.getSearchHistory;
-	console.log(newSearch);
-	console.log(searchHistory[0]);
-	for (const search of searchHistory)
-	{
-		console.log(search);
-		if (search.localeCompare(newSearch) === 0)
-			return (true);
-	}
-	return (false);
-  }
-
-  const test = async () =>
+  const makeSearch = () =>
   {
 	let categories;
-	let response;
-	let	newSearch;
-	let searchIndex;
 	
 	categories = parseCategories();
-	newSearch = search.value.city.concat(",", search.value.type, ",", categories);
-	if (searchStore.getSearchHistory.length !== 0 && hasBeenSearched(newSearch))
-	{
-		console.log('enters cache');
-		searchIndex = searchStore.getSearchHistory.indexOf(newSearch);
-		console.log(searchStore.getSearchResults[searchIndex]);
-	}
-	else
-	{
-		console.log('enters DB');
-		response = await ApiConnection.searchStores(search.value.city, search.value.type, categories);
-		searchStore.setSearchHistory(newSearch);
-		searchStore.setSearchResults(response.data);
-		console.log(response);
-	}
+	router.push({name: 'search', params:{city: search.value.city, type: search.value.type, categories: categories}});
   }
   
   </script>
