@@ -5,7 +5,7 @@
   
 	<v-container class="my-10 bg-deep-purple-lighten-5 rounded-lg">
 	  <v-row>
-		<v-col class="d-flex justify-center align-center mx-auto mt-10" v-for="(store, index) in displayedStores" :key="store.id" cols="12" sm="6" md="4" lg="6">
+		<v-col class="d-flex justify-center align-center mx-auto mt-10" v-for="store in displayedStores" :key="store.id" cols="12" sm="6" md="4" lg="6">
 		  <Card :store-name="store.storeName"
 			:type="store.type"
 			:city="store.city"
@@ -40,7 +40,7 @@
   const categories = route.params.categories;
   
   const currentPage = ref(1);
-  const itemsPerPage = 4; // Cambia esto al número deseado por página
+  const itemsPerPage = 4;
   
   const hasBeenSearched = (newSearch) => {
 	const searchHistory = searchStore.getSearchHistory;
@@ -75,9 +75,7 @@
   const totalPages = computed(() => {
 	return Math.ceil(stores.value.length / itemsPerPage);
   });
-  
-//   watch(currentPage, () => {
-//   });
+
   </script>
   
 
