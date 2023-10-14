@@ -59,7 +59,7 @@ const router = createRouter({
       component: CookiesView,
     },
     {
-      path: '/search',
+      path: '/search/:city?/:type?/:categories?',
       name: 'search',
       component: SearchView,
     }
