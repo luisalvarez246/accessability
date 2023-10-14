@@ -1,6 +1,6 @@
 <template>
   <v-app class="appbar">
-    <v-app-bar class="d-flex position-sticky" :elevation="1" color="navbar">
+    <v-app-bar class="d-flex position-fixed" :elevation="1" color="navbar">
       <router-link to="/" @click="goToPage('/')" :class="{
         'd-flex': true,
         'align-center': true,
@@ -88,6 +88,8 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
 .navButtons {
   color: #340458;
   background-color: #14CAC9;
+  font-weight: 500 !important;
+  font-size: medium;
 }
 
 .active-home {

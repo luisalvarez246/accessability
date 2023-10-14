@@ -10,81 +10,116 @@ const vuetify = createVuetify({
 	components,
 	directives,
   })
+
 global.ResizeObserver = require("resize-observer-polyfill");
 
+
 describe("FooterBar.vue", () => {
-	const router = createRouter({
+    const router = createRouter({
 		history: createMemoryHistory(),
 		routes: [
       { path: "/", component: { template: "" } },
 		],
-  });
+    });
 
-  test("should render 3 social icons", () => {
-    const wrapper = mount(FooterBar,
-    {
-        props: {},
-        global: 
-      {
-          plugins: [vuetify, router],
+    test("renders links with correct text and attributes", async () => {
+        const wrapper = mount(FooterBar,
+            {
+                props: {},
+                global:
+                {
+                    plugins: [vuetify, router],
+                }
+            });
+
+        const links = wrapper.getAll("a.link-content");
+        expect(links.length).toBe(3);
+    });
+
+    test("renders links with correct text and attributes", async () => {
+        const wrapper = mount(FooterBar,
+            {
+                props: {},
+                global:
+                {
+                    plugins: [vuetify, router],
+                }
+            });
+        const linkTexts = ["Terms of Use", "Privacy Policy", "Cookies"];
+        const links = wrapper.getAll(i.route);
+        for (let i = 0; i < 3; i++) {
+            expect(links[i]).toHaveText(linkTexts[i]);
+            expect(links[i]).toHaveAttribute("href", `/${linkTexts[i].toLowerCase()}`);
+            expect(links[i]).toHaveAttribute("role", "link");
+            expect(links[i]).toHaveAttribute("aria-label", linkTexts[i]);
+            expect(links[i]).toHaveAttribute("aria-current", "false");
         }
     });
-	  //const socialinks = wrapper.findAll(".footerbar a.v-icon");
-    expect(socialinks.length).toBe(3);
-  });
-/*
-  test("should render the navigation links", () => {
-    const wrapper = mount(FooterBar,
-      {
-          props: {},
-          global: 
-        {
-            plugins: [vuetify, router],
-          }
-      });
-    const navigationLinks = wrapper.findAll(".footerbar a.v-btn");
-    expect(navigationLinks.length).toBe(3);
-  });
-
-  test("should render the navigation drawer", () => {
-    const wrapper = mount(FooterBar,
-      {
-          props: {},
-          global: 
-        {
-            plugins: [vuetify, router],
-          }
-      });
-    const drawer = wrapper.find(".footerbar .v-navigation-drawer");
-    expect(drawer.exists()).toBe(true);
-  });
-
-  test("should highlight the active button", () => {
-    const wrapper = mount(FooterBar,
-      {
-          props: {},
-          global: 
-        {
-            plugins: [vuetify, router],
-          }
-      });
     
-    const activeButton = wrapper.find(".footerbar a.v-btn:active");
-    expect(activeButton.exists()).toBe(true);
+    test("renders social icons with correct attributes", async () => {
+        const wrapper = mount(FooterBar,
+            {
+                props: {},
+                global:
+                {
+                    plugins: [vuetify, router],
+                }
+            });
+
+        const icons = wrapper.getAll("i.social-icon");
+        expect(icons.length).toBe(3);
+    });
+    
+    test("attributes icons are correct", async () => {
+        const wrapper = mount(FooterBar,
+            {
+                props: {},
+                global:
+                {
+                    plugins: [vuetify, router],
+                }
+            });
+
+        const iconLabels = ["Follow us on Twitter", "Connect with us on LinkedIn", "Discover our photos on Instagram"];
+        const icons = wrapper.getAll("i.social-icon");
+        for (let i = 0; i < 3; i++) {
+            expect(icons[i]).toHaveAttribute("aria-label", iconLabels[i]);
+        }
+    });
+    
+ 
+  test("renders copyright text with the current year", async () => {
+    const wrapper = mount(FooterBar,
+        {
+            props: {},
+            global:
+            {
+                plugins: [vuetify, router],
+            }
+        });
+
+    const copyright = wrapper.get("span.copyright");
+    const currentYear = new Date().getFullYear();
+
+    expect(copyright).toHaveText(`© Copyright ${currentYear} - AccessAbility`);
   });
 
-  test("should toggle the drawer when menu icon is clicked", async () => {
+  test("applies link highlighting for active route", async () => {
+    const router = {
+      currentRoute: {
+        value: { name: "terms-of-use" }, 
+      },
+    };
     const wrapper = mount(FooterBar,
-      {
-          props: {},
-          global: 
         {
-            plugins: [vuetify, router],
-          }
-      });
-    const menuIcon = wrapper.find(".footerbar .v-app-bar-nav-icon");
-    await menuIcon.trigger("click");
-    expect(wrapper.vm.drawer).toBe(true);
+            props: {},
+            global:
+            {
+                plugins: [vuetify, router],
+            }
+        });
+
+    const activeLink = wrapper.get("a.link-content.active-button");
+    expect(activeLink).not.toBeNull();
   });
-*/
 });
