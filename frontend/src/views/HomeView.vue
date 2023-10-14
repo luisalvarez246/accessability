@@ -1,7 +1,7 @@
 <template>
-  <v-container height="250" width="100%" class="hero_section d-flex justify-center pb-0" color="mainbackground"
+  <v-container height="auto" width="100%" class="hero_section d-flex justify-center pb-0" color="mainbackground"
     rounded="lg">
-    <v-img src="../assets/images/hero.jpg" alt="" cover max-width="1140" max-height="250">
+    <v-img src="../assets/images/hero.avif" lazy-src="../assets/images/hero.avif" alt="" cover max-width="1140" max-height="290">
       <div class="title">
         <h1 class="underline pl-4">Welcome to AccessAbility</h1>
       </div>
