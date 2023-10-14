@@ -2,17 +2,57 @@
 import Card from "../components/Card.vue";
 import ApiConnection from "../services/ApiConnection";
 import { ref, onBeforeMount } from 'vue'
+import { useRoute } from "vue-router";
+import { useSearchStore } from "../store/searchStore";
 
 const stores = ref([])
+const route = useRoute();
+const searchStore = useSearchStore();
+const city = route.params.city;
+const type = route.params.type;
+const categories = route.params.categories;
 
-const getStores = async () => {
-    let response = await ApiConnection.getAllStores()
-    stores.value = response.data
-    return stores.value
+const hasBeenSearched = (newSearch) =>
+{
+	let searchHistory;
+
+	searchHistory = searchStore.getSearchHistory;
+	for (const search of searchHistory)
+	{
+		if (search.localeCompare(newSearch) === 0)
+			return (true);
+	}
+	return (false);
 }
 
-onBeforeMount(() => {
-    getStores()
+const queryStores = async () =>
+{
+	let response;
+	let	newSearch;
+	let searchIndex;
+	
+	newSearch = city.concat(",", type, ",", categories);
+	if (searchStore.getSearchHistory.length !== 0 && hasBeenSearched(newSearch))
+	{
+		console.log('enters cache');
+		searchIndex = searchStore.getSearchHistory.indexOf(newSearch);
+		console.log(searchStore.getSearchResults[searchIndex]);
+		stores.value = searchStore.getSearchResults[searchIndex];
+	}
+	else
+	{
+		console.log('enters DB');
+		response = await ApiConnection.searchStores(city, type, categories);
+		searchStore.setSearchHistory(newSearch);
+		searchStore.setSearchResults(response.data);
+		console.log(response);
+		stores.value = response.data;
+	}
+}
+
+onBeforeMount(() => 
+{
+	queryStores();
 })
 </script>
 
