@@ -10,16 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-import java.text.Normalizer;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -33,8 +23,11 @@ public class StoreService {
 
     @Autowired
     ICharacteristicRepository iCharacteristicRepository;
+
+    @Autowired
+    ImageService    imageService;
+
     private final String storePath = System.getProperty("user.dir") + "/src/main/webapp/images";
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH_mm_ss");
 
     public String saveStore(StoreCreateRequest request, MultipartFile image)
     {
@@ -60,7 +53,7 @@ public class StoreService {
         return (ArrayList<Store>) iStoreRepository.findAll();
     }
 
-    public String deleteStoreById(long id, boolean isTest)
+    public String deleteStoreById(long id)
     {
         StringBuilder   deletedImages;
         if (iStoreRepository.existsById(id))
@@ -68,7 +61,7 @@ public class StoreService {
             try
             {
                 iStoreRepository.deleteById(id);
-                deletedImages = deleteUnusedImages(isTest);
+                deletedImages = imageService.deleteUnusedImages();
                 return ("Deleted store with ID: " + id + ", Deleted images: " + deletedImages);
             }
             catch (Exception error)
@@ -80,7 +73,7 @@ public class StoreService {
             return ("Not deleted, store with ID: " + id + "does not exist");
     }
 
-    public String updateStoreById(long id, StoreCreateRequest request, MultipartFile image, boolean isTest)
+    public String updateStoreById(long id, StoreCreateRequest request, MultipartFile image)
     {
         Store           updateStore = iStoreRepository.findById(id).orElse(null);
         StringBuilder   deletedImages;
@@ -90,7 +83,7 @@ public class StoreService {
             {
                 mapRequest(updateStore, request, image);
                 iStoreRepository.save(updateStore);
-                deletedImages = deleteUnusedImages(isTest);
+                deletedImages = imageService.deleteUnusedImages();
                 return ("Store updated: " + updateStore.getId() + ", Deleted images: " + deletedImages);
             }
             else
@@ -122,7 +115,7 @@ public class StoreService {
         store.setWeb(request.getWeb());
         store.setEmail(request.getEmail());
         store.setDescription(request.getDescription());
-        store.setImage(imageProcessing(image));
+        store.setImage(imageService.imageProcessing(image));
         selectedCharacteristics = iCharacteristicRepository.findAllById(request.getCharacteristicIds());
         store.setCharacteristic(new HashSet<>(selectedCharacteristics));
         store.setCategories(categoryLoad(selectedCharacteristics));
@@ -170,77 +163,8 @@ public class StoreService {
         return (types);
     }
 
-    public String imageProcessing(MultipartFile image)
-    {
-        String  originalFileName;
-        String  extension;
-        String  fileNameWithoutExtension;
-        String  fileName;
-
-        if ((image != null) && (!image.isEmpty()))
-        {
-            try
-            {
-                originalFileName = image.getOriginalFilename();
-                extension = originalFileName.substring(originalFileName.lastIndexOf('.'));
-                fileNameWithoutExtension = originalFileName.substring(0, originalFileName.lastIndexOf('.'));
-                fileName = fileNameWithoutExtension + formatImageName() + extension;
-                Files.copy(image.getInputStream(), Path.of(storePath, fileName), StandardCopyOption.REPLACE_EXISTING);
-            }
-            catch (Exception error)
-            {
-                throw new RuntimeException("Error image could not be saved: " + error.getMessage());
-            }
-        }
-        else
-            fileName = "default.png";
-        return (fileName);
-    }
-
-    public StringBuilder deleteUnusedImages(boolean isTest) throws IOException
-    {
-        List<Store>         storeList;
-        List<String>        imageList;
-        File                directory;
-        File[]              files;
-        String              normalizedFileNames;
-        StringBuilder       deletedImages;
-
-        if (isTest)
-            return (null);
-        storeList = iStoreRepository.findAll();
-        imageList = storeList.stream()
-                .map(store -> Normalizer.normalize(store.getImage(), Normalizer.Form.NFD))
-                .distinct()
-                .collect(Collectors.toList());
-        directory = new File(storePath);
-        files = directory.listFiles();
-        deletedImages = new StringBuilder();
-        for (File file : files)
-        {
-            normalizedFileNames = Normalizer.normalize(file.getName(), Normalizer.Form.NFD);
-            if ((!imageList.contains(normalizedFileNames)) && (!normalizedFileNames.equals("default.png")))
-            {
-                deletedImages.append(file.getName()).append(" ");
-                Files.delete(Path.of(storePath, file.getName()));
-            }
-        }
-        return (deletedImages);
-    }
-
     public ArrayList<Store> searchStores(String city, Type type, String categories)
     {
         return (iStoreRepository.searchStores(city, type, categories));
-    }
-
-    public String formatImageName()
-    {
-        String timestamp;
-        Instant instant = Instant.now();
-        LocalDateTime localDateTime = instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH_mm_ss");
-
-        timestamp = formatter.format(localDateTime);
-        return (timestamp);
     }
 }
