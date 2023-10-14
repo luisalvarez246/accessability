@@ -28,7 +28,7 @@
   <script setup>
   import Card from "../components/Card.vue";
   import ApiConnection from "../services/ApiConnection";
-  import { ref, onBeforeMount, computed, watch } from 'vue';
+  import { ref, onBeforeMount, computed } from 'vue';
   import { useRoute } from "vue-router";
   import { useSearchStore } from "../store/searchStore";
   
