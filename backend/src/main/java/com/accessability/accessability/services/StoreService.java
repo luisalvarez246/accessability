@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -137,30 +138,27 @@ public class StoreService {
         return (iStoreRepository.findByCharacteristicId(characteristicId));
     }
 
-    public ArrayList<String> getCitiesInStore()
+    public <T> List<T> getFieldValuesInStore(Function<Store, T> fieldMapper)
     {
-        ArrayList<Store>    stores;
-        ArrayList<String>   cities;
+        List<Store> stores;
+        List<T>     field;
 
-        stores = (ArrayList<Store>) iStoreRepository.findAll();
-        cities = (ArrayList<String>) stores.stream()
-                    .map(Store::getCity)
-                    .distinct()
-                    .collect(Collectors.toList());
-        return (cities);
+        stores = iStoreRepository.findAll();
+        field = stores.stream()
+                .map(fieldMapper)
+                .distinct()
+                .collect(Collectors.toList());
+        return (field);
     }
 
-    public ArrayList<Type> getTypesInStore()
+    public List<String> getCitiesInStore()
     {
-        ArrayList<Store>    stores;
-        ArrayList<Type>   types;
+        return (getFieldValuesInStore(Store::getCity));
+    }
 
-        stores = (ArrayList<Store>) iStoreRepository.findAll();
-        types = (ArrayList<Type>) stores.stream()
-                    .map(Store::getType)
-                    .distinct()
-                    .collect(Collectors.toList());
-        return (types);
+    public List<Type> getTypesInStore()
+    {
+        return (getFieldValuesInStore(Store::getType));
     }
 
     public ArrayList<Store> searchStores(String city, Type type, String categories)
