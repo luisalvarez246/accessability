@@ -16,10 +16,10 @@
 			<v-col cols="12" xs="12" sm="12" md="12" lg="8" xl="8">
 			  <v-row>
 				<v-col v-for="author in authors" :key="author.id" cols="6" sm="4" lg="4">
-				  <v-card-item class="text-center justify-center align-center" color="cardbackground1">
+				  <v-card-item class="team_members_item text-center justify-center align-center" color="cardbackground1">
 					<v-img :lazy-src="author.photo" :src="author.photo" :alt="author.name + ' ' + 'photo'" :width="120"
 					  class="zoom-effect" />
-					<v-card-title class="team_members text-wrap pt-2">{{
+					<v-card-title class="team_members_title text-wrap pt-2">{{
 					  author.name
 					}}</v-card-title>
 				  </v-card-item>
