@@ -2,6 +2,7 @@ package com.accessability.accessability.services;
 
 import com.accessability.accessability.models.Store;
 import com.accessability.accessability.repositories.IStoreRepository;
+import com.accessability.accessability.repositories.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,7 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class ImageService
+public class ImageService implements ImageRepository
 {
     private final String storePath = System.getProperty("user.dir") + "/src/main/webapp/images";
 
@@ -29,20 +30,13 @@ public class ImageService
 
     public String imageProcessing(MultipartFile image)
     {
-        String  originalFileName;
-        String  extension;
-        String  fileNameWithoutExtension;
         String  fileName;
 
         if ((image != null) && (!image.isEmpty()))
         {
             try
             {
-                originalFileName = image.getOriginalFilename();
-                extension = originalFileName.substring(originalFileName.lastIndexOf('.'));
-                fileNameWithoutExtension = originalFileName.substring(0, originalFileName.lastIndexOf('.'));
-                fileName = fileNameWithoutExtension + formatImageName() + extension;
-                Files.copy(image.getInputStream(), Path.of(storePath, fileName), StandardCopyOption.REPLACE_EXISTING);
+                fileName = saveImage(image);
             }
             catch (Exception error)
             {
@@ -52,6 +46,26 @@ public class ImageService
         else
             fileName = "default.png";
         return (fileName);
+    }
+
+    public String saveImage(MultipartFile image) throws IOException
+    {
+        String  originalFileName;
+        String  extension;
+        String  fileNameWithoutExtension;
+        String  fileName;
+
+        originalFileName = image.getOriginalFilename();
+        extension = originalFileName.substring(originalFileName.lastIndexOf('.'));
+        fileNameWithoutExtension = originalFileName.substring(0, originalFileName.lastIndexOf('.'));
+        fileName = fileNameWithoutExtension + formatImageName() + extension;
+        copyImageFile(image, fileName);
+        return (fileName);
+    }
+
+    public void copyImageFile(MultipartFile image, String fileName) throws IOException
+    {
+        Files.copy(image.getInputStream(), Path.of(storePath, fileName), StandardCopyOption.REPLACE_EXISTING);
     }
 
     public String formatImageName()
