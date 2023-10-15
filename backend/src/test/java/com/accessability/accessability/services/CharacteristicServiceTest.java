@@ -72,7 +72,7 @@ class CharacteristicServiceTest {
         characteristicList.add(characteristic_2);
         when(characteristicRepository.findAll()).thenReturn(characteristicList);
 
-        ArrayList<Characteristic> characteristicListExpected = characteristicService.getAllCharacteristics();
+        List<Characteristic> characteristicListExpected = characteristicService.getAllCharacteristics();
 
         assertEquals(characteristicListExpected, characteristicList);
 
