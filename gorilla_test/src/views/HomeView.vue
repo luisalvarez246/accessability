@@ -66,8 +66,8 @@
 				<v-icon size="48" color="cardbackground1">
 				  {{ item.icon }}
 				</v-icon>
-				<v-checkbox :label="item.label" color="cardbackground1" aria-checked="false"
-				  class="d-flex align-center font-weight-bold text-cardbackground1"></v-checkbox>
+				<v-checkbox :label="item.label" type="checkbox" color="cardbackground1" aria-checked="false"
+				  class="v-checkbox d-flex align-center font-weight-bold text-cardbackground1"></v-checkbox>
 			  </v-col>
 			</v-row>
 		  </v-card-item>

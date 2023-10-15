@@ -69,32 +69,32 @@
 	{
 	  id: 1,
 	  name: "Carmen",
-	  photo: "../public/aboutus/Carmen.jpg",
+	  photo: "aboutus/Carmen.jpg",
 	},
 	{
 	  id: 2,
 	  name: "César",
-	  photo: "../public/aboutus/César.jpg",
+	  photo: "aboutus/César.jpg",
 	},
 	{
 	  id: 3,
 	  name: "Leolo",
-	  photo: "../public/aboutus/Leolo.jpg",
+	  photo: "aboutus/Leolo.jpg",
 	},
 	{
 	  id: 4,
 	  name: "Luis",
-	  photo: "../public/aboutus/Luis.png",
+	  photo: "aboutus/Luis.png",
 	},
 	{
 	  id: 5,
 	  name: "Miguel",
-	  photo: "../public/aboutus/Miguel.jpg",
+	  photo: "aboutus/Miguel.jpg",
 	},
 	{
 	  id: 6,
 	  name: "Sonia",
-	  photo: "../public/aboutus/Sonia.jpg",
+	  photo: "aboutus/Sonia.jpg",
 	},
   ]);
   
