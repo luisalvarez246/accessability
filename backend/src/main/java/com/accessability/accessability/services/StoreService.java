@@ -69,7 +69,7 @@ public class StoreService {
             }
         }
         else
-            return ("Not deleted, store with ID: " + id + "does not exist");
+            return ("Not deleted, store with ID: " + id + " does not exist");
     }
 
     public String updateStoreById(long id, StoreCreateRequest request, MultipartFile image)
