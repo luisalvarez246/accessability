@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useLaunchStore } from '../store/launchStore'
+import ApiConnection from '../services/ApiConnection'
 import HomeView from '../views/HomeView.vue'
 import AccessibilityView from '../views/AccessibilityView.vue'
 import AboutUsView from '../views/AboutUsView.vue'
@@ -6,6 +8,16 @@ import RegisterView from '../views/RegisterView.vue'
 import TermsOfUseView from '../views/TermsOfUseView.vue'
 import PrivacyPolicyView from '../views/PrivacyPolicyView.vue'
 import CookiesView from '../views/CookiesView.vue'
+import SearchView from '../views/SearchView.vue'
+
+const	loadSearchData = async () =>
+{
+	const typesInStore = await ApiConnection.getTypesInStore()
+	const citiesInStore = await ApiConnection.getCitiesInStore();
+
+	useLaunchStore().setTypes(typesInStore.data.sort());
+	useLaunchStore().setCities(citiesInStore.data.sort());
+}
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,6 +26,7 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
+	  beforeEnter: [loadSearchData],
     },
     {
       path: '/accessibility',
@@ -44,6 +57,11 @@ const router = createRouter({
       path: '/cookies',
       name: 'cookies',
       component: CookiesView,
+    },
+    {
+      path: '/search/:city?/:type?/:categories?',
+      name: 'search',
+      component: SearchView,
     }
   ]
 })

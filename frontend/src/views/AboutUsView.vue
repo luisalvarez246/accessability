@@ -1,23 +1,27 @@
 <template>
   <v-container fluid max-width="1140" class="pt-0 mx-auto">
-    <v-container height="250" width="100%" class="hero_section d-flex justify-center pb-0 mb-0" color="mainbackground"
+    <v-container height="auto" width="100%" class="hero_section d-flex justify-center pb-0 mb-0" color="mainbackground"
       rounded="lg">
-      <v-img src="../assets/images/hero.jpg" alt="" cover max-width="1140" max-height="250">
+      <v-img lazy-src="../assets/images/aboutus.avif" src="../assets/images/aboutus.avif" alt="" cover max-width="1140"
+        max-height="450">
         <div class="title">
           <h2 class="underline pl-4">About Us</h2>
         </div>
       </v-img>
     </v-container>
-    <v-container fluid class="pt-0">
-      <v-card class="team_members mx-auto" max-width="1140" color="cardbackground1">
+    <v-container class="pt-0">
+      <v-card class="team_members mx-auto mb-8" max-width="1140" color="cardbackground1">
         <v-card-title>The team</v-card-title>
         <v-row justify="center">
           <v-col cols="12" xs="12" sm="12" md="12" lg="8" xl="8">
             <v-row>
               <v-col v-for="author in authors" :key="author.id" cols="6" sm="4" lg="4">
                 <v-card-item class="text-center justify-center align-center" color="cardbackground1">
-                  <v-img :src="author.photo" :alt="author.name + ' ' + 'photo'" :width="120" />
-                  <v-card-title class="team_members text-wrap pt-2">{{ author.name }}</v-card-title>
+                  <v-img :lazy-src="author.photo" :src="author.photo" :alt="author.name + ' ' + 'photo'" :width="120"
+                    class="zoom-effect" />
+                  <v-card-title class="team_members text-wrap pt-2">{{
+                    author.name
+                  }}</v-card-title>
                 </v-card-item>
               </v-col>
             </v-row>
@@ -25,37 +29,40 @@
         </v-row>
       </v-card>
       <v-card class="mt-4 mx-auto" max-width="1140" color="cardbackground1">
-        <v-card-title class="w-75 mx-auto">
-          Contact
-        </v-card-title>
+        <v-card-title> Contact </v-card-title>
         <v-divider></v-divider>
-        <v-card-item class="w-75 mx-auto">
-          <v-form role="form" class="pt-4">
-            <v-text-field label="Fullname" id="input-9" bg-color="white" color="navbar" base-color="navbar" clearable
-              :rules="[rules.required]" type="input" :role="'textbox'"></v-text-field>
-            <v-text-field label="Email" id="input-11" bg-color="white" color="navbar" base-color="navbar" clearable
-              :rules="[rules.required]" type="input" :role="'textbox'"></v-text-field>
-          </v-form>
-          <v-textarea id="send-us-your-thoughts" name="send-us-your-thoughts" type="text" label="Send us your thoughts"
-            auto-grow bg-color="white"></v-textarea>
-        </v-card-item>
-        <v-card-actions class="w-100 px-4 mx-auto d-flex justify-center" align="center">
-          <v-btn @click="submitForm" class="submit_btn text-none mb-4" rounded="xl" :block="xs" :size="xs ? '' : 'x-large'"
-            :height="xs ? 52 : ''" :class="{ 'text-h6': xs }" color="navbar">
-            Submit
-          </v-btn>
-          <v-snackbar v-model="snackbar" color="success">
-            Form send succesfully
-          </v-snackbar>
-        </v-card-actions>
+        <v-sheet class="mx-auto mb-10 px-10" width="90%" color="cardbackground2">
+          <div class="mx-auto pt-3">
+            <v-form ref="form" role="form" class="pt-4" @submit.prevent="submit">
+              <v-text-field v-model="name" :counter="2" :rules="nameRules" label="Full Name" id="input-9" type="text"
+                autocomplete="name" aria-required="true" required bg-color="white" color="navbar" base-color="navbar"
+                clearable></v-text-field>
+              <v-text-field v-model="email" :rules="emailRules" id="input-11" label="Email" type="text"
+                autocomplete="email" aria-required="true" required bg-color="white" color="navbar" base-color="navbar"
+                clearable></v-text-field>
+              <v-textarea v-model="thoughts" :rules="[rules.required]" id="send-us-your-thoughts"
+                name="send-us-your-thoughts" type="text" label="Send us your thoughts" aria-required="true" auto-grow
+                bg-color="white"></v-textarea>
+            </v-form>
+            <v-card-actions class="w-100 d-flex justify-center flex-sm-row flex-column">
+              <v-btn class="reset_btn text-none mb-4 px-6 mx-auto mx-sm-10" @click="cancel" :size="xs ? '' : 'x-large'"
+                :height="xs ? 52 : ''" :class="{ 'text-h6': xs }" rounded="xl" color="error">
+                Cancel
+              </v-btn>
+              <v-btn class="submit_btn mb-4 text-none px-6 mx-auto mx-sm-10" @click.prevent="submit" :size="xs ? '' : 'x-large'"
+                :height="xs ? 52 : ''" :class="{ 'text-h6': xs }" rounded="xl" color="navbar">
+                Submit
+              </v-btn>
+            </v-card-actions>
+          </div>
+        </v-sheet>
       </v-card>
     </v-container>
   </v-container>
 </template>
-  
+	
 <script setup>
 import { ref } from 'vue';
-import axios from 'axios';
 import { useDisplay } from "vuetify";
 
 const authors = ref([
@@ -91,56 +98,60 @@ const authors = ref([
   },
 ]);
 
+const nameRules = ref([
+  v => !!v || 'Name is required',
+  v => (v && v.length >= 2) || 'Name needs to be at least 2 characters',
+]);
 const rules = {
   required: value => !!value || 'Field is required',
 };
 
+const emailRules = ref([
+  v => !!v || 'Email is required',
+  v => !v || /^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(v) || 'Must be a valid e-mail'
+])
+
 const { xs } = useDisplay();
 
-const formData = ref({
-  fullname: '',
-  email: '',
-  thoughts: ''
-});
+const form = ref();
 
-const snackbar = ref(false);
-const snackbarMessage = ref('');
-const snackbarColor = ref('');
+const name = ref('');
+const email = ref('');
+const thoughts = ref('');
 
-const submitForm = () => {
-  axios.post('/api/submit-form', formData.value)
-    .then(response => {
-      console.log(response.data);
-      showSnackbar('Form submitted successfully', 'success');
-    })
-    .catch(error => {
-      console.error(error);
-      showSnackbar('Error processing the form', 'error');
-    });
-};
+async function submit() {
+  console.log("Datos del formulario:", { name: name.value, email: email.value, thoughts: thoughts.value });
+  const { valid } = await form.value.validate();
 
-const showSnackbar = (message, color) => {
-  snackbarMessage.value = message;
-  snackbarColor.value = color;
-  snackbar.value = true;
-};
+  if (valid) {
+    alert("Form is valid");
+    form.value.reset();
+  } else {
+    alert("Form is not valid");
+  }
+}
+function cancel() {
+  form.value.reset()
+}
 </script>
 <style scoped>
 .title {
   position: relative;
+  font-size: 1.2rem;
   color: #59029f;
+  text-wrap: wrap;
 }
 
 div.title {
   background-color: #fed636;
   width: 25.5rem;
-  height: 3.5rem;
+  height: auto;
   bottom: 0;
   content: "";
   display: block;
   left: 0;
   position: absolute;
-  padding-top: .25rem;
+  padding: 0 1rem .5rem .25rem;
 }
 
 .underline {
@@ -149,7 +160,7 @@ div.title {
 
 h2.underline::after {
   background: #14cac9;
-  bottom: 4;
+  bottom: 0;
   content: "";
   display: block;
   height: 0.25rem;
@@ -164,11 +175,24 @@ h2.underline::after {
 }
 
 .v-card-title.team_members {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 500;
 }
 
-.v-btn.submit_btn {
+.zoom-effect {
+  transition: transform 0.3s ease-in-out;
+}
+
+.zoom-effect:hover {
+  transform: scale(1.1);
+}
+
+.v-btn.reset_btn {
   background: #fed636;
 }
+
+.v-btn.submit_btn {
+  background: #14cac9;
+}
 </style>
+  

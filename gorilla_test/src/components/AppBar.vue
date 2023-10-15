@@ -19,7 +19,7 @@
         <v-btn v-for="(item, index) in navItems" :key="index" :to="item.to" @click="goToPage(item.to)" class="navButtons" :class="{
           'active-button': isActiveButton(item.to),
           'text-none': true,
-          'font-weight-regular': true,
+          'font-weight-semibold': true,
           'mr-6': true,
           'px-2': smAndDown,
           'px-4': !smAndDown,
