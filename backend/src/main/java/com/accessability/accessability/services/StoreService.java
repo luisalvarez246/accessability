@@ -45,7 +45,7 @@ public class StoreService {
     }
 
     public Store getStoreById(long id) {
-        return (Store) iStoreRepository.findById(id).orElse(null);
+        return (iStoreRepository.findById(id).orElse(null));
     }
 
     public List<Store> getAllStores() {
