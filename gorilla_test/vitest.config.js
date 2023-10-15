@@ -15,7 +15,8 @@ export default mergeConfig(
 		  deps: {
 			inline: ['vuetify'],
 		  }, 
-	  }
+	  },
+      plugins: ['@vitejs/plugin-vue'],
     }
   })
 )
