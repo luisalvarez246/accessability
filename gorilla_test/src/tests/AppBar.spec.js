@@ -21,15 +21,15 @@ describe("AppBar.vue", () => {
   });
   
   test("should render the logo", () => {
-	const wrapper = mount(AppBar,
-	{
-    	props: {},
-    	global: 
-		{
-    	  plugins: [vuetify, router],
-    	}
-	});
-	const logo = wrapper.find("img[alt='AccessAbility Logo']");
+    const wrapper = mount(AppBar,
+    {
+        props: {},
+        global: 
+      {
+          plugins: [vuetify, router],
+        }
+    });
+	  const logo = wrapper.find("img[alt='AccessAbility Logo']");
     expect(logo.exists()).toBe(true);
   });
 

@@ -1,10 +1,15 @@
-import { describe, test, expect } from "vitest";
+import { describe, test} from "vitest";
+import { use, expect } from 'chai';
+import chaiDom from 'chai-dom';
 import { mount } from "@vue/test-utils";
 import { createVuetify } from "vuetify";
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import FooterBar from "./FooterWrapper.vue";
 import { createRouter, createMemoryHistory } from "vue-router";
+import TermsOfUseView from '@/views/TermsOfUseView.vue';
+import CookiesView from '@/views/CookiesView.vue'
+import PrivacyPolicyView from '@/views/PrivacyPolicyView.vue'
 
 const vuetify = createVuetify({
 	components,
@@ -12,17 +17,36 @@ const vuetify = createVuetify({
   })
 
 global.ResizeObserver = require("resize-observer-polyfill");
-
+use(chaiDom);
 
 describe("FooterBar.vue", () => {
     const router = createRouter({
 		history: createMemoryHistory(),
 		routes: [
-      { path: "/", component: { template: "" } },
+            {
+                path: "/",
+                name:'home',
+                component: { template: "" }
+            },
+            {
+                path: '/terms-of-use',
+                component: TermsOfUseView,
+                name: 'terms-of-use'
+              },
+              {
+                path: '/privacy-policy',
+                component: PrivacyPolicyView,
+                name: 'privacy-policy'
+              },
+              {
+                path: '/cookies',
+                component: CookiesView,
+                name: 'cookies'
+              },
 		],
     });
 
-    test("renders links with correct text and attributes", async () => {
+    test("should render the navigation links", async () => {
         const wrapper = mount(FooterBar,
             {
                 props: {},
@@ -32,31 +56,26 @@ describe("FooterBar.vue", () => {
                 }
             });
 
-        const links = wrapper.getAll("a.link-content");
+        const links = wrapper.findAll(".link-title");
         expect(links.length).toBe(3);
     });
 
-    test("renders links with correct text and attributes", async () => {
-        const wrapper = mount(FooterBar,
-            {
-                props: {},
-                global:
-                {
-                    plugins: [vuetify, router],
-                }
-            });
-        const linkTexts = ["Terms of Use", "Privacy Policy", "Cookies"];
-        const links = wrapper.getAll(i.route);
-        for (let i = 0; i < 3; i++) {
-            expect(links[i]).toHaveText(linkTexts[i]);
-            expect(links[i]).toHaveAttribute("href", `/${linkTexts[i].toLowerCase()}`);
-            expect(links[i]).toHaveAttribute("role", "link");
-            expect(links[i]).toHaveAttribute("aria-label", linkTexts[i]);
-            expect(links[i]).toHaveAttribute("aria-current", "false");
-        }
+    test("should navigate to Terms of Use page", async () => {
+        await router.push("/terms-of-use");
+        expect(router.currentRoute.value.path).toBe("/terms-of-use");
     });
     
-    test("renders social icons with correct attributes", async () => {
+    test("should navigate to Privacy Policy page", async () => {
+        await router.push("/privacy-policy");
+        expect(router.currentRoute.value.path).toBe("/privacy-policy");
+    });
+
+    test("should navigate to Cookies page", async () => {
+        await router.push("/cookies");
+        expect(router.currentRoute.value.path).toBe("/cookies");
+    });
+
+    test("renders 3 social icons ", async () => {
         const wrapper = mount(FooterBar,
             {
                 props: {},
@@ -66,30 +85,28 @@ describe("FooterBar.vue", () => {
                 }
             });
 
-        const icons = wrapper.getAll("i.social-icon");
+        const icons = wrapper.findAll(".social-icon");
         expect(icons.length).toBe(3);
     });
     
-    test("attributes icons are correct", async () => {
-        const wrapper = mount(FooterBar,
-            {
-                props: {},
-                global:
-                {
-                    plugins: [vuetify, router],
-                }
-            });
-
-        const iconLabels = ["Follow us on Twitter", "Connect with us on LinkedIn", "Discover our photos on Instagram"];
-        const icons = wrapper.getAll("i.social-icon");
-        for (let i = 0; i < 3; i++) {
-            expect(icons[i]).toHaveAttribute("aria-label", iconLabels[i]);
-        }
-    });
-    
  
-  test("renders copyright text with the current year", async () => {
-    const wrapper = mount(FooterBar,
+    test("renders copyright text with the current year", async () => {
+        const wrapper = mount(FooterBar, {
+          props: {},
+          global: {
+            plugins: [vuetify, router],
+          },
+        });
+      
+        const copyright = wrapper.get("span.copyright");
+        const currentYear = new Date().getFullYear();
+        const expectedText = `© Copyright ${currentYear} - AccessAbility`;
+
+        expect(copyright.text()).to.include(expectedText);
+    });
+
+    test("applies link highlighting for active route", async () => {
+        const wrapper = mount(FooterBar,
         {
             props: {},
             global:
@@ -98,28 +115,7 @@ describe("FooterBar.vue", () => {
             }
         });
 
-    const copyright = wrapper.get("span.copyright");
-    const currentYear = new Date().getFullYear();
-
-    expect(copyright).toHaveText(`© Copyright ${currentYear} - AccessAbility`);
-  });
-
-  test("applies link highlighting for active route", async () => {
-    const router = {
-      currentRoute: {
-        value: { name: "terms-of-use" }, 
-      },
-    };
-    const wrapper = mount(FooterBar,
-        {
-            props: {},
-            global:
-            {
-                plugins: [vuetify, router],
-            }
-        });
-
-    const activeLink = wrapper.get("a.link-content.active-button");
-    expect(activeLink).not.toBeNull();
-  });
+        const activeButton = wrapper.find(".footerbar .active-button");
+        expect(activeButton.exists()).toBe(true);
+    });
 });

@@ -28,8 +28,7 @@
 		</v-row>
 		<v-row no-gutters>
 			<v-col class="text-right pl-16 pr-4" cols="12">
-			<span class="copyright">
-				© Copyright {{ new Date().getFullYear() }} - AccessAbility
+			<span class="copyright">© Copyright {{ new Date().getFullYear() }} - AccessAbility
 			</span>
 			</v-col>
 		</v-row>
@@ -59,7 +58,7 @@ return socialLabels[icon] || "Social media icons";
 
 const router = useRouter();
 
-const isLinkActive = (route) => router.name === route;
+const isLinkActive = (route) => router.currentRoute.value.name === route;
 
 </script>
 
