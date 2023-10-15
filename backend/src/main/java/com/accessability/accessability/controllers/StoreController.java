@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/stores")
@@ -19,7 +20,7 @@ public class StoreController {
     StoreService storeService;
 
     @GetMapping
-    public ArrayList<Store> getAllStores() {
+    public List<Store> getAllStores() {
         return storeService.getAllStores();
     }
 
@@ -46,19 +47,19 @@ public class StoreController {
     }
 
     @GetMapping(path = "/cities")
-    public ResponseEntity<ArrayList<String>> getCitiesInStore()
+    public ResponseEntity<List<String>> getCitiesInStore()
     {
        return (ResponseEntity.ok(storeService.getCitiesInStore()));
     }
 
     @GetMapping(path = "/types")
-    public ResponseEntity<ArrayList<Type>> getTypesInStore()
+    public ResponseEntity<List<Type>> getTypesInStore()
     {
        return (ResponseEntity.ok(storeService.getTypesInStore()));
     }
 
     @GetMapping(path = "/search")
-    public ResponseEntity<ArrayList<Store>> searchStores (
+    public ResponseEntity<List<Store>> searchStores (
             @RequestParam(value = "city", required = false) String city,
             @RequestParam(value = "type", required = false) Type type,
             @RequestParam(value = "categories", required = false) String categories

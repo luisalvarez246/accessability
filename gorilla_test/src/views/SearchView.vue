@@ -42,23 +42,28 @@
   const currentPage = ref(1);
   const itemsPerPage = 4;
   
-  const hasBeenSearched = (newSearch) => {
+  const hasBeenSearched = (newSearch) => 
+  {
 	const searchHistory = searchStore.getSearchHistory;
 	return searchHistory.includes(newSearch);
   };
   
-  const queryStores = async () => {
+  const queryStores = async () => 
+  {
 	let response;
 	const newSearch = `${city},${type},${categories}`;
 	
-	if (searchStore.getSearchHistory.length !== 0 && hasBeenSearched(newSearch)) {
-	  const searchIndex = searchStore.getSearchHistory.indexOf(newSearch);
-	  stores.value = searchStore.getSearchResults[searchIndex];
-	} else {
-	  response = await ApiConnection.searchStores(city, type, categories);
-	  searchStore.setSearchHistory(newSearch);
-	  searchStore.setSearchResults(response.data);
-	  stores.value = response.data;
+	if (searchStore.getSearchHistory.length !== 0 && hasBeenSearched(newSearch)) 
+	{
+		const searchIndex = searchStore.getSearchHistory.indexOf(newSearch);
+		stores.value = searchStore.getSearchResults[searchIndex];
+	} 
+	else 
+	{
+		response = await ApiConnection.searchStores(city, type, categories);
+		searchStore.setSearchHistory(newSearch);
+		searchStore.setSearchResults(response.data);
+		stores.value = response.data;
 	}
   };
   
