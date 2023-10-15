@@ -137,6 +137,7 @@ function cancel() {
 <style scoped>
 .title {
   position: relative;
+  font-size: 1.2rem;
   color: #59029f;
   text-wrap: wrap;
 }
