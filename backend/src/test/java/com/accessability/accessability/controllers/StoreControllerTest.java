@@ -14,11 +14,12 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.AdditionalMatchers.not;
 import static org.mockito.Mockito.*;
-/*
+
 @SpringBootTest
 class StoreControllerTest
 {
@@ -61,7 +62,6 @@ class StoreControllerTest
         payload.setPhone("0000000");
         payload.setWeb("store.com");
         payload.setEmail("store@gmail.com");
-        //payload.setImage("store.png");
         payload.setCharacteristicIds(Arrays.asList(1L, 5L, 7L, 8L));
     }
 
@@ -70,7 +70,7 @@ class StoreControllerTest
     void getAllStores()
     {
         //arrange
-        ArrayList<Store>    response;
+        List<Store> response;
 
         when(storeService.getAllStores()).thenReturn(storeList);
         //act
@@ -85,11 +85,11 @@ class StoreControllerTest
     {
         //arrange
         String  response;
-        when(storeService.saveStore(any(StoreCreateRequest.class))).thenReturn("Added new Store");
+        when(storeService.saveStore(any(StoreCreateRequest.class), any())).thenReturn("Added new Store");
         //act
-        response = storeController.saveStore(payload);
+        response = storeController.saveStore(payload, null);
         //assert
-        verify(storeService, times(1)).saveStore(payload);
+        verify(storeService, times(1)).saveStore(any(StoreCreateRequest.class), any());
         assertNotNull(response);
         assertEquals("Added new Store", response);
     }
@@ -217,7 +217,7 @@ class StoreControllerTest
         @BeforeEach
         void setup()
         {
-           when(storeService.updateStoreById(any(Long.class), any(StoreCreateRequest.class))).thenAnswer(invocation ->
+           when(storeService.updateStoreById(any(Long.class), any(StoreCreateRequest.class), any())).thenAnswer(invocation ->
            {
                 Long argument = invocation.getArgument(0);
                 if (argument != null && (argument < 1L || argument > 2L))
@@ -239,14 +239,14 @@ class StoreControllerTest
             //arrange
             String  updatedStore;
             //act1
-            updatedStore = storeController.updateStoreById(3L, payload);
+            updatedStore = storeController.updateStoreById(3L, payload, null);
             //assert1
-            verify(storeService, times(1)).updateStoreById(3L, payload);
+            verify(storeService, times(1)).updateStoreById(3L, payload, null);
             assertEquals("Store not updated: Record with ID :3does not exist", updatedStore);
             //act2
-            updatedStore = storeController.updateStoreById(10L, payload);
+            updatedStore = storeController.updateStoreById(10L, payload, null);
             //assert2
-            verify(storeService, times(1)).updateStoreById(10L, payload);
+            verify(storeService, times(1)).updateStoreById(10L, payload, null);
             assertEquals("Store not updated: Record with ID :10does not exist", updatedStore);
         }
 
@@ -256,18 +256,17 @@ class StoreControllerTest
             //arrange
             String  updatedStore;
             //act1
-            updatedStore = storeController.updateStoreById(1L, payload);
+            updatedStore = storeController.updateStoreById(1L, payload, null);
             //assert1
-            verify(storeService, times(1)).updateStoreById(1L, payload);
+            verify(storeService, times(1)).updateStoreById(1L, payload, null);
             assertNotNull(updatedStore);
             assertEquals("Store updated: 1", updatedStore);
             //act2
-            updatedStore = storeController.updateStoreById(2L, payload);
+            updatedStore = storeController.updateStoreById(2L, payload, null);
             //assert2
-            verify(storeService, times(1)).updateStoreById(2L, payload);
+            verify(storeService, times(1)).updateStoreById(2L, payload, null);
             assertNotNull(updatedStore);
             assertEquals("Store updated: 2", updatedStore);
         }
     }
 }
-*/
