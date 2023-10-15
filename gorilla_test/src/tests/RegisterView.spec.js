@@ -12,8 +12,6 @@ const vuetify = createVuetify({
   })
 global.ResizeObserver = require("resize-observer-polyfill");
 
-
-
 describe('RegisterView.vue', () => {
     const router = createRouter({
         history: createMemoryHistory(),
@@ -34,7 +32,7 @@ describe('RegisterView.vue', () => {
         });
 
         await wrapper.vm.$nextTick();
-        // Verifica si los campos del formulario están presentes
+
         expect(wrapper.find('#storeName').exists()).toBe(true);
         expect(wrapper.find('#phone').exists()).toBe(true);
         expect(wrapper.find('#address').exists()).toBe(true);
@@ -91,9 +89,6 @@ describe('RegisterView.vue', () => {
         const nameInput = wrapper.find('#storeName');
         await nameInput.setValue('My Store');
 
-        // Simula la selección de opciones en el formulario (v-select, v-checkbox, etc.)
-        // Para simular la selección en un v-select
-       
         const selectInput = wrapper.find("#city"); 
         await wrapper.vm.$nextTick();
 
