@@ -16,10 +16,10 @@
 			<v-col cols="12" xs="12" sm="12" md="12" lg="8" xl="8">
 			  <v-row>
 				<v-col v-for="author in authors" :key="author.id" cols="6" sm="4" lg="4">
-				  <v-card-item class="text-center justify-center align-center" color="cardbackground1">
+				  <v-card-item class="team_members_item text-center justify-center align-center" color="cardbackground1">
 					<v-img :lazy-src="author.photo" :src="author.photo" :alt="author.name + ' ' + 'photo'" :width="120"
 					  class="zoom-effect" />
-					<v-card-title class="team_members text-wrap pt-2">{{
+					<v-card-title class="team_members_title text-wrap pt-2">{{
 					  author.name
 					}}</v-card-title>
 				  </v-card-item>
@@ -69,32 +69,32 @@
 	{
 	  id: 1,
 	  name: "Carmen",
-	  photo: "../public/aboutus/Carmen.jpg",
+	  photo: "/aboutus/Carmen.jpg",
 	},
 	{
 	  id: 2,
 	  name: "César",
-	  photo: "../public/aboutus/César.jpg",
+	  photo: "/aboutus/César.jpg",
 	},
 	{
 	  id: 3,
 	  name: "Leolo",
-	  photo: "../public/aboutus/Leolo.jpg",
+	  photo: "/aboutus/Leolo.jpg",
 	},
 	{
 	  id: 4,
 	  name: "Luis",
-	  photo: "../public/aboutus/Luis.png",
+	  photo: "/aboutus/Luis.png",
 	},
 	{
 	  id: 5,
 	  name: "Miguel",
-	  photo: "../public/aboutus/Miguel.jpg",
+	  photo: "/aboutus/Miguel.jpg",
 	},
 	{
 	  id: 6,
 	  name: "Sonia",
-	  photo: "../public/aboutus/Sonia.jpg",
+	  photo: "/aboutus/Sonia.jpg",
 	},
   ]);
   

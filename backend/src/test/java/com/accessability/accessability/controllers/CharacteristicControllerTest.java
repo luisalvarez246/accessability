@@ -13,6 +13,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -53,7 +54,7 @@ class CharacteristicControllerTest
     void getAllCharacteristics()
     {
         //arrange
-        ArrayList<Characteristic>    response;
+        List<Characteristic> response;
 
         when(characteristicService.getAllCharacteristics()).thenReturn(characteristicList);
         //act

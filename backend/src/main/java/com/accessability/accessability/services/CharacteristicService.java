@@ -20,35 +20,42 @@ public class CharacteristicService {
     @Autowired
     StoreService                storeService;
 
-    public String saveCharacteristic(Characteristic characteristic) {
-        try{
+    public String saveCharacteristic(Characteristic characteristic)
+    {
+        try
+        {
             iCharacteristicRepository.save(characteristic);
-            return "Added new characteristic";
-        }catch(Exception error) {
-            return error.getMessage();
+            return ("Added new characteristic");
+        }
+        catch(Exception error)
+        {
+            return (error.getMessage());
         }
     }
 
     public Characteristic getCharacteristicById(long id) {
-        return (Characteristic) iCharacteristicRepository.findById(id).orElse(null);
+        return (iCharacteristicRepository.findById(id).orElse(null));
     }
 
-    public ArrayList<Characteristic> getAllCharacteristics() {
-        return (ArrayList<Characteristic>) iCharacteristicRepository.findAll();
+    public List<Characteristic> getAllCharacteristics() {
+        return (iCharacteristicRepository.findAll());
     }
 
     public String deleteCharacteristicById(long id) {
-        try{
+        try
+        {
             iCharacteristicRepository.deleteById(id);
-            return "Deleted characteristic" + id;
-        }catch(Exception error) {
-            return error.getMessage();
+            return ("Deleted characteristic" + id);
+        }
+        catch(Exception error)
+        {
+            return (error.getMessage());
         }
     }
 
     public String updateCharacteristicById(long id, Characteristic updateCharacteristic)
     {
-        ArrayList<Store>        storeList;
+        List<Store>        storeList;
         List<Long>              characteristicId;
         List<Characteristic>    characteristicList;
         StringBuilder           changedStores;
