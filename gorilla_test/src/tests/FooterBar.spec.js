@@ -3,7 +3,7 @@ import { mount } from "@vue/test-utils";
 import { createVuetify } from "vuetify";
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
-import FooterBar from "../components/FooterBar.vue";
+import FooterBar from "./FooterWrapper.vue";
 import { createRouter, createMemoryHistory } from "vue-router";
 
 const vuetify = createVuetify({
