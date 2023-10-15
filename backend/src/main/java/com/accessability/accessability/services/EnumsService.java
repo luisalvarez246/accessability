@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 @Service
 public class EnumsService implements IEnumRepository
 {
-    @Override
     public List<Type> getAllTypes()
     {
         Type[]      enumValues;
@@ -23,7 +22,7 @@ public class EnumsService implements IEnumRepository
         typeList = new ArrayList<>(Arrays.asList(enumValues));
         return (typeList);
     }
-    @Override
+
     public List<String> getAllCities()
     {
         City[]          enumValues;
