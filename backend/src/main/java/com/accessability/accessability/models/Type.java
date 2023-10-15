@@ -8,5 +8,6 @@ public enum Type {
     shops,
     clinic,
     cinema,
-    hairdresser
+    hairdresser,
+    cafeteria
 }
