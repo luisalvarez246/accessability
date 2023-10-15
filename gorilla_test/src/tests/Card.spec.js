@@ -63,7 +63,7 @@ describe("Card.vue", () => {
             plugins: [vuetify, router],
           },
         });
-        console.log(wrapper.html());
+       
         const img = wrapper.find(".v-img__img--contain");
         expect(img.exists()).toBe(true);
         expect(img.attributes("src")).toContain("default.png");
