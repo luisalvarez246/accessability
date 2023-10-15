@@ -2,6 +2,7 @@ package com.accessability.accessability.controllers;
 
 import com.accessability.accessability.models.Type;
 import com.accessability.accessability.repositories.IEnumRepository;
+import com.accessability.accessability.services.EnumsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,17 +18,17 @@ import java.util.List;
 public class EnumsController
 {
     @Autowired
-    IEnumRepository iEnumRepository;
+    EnumsService    enumsService;
 
     @GetMapping(path = "/type")
     public ResponseEntity<List<Type>> getAllTypes()
     {
-        return (ResponseEntity.ok(iEnumRepository.getAllTypes()));
+        return (ResponseEntity.ok(enumsService.getAllTypes()));
     }
 
     @GetMapping(path = "/cities")
     public ResponseEntity<List<String>> getAllCities()
     {
-        return (ResponseEntity.ok(iEnumRepository.getAllCities()));
+        return (ResponseEntity.ok(enumsService.getAllCities()));
     }
 }
