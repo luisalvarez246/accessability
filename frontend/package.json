@@ -1,37 +1,37 @@
 {
-  "name": "frontend",
+  "name": "gorilla_test",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "test": "vitest",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint . --fix --ignore-path .gitignore"
+    "test:unit": "vitest"
   },
   "dependencies": {
-    "@mdi/font": "7.0.96",
     "axios": "^1.5.1",
-    "core-js": "^3.29.0",
-    "pinia": "^2.0.0",
-    "roboto-fontface": "*",
-    "vee-validate": "^4.11.7",
-    "vue": "^3.2.0",
-    "vue-jest": "^5.0.0-alpha.10",
-    "vue-router": "^4.0.0",
+    "pinia": "^2.1.6",
+    "vee-validate": "^4.11.8",
+    "vite-plugin-vuetify": "^1.0.2",
+    "vue": "^3.3.4",
+    "vue-carousel": "^0.18.0",
+    "vue-router": "^4.2.4",
     "vue3-carousel": "^0.3.1",
-    "vuetify": "^3.0.0"
+    "vuetify": "^3.3.20",
+    "webpack-plugin-vuetify": "^2.0.1"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.0.0",
+    "@mdi/font": "^7.3.67",
+    "@vitejs/plugin-vue": "^4.3.4",
+    "@vitest/ui": "^0.34.6",
     "@vue/test-utils": "^2.4.1",
-    "eslint": "^8.37.0",
-    "eslint-plugin-vue": "^9.3.0",
+    "chai": "^4.3.10",
+    "chai-dom": "^1.11.0",
+    "jsdom": "^22.1.0",
     "resize-observer-polyfill": "^1.5.1",
-    "sass": "^1.60.0",
-    "unplugin-fonts": "^1.0.3",
-    "vite": "^4.2.0",
-    "vite-plugin-vuetify": "^1.0.0",
-    "vitest": "^0.34.6"
+    "vite": "^4.4.9",
+    "vitest": "^0.34.6",
+    "vue-loader": "^17.3.0",
+    "vue-template-compiler": "^2.7.14"
   }
 }

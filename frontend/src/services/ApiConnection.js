@@ -10,7 +10,14 @@ const urlCity = "http://localhost:8080/api/cities";
 
 const urlImage = "http://localhost:8080/images";
 
-class ApiConnection {
+const urlSearch = "http://localhost:8080/stores/search?";
+
+const urlForm = "https://formspree.io/f/mwkdarwd";
+
+const urlRandomStores = "http://localhost:8080/stores/random";
+
+class ApiConnection 
+{
   async getAllStores() {
     try {
       let response = await axios.get(urlStore);
@@ -157,12 +164,20 @@ class ApiConnection {
 	}
   }
 
-  async getImage(imageName)
+  async searchStores(city, type, categories)
   {
+	let	newSearchUrl = urlSearch;
 	let response;
+
+	if (city)
+		newSearchUrl = `${newSearchUrl}&city=${city}`;
+	if (type)
+		newSearchUrl = `${newSearchUrl}&type=${type}`;
+	if (categories)
+		newSearchUrl = `${newSearchUrl}&categories=${categories}`;
 	try
 	{
-		response = await axios.get(`${urlImage}/${imageName}`);
+		response = await axios.get(newSearchUrl);
 
 		return (response);
 	}
@@ -170,6 +185,24 @@ class ApiConnection {
 	{
 		console.log(error.message);
 	}
+  }
+
+  async getRandomStores() 
+  {
+    try 
+	{
+      let response = await axios.get(urlRandomStores);
+      return response;
+    }
+	catch (error) 
+	{
+      return error.message;
+    }
+  }
+
+
+  async submitForm(form) {
+    let response = await axios.post(urlForm, form)
   }
 }
 

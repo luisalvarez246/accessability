@@ -1,4 +1,3 @@
-<!-- eslint-disable no-unused-vars -->
 <script setup>
 import { ref, onBeforeMount, onUpdated } from "vue";
 import ApiConnection from "@/services/ApiConnection";
@@ -53,13 +52,10 @@ const { handleSubmit, handleReset } = useForm({
   },
 });
 const name = useField("name");
-const type = useField("type");
-const city = useField("city");
 const phone = useField("phone");
 const web = useField("web");
 const description = useField("description");
 const address = useField("address");
-const checkbox = useField("checkbox");
 const email = useField("email");
 const validated = ref(false);
 const characteristics = ref([]);
@@ -93,11 +89,14 @@ const initialStore = {
 const checkboxValues = ref([]);
 
 const updateCheckbox = (id, value) => {
-	//store.value.characteristicIds.push(value);
 	console.log(store.value.characteristicIds);
   checkboxValues.value[id] = value;
   console.log(checkboxValues.value);
 };
+
+const rules = {
+	required: (value) => !!value || "Field is required",
+  };
 
 const imageUpload = (event) =>
 {
@@ -107,7 +106,6 @@ const imageUpload = (event) =>
 const addStore = async () => {
 	const formData = new FormData();
 	store.value.characteristicIds = checkboxValues.value;
-	//store.value.type = types.value;
 	if (store.value.image[0])
 			formData.append('image', store.value.image[0]);
 	for (const key in store.value)
@@ -115,16 +113,8 @@ const addStore = async () => {
 		if (key !== "image")
 		formData.append(key, store.value[key]);
 	}
-  /*const newStore = {
-    ...store.value,
-    characteristicIds: checkboxValues.value,
-    image: store.value.image[0].name,
-    type: types.value.id,
-    city: cities.value.id,
-  };*/
   try {
     let response = await ApiConnection.saveStore(formData);
-    // alert("Store successfully created");
     if (response.status === 200) validated.value = true;
   } catch (error) {
     alert("Cannot add the store: " + error);
@@ -183,59 +173,74 @@ onUpdated(() =>
         class="d-flex flex-column align-center bg-white rounded w-75 mt-10 ml-auto mr-auto pt-10"
       >
         <v-text-field
+          id="storeName"
           class="w-75 v-labelText"
           v-model="store.storeName"
           :error-messages="name.errorMessage.value"
           label="Name"
+          :rules="[rules.required]"
         ></v-text-field>
 
         <v-text-field
+          id="phone"
           class="w-75 v-labelText"
           v-model="store.phone"
           :error-messages="phone.errorMessage.value"
           label="Phone"
+          :rules="[rules.required]"
         ></v-text-field>
 
         <v-text-field
+        id="address"
           class="w-75 v-labelText"
           v-model="store.address"
           :error-messages="address.errorMessage.value"
           label="Address"
+          :rules="[rules.required]"
         ></v-text-field>
 
         <v-text-field
+          id="email"
           class="w-75 v-labelText"
           v-model="store.email"
           :error-messages="email.errorMessage.value"
           label="Email"
+          :rules="[rules.required]"
         ></v-text-field>
 
         <v-text-field
+          id="web"
           class="w-75 v-labelText"
           v-model="store.web"
           :error-messages="web.errorMessage.value"
           label="Web"
+          :rules="[rules.required]"
         ></v-text-field>
 
         <v-select
+          id="city"
           class="w-75 v-labelText"
           v-model="store.city"
           label="City"
           :items="cities"
           item-value="id"
+          :rules="[rules.required]"
         >
         </v-select>
 
         <v-select
+          id="type"
           class="w-75 v-labelText"
-          label="Type of businnes"
+          label="Type of business"
           v-model="store.type"
           :items="types"
           item-value="id"
+          :rules="[rules.required]"
         >
         </v-select>
 
         <v-file-input
+          id="image"
           class="w-50 v-labelText"
           v-model="store.image"
           @change="imageUpload($event)"
@@ -247,6 +252,7 @@ onUpdated(() =>
       <v-container class="bg-white w-75 mt-10 rounded mb-10 py-10 pl-15">
         <v-row>
           <v-col
+            class="characteristicCheckbox"
             v-for="characteristic in characteristics"
             :key="characteristic.id"
             cols="12"
@@ -273,7 +279,7 @@ onUpdated(() =>
               <v-img
                 class="characteristicsIcon"
                 :src="characteristic.icon"
-                :alt="`Icon of ${characteristic.icon}`"
+                alt=""
               ></v-img>
             </v-checkbox>
           </v-col>
@@ -282,15 +288,16 @@ onUpdated(() =>
 
       <div class="areaBtns bg-white w-75 rounded ml-auto mr-auto mb-10">
         <v-textarea
+          id="description"
           label="Characteristics description"
           v-model="store.description"
+          :rules="[rules.required]"
           class="w-75 ml-auto mr-auto pt-10 v-labelText"
         ></v-textarea>
 
         <div class="btnsContainer d-flex justify-center pb-10">
           <v-dialog width="500" close-on-content-click>
             <template v-slot:activator="{ props }">
-              <!-- <v-btn v-bind="props" text="Open Dialog"> </v-btn> -->
               <v-btn
                 rounded-sm
                 v-bind="props"

@@ -1,6 +1,6 @@
 <template>
   <v-app class="appbar">
-    <v-app-bar class="d-flex position-sticky" :elevation="1" color="navbar">
+    <v-app-bar class="d-flex position-fixed" :elevation="1" color="navbar">
       <router-link to="/" @click="goToPage('/')" :class="{
         'd-flex': true,
         'align-center': true,
@@ -8,18 +8,18 @@
         'text-decoration-none': true,
         'mx-4': true,
         'active-home': isHomeActive
-      }" class="logo">
-        <v-img src="../../assets/images/logo.png" class="mr-1" width="56" alt="AccessAbility Logo"></v-img>
+      }">
+        <v-img src="../assets/images/logo.png" class="mr-1" width="56" alt="AccessAbility Logo"></v-img>
         <p class="textlogo">AccessAbility</p>
       </router-link>
 
       <v-spacer></v-spacer>
 
-      <v-btn-group class="d-none d-md-flex" density="compact"  variant="flat">
+      <v-btn-group class="d-none d-md-flex" density="compact" variant="flat">
         <v-btn v-for="(item, index) in navItems" :key="index" :to="item.to" @click="goToPage(item.to)" class="navButtons" :class="{
           'active-button': isActiveButton(item.to),
           'text-none': true,
-          'font-weight-bold': true,
+          'font-weight-semibold': true,
           'mr-6': true,
           'px-2': smAndDown,
           'px-4': !smAndDown,
@@ -53,7 +53,7 @@ const { sm, smAndDown } = useDisplay();
 const drawer = ref(false);
 
 const navItems = [
-  { label: 'Accessibility', to: '/accessibility', class:'accessibilityButton' },
+  { label: 'Accessibility', to: '/accessibility' },
   { label: 'About us', to: '/about-us' },
   { label: 'Register your site', to: '/register' },
 ];
@@ -88,6 +88,8 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
 .navButtons {
   color: #340458;
   background-color: #14CAC9;
+  font-weight: 500 !important;
+  font-size: medium;
 }
 
 .active-home {
@@ -97,10 +99,10 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
 .v-btn:hover,
 .v-btn:focus {
   background-color: #FED636;
-  opacity: 1 !important;
+  opacity: 1;
   border-color: #340458;
   color: #340458;
-  font-weight: 600;
+  font-weight: 600 !important;
 }
 
 .v-list-item:focus,
@@ -112,5 +114,4 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
 .v-list-item-title {
   color: #340458;
 }
-
 </style>

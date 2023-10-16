@@ -1,53 +1,68 @@
-// Composables
 import { createRouter, createWebHistory } from 'vue-router'
+import { useLaunchStore } from '../store/launchStore'
+import ApiConnection from '../services/ApiConnection'
+import HomeView from '../views/HomeView.vue'
+import AccessibilityView from '../views/AccessibilityView.vue'
+import AboutUsView from '../views/AboutUsView.vue'
+import RegisterView from '../views/RegisterView.vue'
+import TermsOfUseView from '../views/TermsOfUseView.vue'
+import PrivacyPolicyView from '../views/PrivacyPolicyView.vue'
+import CookiesView from '../views/CookiesView.vue'
+import SearchView from '../views/SearchView.vue'
 
-const routes = [
-  {
-    path: '/',
-    component: () => import('@/layouts/default/Default.vue'),
-    children: [
-      {
-        path: '',
-        name: 'Home',
-        component: () => import('@/views/HomeView.vue'),
-      },
-      {
-        path: '/accessibility',
-        name: 'Accessibility',
-        component: () => import('@/views/AccessibilityView.vue'),
-      },
-      {
-        path: '/about-us',
-        name: 'AboutUs',
-        component: () => import('@/views/AboutUsView.vue'),
-      },
-      {
-        path: '/register',
-        name: 'RegisterView',
-        component: () => import('@/views/RegisterView.vue'),
-      },
-      { 
-        path: '/terms-of-use', 
-        name: 'terms-of-use', 
-        component: () => import('@/views/TermsOfUseView.vue'),
-      },
-      { 
-        path: '/privacy-policy', 
-        name: 'privacy-policy', 
-        component: () => import('@/views/PrivacyPolicyView.vue'),
-      },
-      { 
-        path: '/cookies', 
-        name: 'cookies', 
-        component: () => import('@/views/CookiesView.vue'),
-      },
-    ],
-  },
-]
+const	loadSearchData = async () =>
+{
+	const typesInStore = await ApiConnection.getTypesInStore()
+	const citiesInStore = await ApiConnection.getCitiesInStore();
+
+	useLaunchStore().setTypes(typesInStore.data.sort());
+	useLaunchStore().setCities(citiesInStore.data.sort());
+}
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes,
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes: [
+    {
+      path: '/',
+      name: 'home',
+      component: HomeView,
+	  beforeEnter: [loadSearchData],
+    },
+    {
+      path: '/accessibility',
+      name: 'Accessibility',
+      component: AccessibilityView,
+    },
+    {
+      path: '/about-us',
+      name: 'AboutUs',
+      component: AboutUsView,
+    },
+    {
+      path: '/register',
+      name: 'RegisterView',
+      component: RegisterView,
+    },
+    {
+      path: '/terms-of-use',
+      name: 'terms-of-use',
+      component: TermsOfUseView,
+    },
+    {
+      path: '/privacy-policy',
+      name: 'privacy-policy',
+      component: PrivacyPolicyView,
+    },
+    {
+      path: '/cookies',
+      name: 'cookies',
+      component: CookiesView,
+    },
+    {
+      path: '/search/:city?/:type?/:categories?',
+      name: 'search',
+      component: SearchView,
+    }
+  ]
 })
-
 export default router

@@ -63,11 +63,9 @@
 					  base-color="navbar"
 					  variant="outlined"
 					  clearable
-					  :rules="[rules.required]"
 					  label="Search location..."
 					  class="custom_messages"
 					  :items="citiesInStore"
-					  v-model="search.city"
 					/>
 				  </v-col>
 				</v-row>
@@ -96,10 +94,8 @@
 						base-color="navbar"
 					  	variant="outlined" 
 						clearable 
-						:rules="[rules.required]"
 					  	label="Search by type..." 
 						:items="typesInStore"
-						v-model="search.type"
 					/>
 				  </v-col>
 				</v-row>
@@ -130,7 +126,6 @@
 				<v-checkbox
 				  :label="item.label"
 				  :value="item.value"
-				  v-model="search.categories[index]"
 				  color="cardbackground1"
 				  aria-checked="false"
 				  class="d-flex align-center font-weight-bold text-cardbackground1"
@@ -149,8 +144,7 @@
 			  :size="xs ? '' : 'x-large'"
 			  :height="xs ? 52 : ''"
 			  :class="{ 'text-h6': xs }"
-			  @click="makeSearch()"			
-			>
+			  @click="makeSearch()"			>
 			  Search
 			</v-btn>
 		  </v-col>
@@ -173,7 +167,6 @@
 			:description="store.description"
 			:web="store.web"
 			:image="store.image"
-			alt=" "
 			/>
 		  </div>
 		</Slide>
@@ -191,8 +184,6 @@
   import { ref, onBeforeMount, onUpdated } from "vue";
   import Card from "../components/Card.vue";
   import ApiConnection from "@/services/ApiConnection";
-  import { useLaunchStore } from "../store/launchStore";
-  import { useSearchStore } from "../store/searchStore";
   import { Carousel, Pagination, Slide, Navigation } from "vue3-carousel";
   import { useRouter } from "vue-router";
   import "vue3-carousel/dist/carousel.css";
@@ -207,28 +198,18 @@
 		categories: [],
 	}
   )
-  const searchStore = useSearchStore();
-  const launchStore = useLaunchStore();
   const router = useRouter();
   
-  const getStores = async () => 
-  {
-	let response;
-
-	if (Object.keys(launchStore.getRandomStores).length === 0)
-	{
-		response = await ApiConnection.getRandomStores();
-		launchStore.setRandomStores(response.data);
-	}
-	stores.value = launchStore.getRandomStores;
+  const getStores = async () => {
+	let response = await ApiConnection.getAllStores();
+	stores.value = response.data;
+	console.log(stores.value);
 	return stores.value;
-  }
+  };
   
-  onBeforeMount(() => 
-  {
+  onBeforeMount(() => {
 	getStores();
-	citiesInStore.value = launchStore.getCities;
-	typesInStore.value = launchStore.getTypes;
+
   });
 
   const { xs } = useDisplay();
