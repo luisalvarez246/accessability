@@ -42,6 +42,13 @@ git clone https://github.com/luisalvarez246/accessability.git
 
    
 ### 4. Frontend Deploy
+```sh
+cd frontend/
+```
+
+```sh
+npm install
+```
 
 ```sh
 npm run dev
