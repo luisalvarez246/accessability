@@ -231,7 +231,7 @@ onUpdated(() =>
         <v-select
           id="type"
           class="w-75 v-labelText"
-          label="Type of businnes"
+          label="Type of business"
           v-model="store.type"
           :items="types"
           item-value="id"

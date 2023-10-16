@@ -163,4 +163,12 @@ public class StoreService {
     {
         return (iStoreRepository.searchStores(city, type, categories));
     }
+
+    public List<Store> getRandomStores()
+    {
+        int limit;
+
+        limit = 12;
+        return (iStoreRepository.getRandomStores(limit));
+    }
 }

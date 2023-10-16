@@ -22,4 +22,7 @@ public interface IStoreRepository extends JpaRepository<Store, Long>
             @Param("type") Type type,
             @Param("categories") String categories
     );
+
+    @Query("SELECT s FROM Store s ORDER BY RAND() LIMIT :limit")
+    List<Store> getRandomStores(int limit);
 }

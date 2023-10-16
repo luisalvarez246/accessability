@@ -1,9 +1,9 @@
 <template>
 	<v-container class="d-flex justify-center align-center mt-10">
-	  <h1>Searched Business</h1>
+	  <h2>Search Results:</h2>
 	</v-container>
   
-	<v-container class="my-10 bg-deep-purple-lighten-5 rounded-lg">
+	<v-container v-if="stores[0]" class="my-10 bg-deep-purple-lighten-5 rounded-lg">
 	  <v-row>
 		<v-col class="d-flex justify-center align-center mx-auto mt-10" v-for="store in displayedStores" :key="store.id" cols="12" sm="6" md="4" lg="6">
 		  <Card :store-name="store.storeName"
@@ -21,19 +21,39 @@
 		</v-col>
 	  </v-row>
 	</v-container>
+
+	<v-container v-else class="d-flex flex-column justify-space-around align-center mt-10">
+		<h2 class="text-center">Your search did not match any results</h2>
+		<v-btn
+			  text
+			  class="text-none mx-auto goHome ma-10"
+			  rounded="xl"
+			  flat
+			  :block="xs"
+			  :size="xs ? '' : 'x-large'"
+			  :height="xs ? 52 : ''"
+			  :class="{ 'text-h6': xs }"
+			  @click="router.push('/')"			
+		>
+			  Go Back Home
+		</v-btn>
+	</v-container>
   
-	<v-pagination v-model="currentPage" :length="totalPages"></v-pagination>
+	<v-pagination v-if="stores[0]" v-model="currentPage" :length="totalPages"></v-pagination>
   </template>
   
   <script setup>
   import Card from "../components/Card.vue";
   import ApiConnection from "../services/ApiConnection";
   import { ref, onBeforeMount, computed } from 'vue';
-  import { useRoute } from "vue-router";
+  import { useRoute, useRouter } from "vue-router";
   import { useSearchStore } from "../store/searchStore";
+  import { useDisplay } from "vuetify";
+
   
   const stores = ref([]);
   const route = useRoute();
+  const router = useRouter();
   const searchStore = useSearchStore();
   const city = route.params.city;
   const type = route.params.type;
@@ -81,6 +101,16 @@
 	return Math.ceil(stores.value.length / itemsPerPage);
   });
 
+  const { xs } = useDisplay();
+
   </script>
+
+  <style scoped>
+	.goHome 
+	{
+		color: #340458;
+		background-color: #FED636;
+    }
+  </style>
   
 

@@ -149,7 +149,8 @@
 			  :size="xs ? '' : 'x-large'"
 			  :height="xs ? 52 : ''"
 			  :class="{ 'text-h6': xs }"
-			  @click="makeSearch()"			>
+			  @click="makeSearch()"			
+			>
 			  Search
 			</v-btn>
 		  </v-col>
@@ -172,6 +173,7 @@
 			:description="store.description"
 			:web="store.web"
 			:image="store.image"
+			alt=" "
 			/>
 		  </div>
 		</Slide>
@@ -206,22 +208,27 @@
 	}
   )
   const searchStore = useSearchStore();
+  const launchStore = useLaunchStore();
   const router = useRouter();
   
-  const getStores = async () => {
-	let response = await ApiConnection.getAllStores();
-	stores.value = response.data;
-	console.log(stores.value);
-	return stores.value;
-  };
-  
-  onBeforeMount(() => {
-	getStores();
-	citiesInStore.value = useLaunchStore().getCities;
-	typesInStore.value = useLaunchStore().getTypes;
+  const getStores = async () => 
+  {
+	let response;
 
-	console.log(citiesInStore.value);
-	console.log(typesInStore.value);
+	if (Object.keys(launchStore.getRandomStores).length === 0)
+	{
+		response = await ApiConnection.getRandomStores();
+		launchStore.setRandomStores(response.data);
+	}
+	stores.value = launchStore.getRandomStores;
+	return stores.value;
+  }
+  
+  onBeforeMount(() => 
+  {
+	getStores();
+	citiesInStore.value = launchStore.getCities;
+	typesInStore.value = launchStore.getTypes;
   });
 
   const { xs } = useDisplay();
