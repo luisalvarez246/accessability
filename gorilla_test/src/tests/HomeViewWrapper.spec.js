@@ -5,6 +5,7 @@ import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import HomeView from "./HomeWrapper.vue";
 import { createRouter, createMemoryHistory } from "vue-router";
+import { createApp } from 'vue';
 
 const vuetify = createVuetify({
 	components,
@@ -84,10 +85,15 @@ describe('HomeView.vue', () => {
     
     test("renders a search type of site field with correct attributes", async () => {
         const wrapper = mount(HomeView, {
-          global: {
-            plugins: [vuetify, router],
-          },
+            props: {
+                show: true,
+            },
+            global: 
+            {
+                plugins: [vuetify, router],
+            }
         });
+    
     
         await wrapper.vm.$nextTick();
     
@@ -102,10 +108,15 @@ describe('HomeView.vue', () => {
     
     test("renders checkboxes with correct labels", async () => {
         const wrapper = mount(HomeView, {
-          global: {
-            plugins: [vuetify, router],
-          },
+            props: {
+                show: true,
+            },
+            global: 
+            {
+                plugins: [vuetify, router],
+            }
         });
+    
     
         await wrapper.vm.$nextTick();
     
@@ -119,16 +130,21 @@ describe('HomeView.vue', () => {
     
     test("search button is rendered", async () => {
         const wrapper = mount(HomeView, {
-          global: {
-            plugins: [vuetify, router],
-          },
+            props: {
+                show: true,
+            },
+            global: 
+            {
+                plugins: [vuetify, router],
+            }
         });
+    
       
         await wrapper.vm.$nextTick();
       
         const searchButton = wrapper.find(".searchButton");
     
         expect(searchButton.exists()).toBe(true);
-      });
-    
+    });
+
 });
