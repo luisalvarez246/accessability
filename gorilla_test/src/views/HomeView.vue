@@ -173,6 +173,7 @@
 			:description="store.description"
 			:web="store.web"
 			:image="store.image"
+			alt=" "
 			/>
 		  </div>
 		</Slide>

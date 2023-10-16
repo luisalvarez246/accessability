@@ -6,6 +6,7 @@
 >
 	<v-img 
 	:src="`${imagesUrl}/${props.image}`"
+	:alt="props.alt"
 	></v-img>
 	<v-card-title>
 	{{ props.type }} {{ props.storeName }}
@@ -70,7 +71,8 @@ phone: String,
 email: String,
 description: String,
 web: String,
-image: String
+image: String,
+alt: String
 })
 
 
