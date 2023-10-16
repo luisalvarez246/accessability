@@ -6,12 +6,14 @@ export const useLaunchStore = defineStore("launch", {
 		{
 			types: {},
 			cities: {},
+			randomStores: {},
 		}
 	),
 	getters:
 	{
 		getTypes: (state) => state.types,
 		getCities: (state) => state.cities,
+		getRandomStores: (state) => state.randomStores,
 	},
 	actions:
 	{
@@ -22,6 +24,10 @@ export const useLaunchStore = defineStore("launch", {
 		setCities(fetchedCities)
 		{
 			this.cities = fetchedCities;
+		},
+		setRandomStores(fetchedStores)
+		{
+			this.randomStores = fetchedStores;
 		}
 	}
 })
