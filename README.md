@@ -28,43 +28,36 @@ AccessAbility is designed with a strong emphasis on accessibility, allowing user
 - Java Spring Boot
 - MySQL
 
-## Installation
-To install this project on your local machine, follow these steps:
+## Installation and Deployment
+To install and run this project on your local machine, follow these steps:
 
 ### 1. Clone this repository.
 ```sh
-git clone 
+git clone https://github.com/luisalvarez246/accessability.git
+```
 
 2. Set up the backend server using Java Spring Boot.
+   
 3. Set up the MySQL database.
-4. Run the frontend application using Vue 3 and Vuetify.
-5. Access the application via the specified localhost port.
-```sh
-cd frontend/
-```
-```sh
-npm install
-```
-## Deployment
-To deploy the project to a live system, follow these steps:
 
-## 1.Proyect Setup
-
-
-
-## 2. Frontend Deploy
+   
+### 4. Frontend Deploy
 
 ```sh
 npm run dev
 ```
 
+4. Access the application via the specified localhost port.
+
+
+
 ## Contributors
-- [Sonia Onís](https://github.com/contributor1)
-- [Carmen Borja](https://github.com/contributor2)
-- [Luis Álvarez](https://github.com/contributor3)
-- [Miguel Pechero](https://github.com/contributor4)
-- [César Conte](https://github.com/contributor4)
-- [Leolo Flórez](https://github.com/contributor4)
+- [Sonia Onís](https://github.com/soniaonis)
+- [Carmen Borja](https://github.com/carmenb2020)
+- [Luis Álvarez](https://github.com/luisalvarez246)
+- [Miguel Pechero](https://github.com/drawmakerr)
+- [César Conte](https://github.com/cesarconte)
+- [Leolo Flórez](https://github.com/LeoloFlrz)
 
 ## License
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
