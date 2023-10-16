@@ -1,4 +1,3 @@
-<!-- eslint-disable no-unused-vars -->
 <script setup>
 import { ref, onBeforeMount, onUpdated } from "vue";
 import ApiConnection from "@/services/ApiConnection";
@@ -174,6 +173,7 @@ onUpdated(() =>
         class="d-flex flex-column align-center bg-white rounded w-75 mt-10 ml-auto mr-auto pt-10"
       >
         <v-text-field
+          id="storeName"
           class="w-75 v-labelText"
           v-model="store.storeName"
           :error-messages="name.errorMessage.value"
@@ -182,6 +182,7 @@ onUpdated(() =>
         ></v-text-field>
 
         <v-text-field
+          id="phone"
           class="w-75 v-labelText"
           v-model="store.phone"
           :error-messages="phone.errorMessage.value"
@@ -190,6 +191,7 @@ onUpdated(() =>
         ></v-text-field>
 
         <v-text-field
+        id="address"
           class="w-75 v-labelText"
           v-model="store.address"
           :error-messages="address.errorMessage.value"
@@ -198,6 +200,7 @@ onUpdated(() =>
         ></v-text-field>
 
         <v-text-field
+          id="email"
           class="w-75 v-labelText"
           v-model="store.email"
           :error-messages="email.errorMessage.value"
@@ -206,6 +209,7 @@ onUpdated(() =>
         ></v-text-field>
 
         <v-text-field
+          id="web"
           class="w-75 v-labelText"
           v-model="store.web"
           :error-messages="web.errorMessage.value"
@@ -214,6 +218,7 @@ onUpdated(() =>
         ></v-text-field>
 
         <v-select
+          id="city"
           class="w-75 v-labelText"
           v-model="store.city"
           label="City"
@@ -224,6 +229,7 @@ onUpdated(() =>
         </v-select>
 
         <v-select
+          id="type"
           class="w-75 v-labelText"
           label="Type of businnes"
           v-model="store.type"
@@ -234,6 +240,7 @@ onUpdated(() =>
         </v-select>
 
         <v-file-input
+          id="image"
           class="w-50 v-labelText"
           v-model="store.image"
           @change="imageUpload($event)"
@@ -245,6 +252,7 @@ onUpdated(() =>
       <v-container class="bg-white w-75 mt-10 rounded mb-10 py-10 pl-15">
         <v-row>
           <v-col
+            class="characteristicCheckbox"
             v-for="characteristic in characteristics"
             :key="characteristic.id"
             cols="12"
@@ -280,6 +288,7 @@ onUpdated(() =>
 
       <div class="areaBtns bg-white w-75 rounded ml-auto mr-auto mb-10">
         <v-textarea
+          id="description"
           label="Characteristics description"
           v-model="store.description"
           :rules="[rules.required]"
