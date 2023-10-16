@@ -1,20 +1,23 @@
-package com.accessability.accessability;
+package com.accessability.accessability.initializers;
 
 import com.accessability.accessability.models.Category;
 import com.accessability.accessability.models.Characteristic;
 import com.accessability.accessability.repositories.ICharacteristicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CharacteristicInitializer implements CommandLineRunner {
+public class CharacteristicInitializer {
 
     @Autowired
-    private ICharacteristicRepository iCharacteristicRepository;
+    private ICharacteristicRepository   iCharacteristicRepository;
 
-    @Override
-    public void run(String... args) throws Exception
+    @Autowired
+    private StoreInitializer            storeInitializer;
+
+    public void characteristicInitialize()
     {
         if (iCharacteristicRepository.findAll().isEmpty())
         {
