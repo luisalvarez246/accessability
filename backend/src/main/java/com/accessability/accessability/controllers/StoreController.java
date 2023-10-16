@@ -67,4 +67,10 @@ public class StoreController {
     {
         return (ResponseEntity.ok(storeService.searchStores(city, type, categories)));
     }
+
+    @GetMapping(path = "/random")
+    public ResponseEntity<List<Store>> getRandomStores()
+    {
+        return (ResponseEntity.ok(storeService.getRandomStores()));
+    }
 }

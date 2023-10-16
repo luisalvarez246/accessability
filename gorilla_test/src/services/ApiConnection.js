@@ -12,7 +12,9 @@ const urlImage = "http://localhost:8080/images";
 
 const urlSearch = "http://localhost:8080/stores/search?";
 
-const urlForm = "https://formspree.io/f/mwkdarwd"
+const urlForm = "https://formspree.io/f/mwkdarwd";
+
+const urlRandomStores = "http://localhost:8080/stores/random";
 
 class ApiConnection 
 {
@@ -184,6 +186,20 @@ class ApiConnection
 		console.log(error.message);
 	}
   }
+
+  async getRandomStores() 
+  {
+    try 
+	{
+      let response = await axios.get(urlRandomStores);
+      return response;
+    }
+	catch (error) 
+	{
+      return error.message;
+    }
+  }
+
 
   async submitForm(form) {
     let response = await axios.post(urlForm, form)
