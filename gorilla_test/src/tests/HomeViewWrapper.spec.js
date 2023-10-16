@@ -40,7 +40,6 @@ describe('HomeView.vue', () => {
                 plugins: [vuetify, router],
             }
         });
-        console.log(wrapper.html());
         expect(wrapper.exists()).toBe(true);
     });
 
@@ -59,7 +58,6 @@ describe('HomeView.vue', () => {
     
         const h1Element = wrapper.find(".underline");
     
-        console.log(wrapper.html());
         expect(h1Element).toBeDefined();
         expect(h1Element.text()).toBe("Welcome to AccessAbility");
         
