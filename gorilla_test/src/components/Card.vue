@@ -75,7 +75,6 @@ image: String,
 alt: String
 })
 
-
 const show = ref(Array(3).fill(false));
 const stores = ref([]);
 const cardIndex = ref()

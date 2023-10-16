@@ -51,6 +51,7 @@ const { handleSubmit, handleReset } = useForm({
     },
   },
 });
+
 const name = useField("name");
 const phone = useField("phone");
 const web = useField("web");
@@ -148,7 +149,6 @@ const reloadPage = () => {
 }
 
 const ftClose = () => {
-  // eslint-disable-next-line vue/no-mutating-props
   props.show = false;
 };
 
@@ -315,9 +315,8 @@ onUpdated(() =>
               <v-card title="Dialog">
                 <v-card-text>
                   <v-icon src="https://icons8.com/icon/bE5mRAhk65Br/verified-account">
-
                   </v-icon>
-                  Store Added Successfully!!
+                  Store added successfully!
                 </v-card-text>
 
                 <v-card-actions>
