@@ -30,7 +30,7 @@
                 href="https://www.w3.org/TR/WCAG22/"
                 aria-describedby="new-window-1"
                 rel="no-follow"
-                >WCAG 2.2</a
+                >Web content accessibility guidelines (WCAG) 2.2</a
               >.
             </v-list-item>
           </v-list-item>
@@ -55,7 +55,7 @@
               consult the following resources:
             </v-list-item>
             <v-list-item>
-              Web Accessibility Initiative's:
+              Web accessibility initiative's:
               <a
                 href="https://www.w3.org/WAI/users/browsing"
                 aria-describedby="new-window-1"

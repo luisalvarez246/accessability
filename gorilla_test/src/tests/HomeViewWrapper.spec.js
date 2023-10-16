@@ -5,7 +5,6 @@ import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import HomeView from "./HomeWrapper.vue";
 import { createRouter, createMemoryHistory } from "vue-router";
-import { createApp } from 'vue';
 
 const vuetify = createVuetify({
 	components,

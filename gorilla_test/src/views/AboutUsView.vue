@@ -212,21 +212,6 @@ const name = ref("");
 const email = ref("");
 const thoughts = ref("");
 
-// async function submit() {
-//   console.log("Datos del formulario:", {
-//     name: name.value,
-//     email: email.value,
-//     thoughts: thoughts.value,
-//   });
-//   const { valid } = await form.value.validate();
-
-//   if (valid) {
-//     alert("Form is valid");
-//     form.value.reset();
-//   } else {
-//     alert("Form is not valid");
-//   }
-// }
 async function submit() {
 	const form = ref({
 		name: name.value,
@@ -234,7 +219,6 @@ async function submit() {
 		thoughts: thoughts.value
 	})
 
-	
 	try {
 		let response = await ApiConnection.submitForm(form)
 		alert("Formulary successfully sended!!")
@@ -247,6 +231,7 @@ function cancel() {
   form.value.reset();
 }
 </script>
+
 <style scoped>
 .title {
   position: relative;

@@ -74,7 +74,7 @@
 				<v-row align="center" class="ml-16">
 				  <v-col class="pr-0" cols="auto">
 					<v-card-text class="font-weight-bold text-subtitle-1 text-cardbackground1 px-0">
-						I'm looking for...
+						I am looking for...
 					</v-card-text>
 				  </v-col>
 				  <v-col cols="auto" class="pl-0">
@@ -289,7 +289,6 @@
 	router.push({name: 'search', params:{city: search.value.city, type: search.value.type, categories: categories}});
   }
 
-  
   </script>
   
   <style scoped>
@@ -339,8 +338,6 @@
 	background-color: #FED636;
   }
   
-  
-  /* Carousel */
   .carousel__slide {
 	padding: 5px;
   }
@@ -380,7 +377,6 @@
 	opacity: 1;
 	transform: rotateY(0) scale(1.1);
   }
-  
   
   :deep(.carousel__prev) {
 	color: #59029F;
