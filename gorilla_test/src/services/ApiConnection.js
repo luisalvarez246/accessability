@@ -12,6 +12,8 @@ const urlImage = "http://localhost:8080/images";
 
 const urlSearch = "http://localhost:8080/stores/search?";
 
+const urlForm = "https://formspree.io/f/mwkdarwd"
+
 class ApiConnection 
 {
   async getAllStores() {
@@ -181,6 +183,10 @@ class ApiConnection
 	{
 		console.log(error.message);
 	}
+  }
+
+  async submitForm(form) {
+    let response = await axios.post(urlForm, form)
   }
 }
 

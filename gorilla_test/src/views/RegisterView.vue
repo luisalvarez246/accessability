@@ -53,13 +53,10 @@ const { handleSubmit, handleReset } = useForm({
   },
 });
 const name = useField("name");
-const type = useField("type");
-const city = useField("city");
 const phone = useField("phone");
 const web = useField("web");
 const description = useField("description");
 const address = useField("address");
-const checkbox = useField("checkbox");
 const email = useField("email");
 const validated = ref(false);
 const characteristics = ref([]);
@@ -93,11 +90,14 @@ const initialStore = {
 const checkboxValues = ref([]);
 
 const updateCheckbox = (id, value) => {
-	//store.value.characteristicIds.push(value);
 	console.log(store.value.characteristicIds);
   checkboxValues.value[id] = value;
   console.log(checkboxValues.value);
 };
+
+const rules = {
+	required: (value) => !!value || "Field is required",
+  };
 
 const imageUpload = (event) =>
 {
@@ -107,7 +107,6 @@ const imageUpload = (event) =>
 const addStore = async () => {
 	const formData = new FormData();
 	store.value.characteristicIds = checkboxValues.value;
-	//store.value.type = types.value;
 	if (store.value.image[0])
 			formData.append('image', store.value.image[0]);
 	for (const key in store.value)
@@ -115,16 +114,8 @@ const addStore = async () => {
 		if (key !== "image")
 		formData.append(key, store.value[key]);
 	}
-  /*const newStore = {
-    ...store.value,
-    characteristicIds: checkboxValues.value,
-    image: store.value.image[0].name,
-    type: types.value.id,
-    city: cities.value.id,
-  };*/
   try {
     let response = await ApiConnection.saveStore(formData);
-    // alert("Store successfully created");
     if (response.status === 200) validated.value = true;
   } catch (error) {
     alert("Cannot add the store: " + error);
@@ -187,6 +178,7 @@ onUpdated(() =>
           v-model="store.storeName"
           :error-messages="name.errorMessage.value"
           label="Name"
+          :rules="[rules.required]"
         ></v-text-field>
 
         <v-text-field
@@ -194,6 +186,7 @@ onUpdated(() =>
           v-model="store.phone"
           :error-messages="phone.errorMessage.value"
           label="Phone"
+          :rules="[rules.required]"
         ></v-text-field>
 
         <v-text-field
@@ -201,6 +194,7 @@ onUpdated(() =>
           v-model="store.address"
           :error-messages="address.errorMessage.value"
           label="Address"
+          :rules="[rules.required]"
         ></v-text-field>
 
         <v-text-field
@@ -208,6 +202,7 @@ onUpdated(() =>
           v-model="store.email"
           :error-messages="email.errorMessage.value"
           label="Email"
+          :rules="[rules.required]"
         ></v-text-field>
 
         <v-text-field
@@ -215,6 +210,7 @@ onUpdated(() =>
           v-model="store.web"
           :error-messages="web.errorMessage.value"
           label="Web"
+          :rules="[rules.required]"
         ></v-text-field>
 
         <v-select
@@ -223,6 +219,7 @@ onUpdated(() =>
           label="City"
           :items="cities"
           item-value="id"
+          :rules="[rules.required]"
         >
         </v-select>
 
@@ -232,6 +229,7 @@ onUpdated(() =>
           v-model="store.type"
           :items="types"
           item-value="id"
+          :rules="[rules.required]"
         >
         </v-select>
 
@@ -284,13 +282,13 @@ onUpdated(() =>
         <v-textarea
           label="Characteristics description"
           v-model="store.description"
+          :rules="[rules.required]"
           class="w-75 ml-auto mr-auto pt-10 v-labelText"
         ></v-textarea>
 
         <div class="btnsContainer d-flex justify-center pb-10">
           <v-dialog width="500" close-on-content-click>
             <template v-slot:activator="{ props }">
-              <!-- <v-btn v-bind="props" text="Open Dialog"> </v-btn> -->
               <v-btn
                 rounded-sm
                 v-bind="props"
