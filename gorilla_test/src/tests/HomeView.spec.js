@@ -5,6 +5,7 @@ import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
 import HomeView from "../views/HomeView.vue";
 import { createRouter, createMemoryHistory } from "vue-router";
+import { ref } from 'vue';
 
 const vuetify = createVuetify({
   components,
@@ -27,9 +28,17 @@ describe("HomeView.vue", () => {
   });
 
   test("renders an h1 with correct text", async () => {
+    const search = ref({
+      city: "",
+      type: "",
+      categories: [],
+    });
     const wrapper = mount(HomeView, {
       global: {
         plugins: [vuetify, router],
+      },
+      props: {
+        search,
       },
     });
 
