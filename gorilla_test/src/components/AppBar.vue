@@ -27,7 +27,14 @@
         }" rounded="xl">
           {{ item.label }}
         </v-btn>
-      </v-btn-group>
+	</v-btn-group>
+	<v-btn 
+		class="ma-2 navButtons"
+        color="#340458"
+        icon="mdi-help-circle-outline"
+		@click="openNavigationHelp()"
+	>
+	</v-btn>
 
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" aria-label="Menu" class="d-flex d-md-none">
       </v-app-bar-nav-icon>
@@ -59,6 +66,7 @@ const navItems = [
 ];
 
 const router = useRouter();
+const emit = defineEmits(['modal']);
 
 const goToPage = (route) => {
   if (route) {
@@ -69,6 +77,11 @@ const goToPage = (route) => {
 
 const isHomeActive = computed(() => isActiveButton('/'));
 const isActiveButton = (route) => router.currentRoute.value.path === route;
+
+const openNavigationHelp = () =>
+{
+	emit('modal', true);
+}
 </script>
 
 <style scoped>
@@ -113,5 +126,10 @@ const isActiveButton = (route) => router.currentRoute.value.path === route;
 
 .v-list-item-title {
   color: #340458;
+}
+
+.navigation-help
+{
+	border-radius: 50%;
 }
 </style>
