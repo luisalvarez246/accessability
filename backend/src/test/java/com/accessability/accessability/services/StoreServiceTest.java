@@ -453,7 +453,7 @@ public class StoreServiceTest {
             selectedCharacteristics = characteristicRepository.findAllById(new ArrayList<>(Arrays.asList(characteristicIds)));
             categories = storeService.categoryLoad(selectedCharacteristics);
             //assert
-            assertEquals("prm,hearing ", categories);
+            assertEquals("prm,hearing", categories);
         }
 
         @Test

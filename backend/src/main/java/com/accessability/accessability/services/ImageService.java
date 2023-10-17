@@ -4,6 +4,7 @@ import com.accessability.accessability.models.Store;
 import com.accessability.accessability.repositories.IStoreRepository;
 import com.accessability.accessability.repositories.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,6 +22,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Primary
 public class ImageService implements ImageRepository
 {
     private final String storePath = System.getProperty("user.dir") + "/src/main/webapp/images";
